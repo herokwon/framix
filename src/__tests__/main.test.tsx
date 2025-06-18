@@ -16,25 +16,31 @@ vi.mock('../App', () => ({
   default: () => null,
 }));
 
-// Mock document.getElementById
-Object.defineProperty(document, 'getElementById', {
-  writable: true,
-  value: vi.fn(() => document.createElement('div')),
-});
-
 describe('main.tsx', () => {
+  let mockRootElement: HTMLDivElement;
+
   beforeEach(() => {
     vi.clearAllMocks();
+
+    // ✅ 모킹된 DOM 요소 생성
+    mockRootElement = document.createElement('div');
+    mockRootElement.id = 'root';
+
+    // ✅ document.getElementById 모킹
+    vi.spyOn(document, 'getElementById').mockReturnValue(mockRootElement);
   });
 
-  it('should import without errors', async () => {
-    expect(() => import('../main')).not.toThrow();
+  afterEach(() => {
+    vi.restoreAllMocks();
   });
 
   it('should call createRoot with root element', async () => {
     await import('../main');
 
-    expect(mockCreateRoot).toHaveBeenCalledWith(expect.any(HTMLElement));
-    expect(mockRender).toHaveBeenCalled();
+    expect(document.getElementById).toHaveBeenCalledWith('root');
+
+    expect(mockCreateRoot).toHaveBeenCalledTimes(1);
+    expect(mockCreateRoot).toHaveBeenCalledWith(mockRootElement);
+    expect(mockRender).toHaveBeenCalledTimes(1);
   });
 });
