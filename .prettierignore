@@ -1,0 +1,22 @@
+# Build outputs
+dist/
+build/
+lib/
+*.tgz
+*.tar.gz
+
+# Package managers
+node_modules/
+pnpm-lock.yaml
+package-lock.json
+yarn.lock
+
+# Generated files
+coverage/
+.nyc_output/
+*.log
+*.logs
+
+# Documentation and templates
+**/*.md
+**/*.html

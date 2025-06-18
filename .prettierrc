@@ -1,0 +1,18 @@
+{
+  "singleQuote": true,
+  "arrowParens": "avoid",
+  "importOrder": [
+    "^vitest(.*)$",
+    "^@vitest(.*)$",
+    "^@testing-library(.*)$",
+    "^react(.*)$",
+    "^vite(.*)$",
+    "<THIRD_PARTY_MODULES>",
+    "(.css)$",
+    "^[./]"
+  ],
+  "importOrderSeparation": true,
+  "importOrderSortSpecifiers": true,
+  "importOrderCaseInsensitive": true,
+  "plugins": ["@trivago/prettier-plugin-sort-imports"]
+}
