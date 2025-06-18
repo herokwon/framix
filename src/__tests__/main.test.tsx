@@ -21,6 +21,7 @@ describe('main.tsx', () => {
 
   beforeEach(() => {
     vi.clearAllMocks();
+    vi.resetModules();
 
     // ✅ 모킹된 DOM 요소 생성
     mockRootElement = document.createElement('div');
