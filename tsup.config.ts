@@ -8,9 +8,10 @@ export default defineConfig({
   minify: true,
   sourcemap: true,
   treeshake: true,
+  injectStyle: true,
   target: 'es2020',
   tsconfig: 'tsconfig.app.json',
-  external: ['react', 'react-dom'],
+  external: ['react', 'react-dom', 'tailwindcss'],
   esbuildOptions: opts => {
     opts.jsx = 'automatic';
   },

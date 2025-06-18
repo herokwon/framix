@@ -8,11 +8,15 @@
     "^react(.*)$",
     "^vite(.*)$",
     "<THIRD_PARTY_MODULES>",
+    "@utils",
     "(.css)$",
     "^[./]"
   ],
   "importOrderSeparation": true,
   "importOrderSortSpecifiers": true,
   "importOrderCaseInsensitive": true,
-  "plugins": ["@trivago/prettier-plugin-sort-imports"]
+  "plugins": [
+    "@trivago/prettier-plugin-sort-imports",
+    "prettier-plugin-tailwindcss"
+  ]
 }

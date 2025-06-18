@@ -10,6 +10,6 @@ describe('[Root] index.ts', () => {
     const indexModule = await import('../index');
     const exports = Object.keys(indexModule);
 
-    expect(exports.length).toBe(0);
+    expect(exports.length).toBeGreaterThan(0);
   });
 });
