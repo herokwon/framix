@@ -8,6 +8,7 @@
     "^react(.*)$",
     "^vite(.*)$",
     "<THIRD_PARTY_MODULES>",
+    "@utils",
     "(.css)$",
     "^[./]"
   ],
