@@ -7,6 +7,7 @@
     "^@testing-library(.*)$",
     "^react(.*)$",
     "^vite(.*)$",
+    "^@storybook(.*)$",
     "<THIRD_PARTY_MODULES>",
     "@utils",
     "(.css)$",
