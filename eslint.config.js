@@ -39,6 +39,11 @@ export default tseslint.config(
         'warn',
         { allowConstantExport: true },
       ],
+      // Allow unused arguments that start with _ (e.g., _event) for clarity and future extensibility
+      '@typescript-eslint/no-unused-vars': [
+        'error',
+        { argsIgnorePattern: '^_' },
+      ],
     },
     settings: {
       react: {
