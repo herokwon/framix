@@ -29,6 +29,7 @@
     "tailwindcss": "^4"
   },
   "devDependencies": {
+    "@chromatic-com/storybook": "^4.0.0",
     "@eslint/js": "^9.25.0",
     "@storybook/addon-a11y": "^9.0.12",
     "@storybook/addon-designs": "^10.0.1",
@@ -45,6 +46,7 @@
     "@types/react": "^19",
     "@types/react-dom": "^19",
     "@vitejs/plugin-react-swc": "^3.10.2",
+    "@vitest/browser": "^3.2.4",
     "@vitest/coverage-v8": "^3.2.4",
     "@vitest/ui": "^3.2.4",
     "eslint": "^9.25.0",
@@ -56,6 +58,7 @@
     "eslint-plugin-storybook": "^9.0.12",
     "globals": "^16.0.0",
     "jsdom": "^26.1.0",
+    "playwright": "^1.53.1",
     "prettier": "^3.5.3",
     "prettier-plugin-tailwindcss": "^0.6.12",
     "storybook": "^9.0.12",
@@ -64,8 +67,6 @@
     "typescript-eslint": "^8.30.1",
     "vite": "^6.3.5",
     "vite-tsconfig-paths": "^5.1.4",
-    "vitest": "^3.2.4",
-    "@vitest/browser": "^3.2.4",
-    "playwright": "^1.53.1"
+    "vitest": "^3.2.4"
   }
 }
