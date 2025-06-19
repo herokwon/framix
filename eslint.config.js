@@ -4,6 +4,7 @@ import jsxA11y from 'eslint-plugin-jsx-a11y';
 import react from 'eslint-plugin-react';
 import reactHooks from 'eslint-plugin-react-hooks';
 import reactRefresh from 'eslint-plugin-react-refresh';
+import storybook from 'eslint-plugin-storybook';
 import globals from 'globals';
 import tseslint from 'typescript-eslint';
 
@@ -38,6 +39,11 @@ export default tseslint.config(
         'warn',
         { allowConstantExport: true },
       ],
+      // Allow unused arguments that start with _ (e.g., _event) for clarity and future extensibility
+      '@typescript-eslint/no-unused-vars': [
+        'error',
+        { argsIgnorePattern: '^_' },
+      ],
     },
     settings: {
       react: {
@@ -45,5 +51,6 @@ export default tseslint.config(
       },
     },
   },
+  storybook.configs['flat/recommended'],
   eslintConfigPrettier,
 );

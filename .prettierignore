@@ -17,6 +17,5 @@ coverage/
 *.log
 *.logs
 
-# Documentation and templates
-**/*.md
-**/*.html
+# Auto-generated documentation
+CHANGELOG.md
