@@ -29,6 +29,8 @@
     "tailwindcss": "^4"
   },
   "devDependencies": {
+    "@changesets/changelog-git": "^0.2.1",
+    "@changesets/cli": "^2.29.4",
     "@chromatic-com/storybook": "^4.0.0",
     "@eslint/js": "^9.25.0",
     "@storybook/addon-a11y": "^9.0.12",
