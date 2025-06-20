@@ -14,7 +14,8 @@
     "test:ui": "vitest --ui",
     "test:run": "vitest run",
     "storybook": "storybook dev -p 6006",
-    "build-storybook": "storybook build --stats-json"
+    "build-storybook": "storybook build --stats-json",
+    "release": "pnpm build && changeset publish"
   },
   "dependencies": {
     "clsx": "^2.1.1",
