@@ -3,7 +3,7 @@ name: CI Validation
 on: [pull_request]
 
 permissions:
-  contents: write
+  contents: read
   pull-requests: write
 
 jobs:
@@ -66,9 +66,12 @@ jobs:
     needs: [check-lint, check-types, test]
     runs-on: ubuntu-latest
     if: startsWith(github.head_ref, 'changeset-release') || github.event.pull_request.user.login == 'dependabot[bot]'
+    permissions:
+      contents: write
+      pull-requests: write
     steps:
       - name: Merge pull request
         run: gh pr merge --auto --squash "$PR_URL" --delete-branch
         env:
           PR_URL: ${{ github.event.pull_request.html_url }}
-          GH_TOKEN: ${{ secrets.GH_TOKEN }}
+          GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
