@@ -1,0 +1,99 @@
+version: 2
+updates:
+  - package-ecosystem: 'github-actions'
+    directory: '/'
+    schedule:
+      interval: 'weekly'
+      time: '02:00'
+      timezone: 'Asia/Seoul'
+    milestone: 1
+    commit-message:
+      prefix: 'chore(deps):'
+    groups:
+      actions-minor:
+        update-types:
+          - minor
+          - patch
+  - package-ecosystem: 'npm'
+    directory: '/'
+    schedule:
+      interval: 'weekly'
+      time: '02:00'
+      timezone: 'Asia/Seoul'
+    milestone: 1
+    commit-message:
+      prefix: 'chore(deps):'
+    ignore:
+      - dependency-name: 'react'
+        update-types: ['version-update:semver-major']
+      - dependency-name: 'react-dom'
+        update-types: ['version-update:semver-major']
+      - dependency-name: 'clsx'
+        update-types: ['version-update:semver-major']
+      - dependency-name: 'tailwind-merge'
+        update-types: ['version-update:semver-major']
+      - dependency-name: '@types/react'
+        update-types: ['version-update:semver-major']
+      - dependency-name: '@types/react-dom'
+        update-types: ['version-update:semver-major']
+      - dependency-name: 'typescript'
+        update-types: ['version-update:semver-major']
+      - dependency-name: 'tailwindcss'
+        update-types: ['version-update:semver-major']
+      - dependency-name: '@tailwindcss/vite'
+        update-types: ['version-update:semver-major']
+      - dependency-name: 'prettier'
+        update-types: ['version-update:semver-major']
+      - dependency-name: 'eslint'
+        update-types: ['version-update:semver-major']
+      - dependency-name: '@eslint/js'
+        update-types: ['version-update:semver-major']
+      - dependency-name: 'vite'
+        update-types: ['version-update:semver-major']
+      - dependency-name: '@vitejs/*'
+        update-types: ['version-update:semver-major']
+      - dependency-name: 'tsup'
+        update-types: ['version-update:semver-major']
+      - dependency-name: 'storybook'
+        update-types: ['version-update:semver-major']
+      - dependency-name: '@storybook/*'
+        update-types: ['version-update:semver-major']
+      - dependency-name: 'vitest'
+        update-types: ['version-update:semver-major']
+      - dependency-name: '@vitest/*'
+        update-types: ['version-update:semver-major']
+      - dependency-name: '@testing-library/*'
+        update-types: ['version-update:semver-major']
+    groups:
+      npm-production:
+        dependency-type: production
+        update-types:
+          - minor
+          - patch
+        patterns:
+          - 'react'
+          - 'react-dom'
+          - 'clsx'
+          - 'tailwindcss'
+          - 'tailwind-merge'
+      npm-development:
+        dependency-type: development
+        update-types:
+          - minor
+          - patch
+        patterns:
+          - '@types/*'
+          - 'vite'
+          - 'eslint'
+          - '@eslint/js'
+          - 'vitest'
+          - '@vitest/*'
+          - '@testing-library/*'
+      storybook-ecosystem:
+        dependency-type: development
+        patterns:
+          - 'storybook'
+          - '@storybook/*'
+        update-types:
+          - minor
+          - patch
