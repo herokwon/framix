@@ -81,5 +81,39 @@
     "vite": "^6.3.5",
     "vite-tsconfig-paths": "^5.1.4",
     "vitest": "^3.2.4"
-  }
+  },
+  "author": {
+    "name": "HeroKwon",
+    "email": "contact@herokwon.dev",
+    "url": "https://github.com/herokwon"
+  },
+  "bugs": {
+    "email": "contact@herokwon.dev",
+    "url": "https://github.com/herokwon/framix/issues"
+  },
+  "contributors": [
+    {
+      "name": "HeroKwon",
+      "email": "contact@herokwon.dev",
+      "url": "https://github.com/herokwon"
+    }
+  ],
+  "homepage": "https://github.com/herokwon/framix#readme",
+  "keywords": [
+    "framix",
+    "ui-library",
+    "react",
+    "vite",
+    "tailwindcss",
+    "storybook",
+    "design-system",
+    "atomic-design",
+    "frontend"
+  ],
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/herokwon/framix.git"
+  },
+  "description": "🔷 Framix — mix and match clean UI frames with design system precision.",
+  "license": "MIT"
 }
