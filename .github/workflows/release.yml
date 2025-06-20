@@ -38,11 +38,14 @@ jobs:
         uses: actions/github-script@v7
         with:
           script: |
-            const issueNumber = (await github.rest.repos.listPullRequestsAssociatedWithCommit({
+            const result = (await github.rest.repos.listPullRequestsAssociatedWithCommit({
               commit_sha: context.sha,
               owner: context.repo.owner,
               repo: context.repo.repo,
-            })).data[0].number;
+            })).data;
+
+            if (result.length === 0) throw new Error('No pull request found for the latest commit.');
+            const issueNumber = result[0].number;
 
             github.rest.issues.createComment({
               issue_number: issueNumber,
@@ -105,13 +108,16 @@ jobs:
               commit_sha: context.sha,
               owner: context.repo.owner,
               repo: context.repo.repo,
-            })).data[0];
+            })).data;
+
+            if (result.length === 0) throw new Error('No pull request found for the latest commit.');
+            const latestPr = result[0];
 
             return {
-              commit: result.merge_commit_sha.substring(0, 7),
-              number: result.number,
-              title: result.title,
-              url: result.html_url,
+              commit: latestPr.merge_commit_sha.substring(0, 7),
+              number: latestPr.number,
+              title: latestPr.title,
+              url: latestPr.html_url,
               avatar_url: context.payload.repository.owner.avatar_url
             };
 
