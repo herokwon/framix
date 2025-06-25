@@ -23,7 +23,7 @@ labels: "🐞 BugFix"
   - [ ] Desktop
   - [ ] Tablet
   - [ ] Mobile
-  - [_Optional_] Device Model : 
+  - Device Model(optional) : 
 
 <br />
 
