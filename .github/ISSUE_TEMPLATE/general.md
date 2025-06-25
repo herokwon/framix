@@ -1,5 +1,5 @@
 ---
-name: 📍 Others
+name: 📍 General
 about: General template
 title: ''
 labels: ''

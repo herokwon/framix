@@ -2,6 +2,10 @@ name: CI Validation
 
 on: [pull_request]
 
+concurrency:
+  group: ${{ github.workflow }}-${{ github.ref }}
+  cancel-in-progress: true
+
 permissions:
   contents: read
   pull-requests: write
@@ -22,8 +26,8 @@ jobs:
       - name: Run lint
         run: pnpm lint
 
-      - name: Run format
-        run: pnpm format
+      - name: Run format-check
+        run: pnpm format:check
 
   check-types:
     name: Check types

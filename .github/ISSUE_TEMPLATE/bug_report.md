@@ -19,9 +19,11 @@ labels: "🐞 BugFix"
 
 ## ⚙️ Device Information
 
-- **Device Type** : 
-  > (e.g., Desktop, Mobile, Tablet)  
-  - (_optional_) **Device Name / Model** : 
+- **Device Type :**
+  - [ ] Desktop
+  - [ ] Tablet
+  - [ ] Mobile
+  - Device Model(optional) : 
 
 <br />
 
@@ -32,11 +34,6 @@ labels: "🐞 BugFix"
 
 - **Browser** : 
   > (e.g., Chrome 125, Safari 17.1) 
-
-<br />
-
-- **App Version** : 
-  > (if applicable)
 
 <br />
 

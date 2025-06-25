@@ -13,24 +13,28 @@ labels: "✨ Feature"
 
 ## 💡 Details
 
-**Component Type:**
+**Component Type :**
 
-- [ ] Basic UI Component (Button, Input, etc.)
-- [ ] Layout Component (Grid, Container, etc.)
-- [ ] Complex Component (Modal, Dropdown, etc.)
+- [ ] Basic UI Component (`Button`, `Input`, etc.)
+- [ ] Layout Component (`Grid`, `Container`, etc.)
+- [ ] Complex Component (`Modal`, `Dropdown`, etc.)
 - [ ] Utility/Hook
 - [ ] Design Token/Theme Enhancement
 - [ ] Documentation Improvement
 
-**Requirements:**
+<br />
 
-- [ ] Accessibility compliance (WCAG)
+**Requirements :**
+
+- [ ] Accessibility compliance ([WCAG](https://w3.org/WAI/standards-guidelines/wcag))
 - [ ] Mobile responsive
 - [ ] Dark mode support
 - [ ] TypeScript definitions
 - [ ] Storybook stories
 
-**Use Case:**
+<br />
+
+**Use Case :**
 
 <br />
 
