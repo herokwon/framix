@@ -17,5 +17,8 @@ coverage/
 *.log
 *.logs
 
+# GitHub templates
+.github/**/*.md
+
 # Auto-generated documentation
 CHANGELOG.md
