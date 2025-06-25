@@ -22,8 +22,8 @@ jobs:
       - name: Run lint
         run: pnpm lint
 
-      - name: Run format
-        run: pnpm format
+      - name: Run format-check
+        run: pnpm format:check
 
   check-types:
     name: Check types
