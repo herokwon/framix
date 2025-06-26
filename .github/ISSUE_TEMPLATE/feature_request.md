@@ -13,7 +13,7 @@ labels: "✨ Feature"
 
 ## 💡 Details
 
-**Component Type :**
+**Component Type**
 
 - [ ] Basic UI Component (`Button`, `Input`, etc.)
 - [ ] Layout Component (`Grid`, `Container`, etc.)
@@ -24,7 +24,7 @@ labels: "✨ Feature"
 
 <br />
 
-**Requirements :**
+**Requirements**
 
 - [ ] Accessibility compliance ([WCAG](https://w3.org/WAI/standards-guidelines/wcag))
 - [ ] Mobile responsive
@@ -34,7 +34,7 @@ labels: "✨ Feature"
 
 <br />
 
-**Use Case :**
+**Use Case**
 
 <br />
 

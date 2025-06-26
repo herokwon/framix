@@ -19,7 +19,7 @@ labels: "🐞 BugFix"
 
 ## ⚙️ Device Information
 
-- **Device Type :**
+- **Device Type**
   - [ ] Desktop
   - [ ] Tablet
   - [ ] Mobile
