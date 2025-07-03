@@ -43,3 +43,58 @@
   --opacity-text-secondary: 0.6;
   --opacity-text-disabled: 0.38;
 }
+<<<<<<< HEAD:src/styles/color.css
+=======
+
+@utility text-default-light {
+  @apply text-gray-900;
+}
+
+@utility text-default-dark {
+  @apply text-gray-50;
+}
+
+@utility bg-default-light {
+  @apply bg-gray-50;
+}
+
+@utility bg-default-dark {
+  @apply bg-[#121212];
+}
+
+@utility bg-success-background-light {
+  @apply bg-green-100;
+}
+
+@utility bg-success-background-dark {
+  @apply bg-green-900;
+}
+
+@utility bg-danger-background-light {
+  @apply bg-red-100;
+}
+
+@utility bg-danger-background-dark {
+  @apply bg-red-900;
+}
+
+@utility bg-warning-background-light {
+  @apply bg-yellow-100;
+}
+
+@utility bg-warning-background-dark {
+  @apply bg-yellow-900;
+}
+
+@utility bg-info-background-light {
+  @apply bg-sky-100;
+}
+
+@utility bg-info-background-dark {
+  @apply bg-sky-900;
+}
+
+html {
+  @apply text-default-light dark:text-default-dark bg-default-light dark:bg-default-dark;
+}
+>>>>>>> 54a45f6 (design: Add `color` default utilities):src/index.css
