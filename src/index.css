@@ -48,6 +48,22 @@
   --opacity-text-disabled: 0.38;
 }
 
+@utility text-default-light {
+  @apply text-gray-900;
+}
+
+@utility text-default-dark {
+  @apply text-gray-50;
+}
+
+@utility bg-default-light {
+  @apply bg-gray-50;
+}
+
+@utility bg-default-dark {
+  @apply bg-[#121212];
+}
+
 @utility bg-success-background-light {
   @apply bg-green-100;
 }
@@ -78,4 +94,8 @@
 
 @utility bg-info-background-dark {
   @apply bg-sky-900;
+}
+
+html {
+  @apply text-default-light dark:text-default-dark bg-default-light dark:bg-default-dark;
 }
