@@ -91,3 +91,14 @@
 @utility bg-info-background-dark {
   @apply bg-sky-950;
 }
+
+@utility underline-gradient-* {
+  @apply bg-gradient-to-r bg-position-[0_100%] bg-no-repeat;
+  background-size: 0 --value([\*]);
+  background-size: 0 calc(--value(integer) * 1px);
+
+  &:hover {
+    background-size: 100% --value([\*]);
+    background-size: 100% calc(--value(integer) * 1px);
+  }
+}
