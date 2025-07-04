@@ -43,3 +43,11 @@
   --color-info-dark-hover: var(--color-sky-300);
   --color-info-dark-active: var(--color-sky-200);
 }
+
+@utility text-default-light {
+  @apply text-gray-900;
+}
+
+@utility text-default-dark {
+  @apply text-gray-50;
+}
