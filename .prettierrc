@@ -13,8 +13,9 @@
     "^@eslint(.*)$",
     "<THIRD_PARTY_MODULES>",
     "@utils",
-    "(.css)$",
-    "^[./]"
+    "^[./].*(?<!\\.(css|scss|sass|less))$",
+    "@styles/.*\\.(css|scss|sass|less)$",
+    "\\.(css|scss|sass|less)$"
   ],
   "importOrderSeparation": true,
   "importOrderSortSpecifiers": true,
