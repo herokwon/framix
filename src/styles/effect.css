@@ -1,0 +1,8 @@
+@theme {
+  --opacity-text-primary: 0.87;
+  --opacity-text-secondary: 0.6;
+  --opacity-text-disabled: 0.38;
+
+  --shadow-outline: 0 0 0 1px rgba(0, 0, 0, 1) inset;
+  --shadow-overlay: 0 2px 4px 0 rgba(0, 0, 0, 0.38);
+}

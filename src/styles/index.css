@@ -1,0 +1,71 @@
+@layer theme;
+
+@import 'tailwindcss';
+@import './color.css' layer(theme);
+@import './effect.css' layer(theme);
+@import './typography.css' layer(theme);
+
+@custom-variant dark (&:where(.dark, .dark *));
+
+@utility disabled {
+  @apply opacity-text-disabled cursor-not-allowed **:pointer-events-none;
+}
+
+@utility text-default-light {
+  @apply text-gray-900;
+}
+
+@utility text-default-dark {
+  @apply text-gray-50;
+}
+
+@utility bg-default-light {
+  @apply bg-gray-50;
+}
+
+@utility bg-default-dark {
+  @apply bg-[#121212];
+}
+
+@utility bg-success-background-light {
+  @apply bg-green-100;
+}
+
+@utility bg-success-background-dark {
+  @apply bg-green-950;
+}
+
+@utility bg-danger-background-light {
+  @apply bg-red-100;
+}
+
+@utility bg-danger-background-dark {
+  @apply bg-red-950;
+}
+
+@utility bg-warning-background-light {
+  @apply bg-yellow-100;
+}
+
+@utility bg-warning-background-dark {
+  @apply bg-yellow-950;
+}
+
+@utility bg-info-background-light {
+  @apply bg-sky-100;
+}
+
+@utility bg-info-background-dark {
+  @apply bg-sky-950;
+}
+
+@utility underline-gradient-* {
+  @apply bg-gradient-to-r bg-position-[0_100%] bg-no-repeat;
+  background-size: 0 --value([\*]);
+  background-size: 0 calc(--value(integer) * 1px);
+
+  &:hover {
+    background-size: 100% --value([\*]);
+    background-size: 100% calc(--value(integer) * 1px);
+  }
+}

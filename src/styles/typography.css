@@ -1,0 +1,18 @@
+@theme {
+  --text-heading1: 2.5rem;
+  --text-heading1--line-height: calc(3 / 2.5);
+  --text-heading2: 2rem;
+  --text-heading2--line-height: calc(2.5 / 2);
+
+  --text-title1: 1.5rem;
+  --text-title1--line-height: calc(2 / 1.5);
+  --text-title2: 1.25rem;
+  --text-title2--line-height: calc(1.75 / 1.25);
+
+  --text-body1: 1rem;
+  --text-body1--line-height: calc(1.5 / 1);
+  --text-body2: 0.875rem;
+  --text-body2--line-height: calc(1.25 / 0.875);
+  --text-body3: 0.75rem;
+  --text-body3--line-height: calc(1 / 0.75);
+}
