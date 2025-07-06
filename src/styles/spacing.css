@@ -1,0 +1,5 @@
+@theme {
+  --spacing-compact: calc(var(--spacing) * 2);
+  --spacing-normal: calc(var(--spacing) * 4);
+  --spacing-loose: calc(var(--spacing) * 6);
+}

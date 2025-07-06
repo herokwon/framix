@@ -3,6 +3,7 @@
 @import 'tailwindcss';
 @import './color.css' layer(theme);
 @import './effect.css' layer(theme);
+@import './spacing.css' layer(theme);
 @import './typography.css' layer(theme);
 
 @custom-variant dark (&:where(.dark, .dark *));
