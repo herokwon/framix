@@ -21,4 +21,5 @@ coverage/
 .github/**/*.md
 
 # Auto-generated documentation
+.changeset/**/*.md
 CHANGELOG.md
