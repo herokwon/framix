@@ -8,8 +8,10 @@
 
   --color-neutral-light: var(--color-slate-100);
   --color-neutral-light-hover: var(--color-slate-200);
+  --color-neutral-light-active: var(--color-slate-300);
   --color-neutral-dark: var(--color-slate-900);
   --color-neutral-dark-hover: var(--color-slate-800);
+  --color-neutral-dark-active: var(--color-slate-700);
 
   --color-success-light: var(--color-green-600);
   --color-success-light-hover: var(--color-green-700);
