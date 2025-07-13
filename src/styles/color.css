@@ -34,12 +34,12 @@
   --color-warning-dark-hover: var(--color-yellow-400);
   --color-warning-dark-active: var(--color-yellow-500);
 
-  --color-info-light: var(--color-sky-600);
-  --color-info-light-hover: var(--color-sky-700);
-  --color-info-light-active: var(--color-sky-800);
-  --color-info-dark: var(--color-sky-400);
-  --color-info-dark-hover: var(--color-sky-300);
-  --color-info-dark-active: var(--color-sky-200);
+  --color-info-light: var(--color-blue-600);
+  --color-info-light-hover: var(--color-blue-700);
+  --color-info-light-active: var(--color-blue-800);
+  --color-info-dark: var(--color-blue-400);
+  --color-info-dark-hover: var(--color-blue-300);
+  --color-info-dark-active: var(--color-blue-200);
 
   --opacity-text-primary: 0.87;
   --opacity-text-secondary: 0.6;
