@@ -24,6 +24,19 @@ export default defineConfig({
     coverage: {
       enabled: true,
       provider: 'v8',
+      include: ['src/**/*.{ts,tsx}'],
+      exclude: [
+        'node_modules/**',
+        'dist/**',
+        'coverage/**',
+        '.storybook/**',
+        'src/types/**',
+        'src/**/*.stories.{ts,tsx}',
+        'src/**/*.test.{ts,tsx}',
+        '*.config.{js,ts}',
+        '**/*.d.ts',
+        'vitest.setup.ts',
+      ],
     },
     projects: [
       // Default project
