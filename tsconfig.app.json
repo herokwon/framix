@@ -18,6 +18,7 @@
     /* Path aliases */
     "baseUrl": "./src",
     "paths": {
+      "@layouts": ["layouts"],
       "@styles/*": ["styles/*"],
       "@types": ["types"],
       "@utils": ["utils"]
