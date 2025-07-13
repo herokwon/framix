@@ -15,6 +15,7 @@
     "<THIRD_PARTY_MODULES>",
     "@types",
     "@utils",
+    "@data",
     "@layouts",
     "^[./].*(?<!\\.(css|scss|sass|less))$",
     "@styles/.*\\.(css|scss|sass|less)$",
