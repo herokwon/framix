@@ -12,6 +12,7 @@
     "^eslint(.*)$",
     "^@eslint(.*)$",
     "<THIRD_PARTY_MODULES>",
+    "@types",
     "@utils",
     "^[./].*(?<!\\.(css|scss|sass|less))$",
     "@styles/.*\\.(css|scss|sass|less)$",
