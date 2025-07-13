@@ -9,6 +9,7 @@
     "^vite(.*)$",
     "^@vitejs(.*)$",
     "^@storybook(.*)$",
+    "^storybook(.*)$",
     "^eslint(.*)$",
     "^@eslint(.*)$",
     "<THIRD_PARTY_MODULES>",
