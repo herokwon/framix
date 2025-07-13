@@ -12,6 +12,22 @@
   @apply opacity-text-disabled cursor-not-allowed **:pointer-events-none;
 }
 
+@utility container {
+  width: 100%;
+  @media (width >= 40rem) {
+    max-width: 40rem;
+  }
+  @media (width >= 48rem) {
+    max-width: 48rem;
+  }
+  @media (width >= 64rem) {
+    max-width: 64rem;
+  }
+  @media (width >= 80rem) {
+    max-width: 80rem;
+  }
+}
+
 @utility text-default-light {
   @apply text-gray-900;
 }
