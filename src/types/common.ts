@@ -1,11 +1,12 @@
-// =============================================================================
-// Type Branding
-// =============================================================================
 import type {
   ELEMENT_APPEARANCES,
   ELEMENT_SIZES,
   ELEMENT_SPACINGS,
 } from '@data';
+
+// =============================================================================
+// Type Branding
+// =============================================================================
 
 /**
  * Utility type for type branding
@@ -105,3 +106,20 @@ export type Not<T extends boolean> = T extends true ? false : true;
 export type ElementSize = (typeof ELEMENT_SIZES)[number];
 export type ElementSpacing = (typeof ELEMENT_SPACINGS)[number];
 export type ElementAppearance = (typeof ELEMENT_APPEARANCES)[number];
+
+type CamelCaseRest<S extends string> = S extends `${infer Head}${infer Tail}`
+  ? Head extends ' ' | '_' | '-'
+    ? CamelCaseAfterSeparator<Tail>
+    : `${Head}${CamelCaseRest<Tail>}`
+  : S;
+type CamelCaseAfterSeparator<S extends string> =
+  S extends `${infer Head}${infer Tail}`
+    ? Head extends ' ' | '_' | '-'
+      ? CamelCaseAfterSeparator<Tail>
+      : `${Uppercase<Head>}${CamelCaseRest<Tail>}`
+    : S;
+export type CamelCase<S extends string> = S extends `${infer Head}${infer Tail}`
+  ? Head extends ' ' | '_' | '-'
+    ? CamelCase<Tail>
+    : `${Lowercase<Head>}${CamelCaseRest<Tail>}`
+  : S;
