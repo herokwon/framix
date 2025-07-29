@@ -79,12 +79,12 @@ const Grid = <T extends React.ElementType = 'div'>(props: GridProps<T>) => {
       as={Component satisfies React.ElementType}
       style={{
         gridTemplateColumns: !templateColumns
-          ? null
+          ? undefined
           : Array.isArray(templateColumns)
             ? templateColumns.join(' ')
             : `repeat(${templateColumns?.repeat}, ${templateColumns?.size ?? '1fr'})`,
         gridTemplateRows: !templateRows
-          ? null
+          ? undefined
           : Array.isArray(templateRows)
             ? templateRows.join(' ')
             : `repeat(${templateRows?.repeat}, ${templateRows?.size ?? '1fr'})`,
