@@ -44,6 +44,35 @@ type FlexProps<T extends React.ElementType> = PolymorphicPropsWithRef<
   }
 >;
 
+/**
+ * A flexible layout component that uses CSS Flexbox
+ *
+ * @example
+ * ```tsx
+ * // Basic flex container
+ * <Flex>
+ *   <div>Item 1</div>
+ *   <div>Item 2</div>
+ * </Flex>
+ *
+ * // Column layout with gap
+ * <Flex direction="column" gap={{ row: 2, column: 1 }}>
+ *   <div>Item 1</div>
+ *   <div>Item 2</div>
+ * </Flex>
+ *
+ * // Centered content
+ * <Flex justifyContent="center" alignItems="center">
+ *   <div>Centered content</div>
+ * </Flex>
+ *
+ * // As nav element
+ * <Flex as="nav" justifyContent="space-between">
+ *   <div>Logo</div>
+ *   <div>Menu</div>
+ * </Flex>
+ * ```
+ */
 const Flex = <T extends React.ElementType = 'div'>(
   props: FlexProps<T>,
 ): React.ReactElement => {
