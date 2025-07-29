@@ -40,6 +40,7 @@ type FlexProps<T extends React.ElementType> = PolymorphicPropsWithRef<
           row?: number;
           column?: number;
         };
+    inline?: boolean;
   }
 >;
 
@@ -51,6 +52,7 @@ const Flex = <T extends React.ElementType = 'div'>(props: FlexProps<T>) => {
     alignItems = 'stretch',
     wrap = 'nowrap',
     gap = 0,
+    inline = false,
     className,
     style,
     ...rest
@@ -66,7 +68,7 @@ const Flex = <T extends React.ElementType = 'div'>(props: FlexProps<T>) => {
       }}
       className={cn(
         className,
-        'flex',
+        inline ? 'inline-flex' : 'flex',
         (
           {
             row: 'flex-row',
