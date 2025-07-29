@@ -60,7 +60,9 @@ type GridProps<T extends React.ElementType> = PolymorphicPropsWithRef<
   }
 >;
 
-const Grid = <T extends React.ElementType = 'div'>(props: GridProps<T>) => {
+const Grid = <T extends React.ElementType = 'div'>(
+  props: GridProps<T>,
+): React.ReactElement => {
   const {
     as: Component = 'div',
     templateColumns,
