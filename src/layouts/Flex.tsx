@@ -34,10 +34,12 @@ type FlexProps<T extends React.ElementType> = PolymorphicPropsWithRef<
       React.CSSProperties['flexWrap'],
       'nowrap' | 'wrap' | 'wrap-reverse'
     >;
-    gap?: {
-      row?: number;
-      column?: number;
-    };
+    gap?:
+      | number
+      | {
+          row?: number;
+          column?: number;
+        };
   }
 >;
 
@@ -48,7 +50,7 @@ const Flex = <T extends React.ElementType = 'div'>(props: FlexProps<T>) => {
     justifyContent = 'start',
     alignItems = 'stretch',
     wrap = 'nowrap',
-    gap,
+    gap = 0,
     className,
     style,
     ...rest
@@ -58,8 +60,8 @@ const Flex = <T extends React.ElementType = 'div'>(props: FlexProps<T>) => {
       {...rest}
       as={Component satisfies React.ElementType}
       style={{
-        columnGap: `calc(var(--spacing) * ${gap?.column ?? 0})`,
-        rowGap: `calc(var(--spacing) * ${gap?.row ?? 0})`,
+        columnGap: `calc(var(--spacing) * ${typeof gap === 'number' ? gap : (gap.column ?? 0)})`,
+        rowGap: `calc(var(--spacing) * ${typeof gap === 'number' ? gap : (gap.row ?? 0)})`,
         ...style,
       }}
       className={cn(
