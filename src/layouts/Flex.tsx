@@ -44,7 +44,9 @@ type FlexProps<T extends React.ElementType> = PolymorphicPropsWithRef<
   }
 >;
 
-const Flex = <T extends React.ElementType = 'div'>(props: FlexProps<T>) => {
+const Flex = <T extends React.ElementType = 'div'>(
+  props: FlexProps<T>,
+): React.ReactElement => {
   const {
     as: Component = 'div',
     direction = 'row',
