@@ -36,7 +36,11 @@ const Container = <T extends ContainerTags = 'section'>(
   const { as: Component = 'section', className, ...rest } = props;
   return (
     <Box
-      {...rest}
+      {...Object.fromEntries(
+        Object.entries(rest).filter(
+          ([key]) => key !== 'fixed' && key !== 'maxWidth',
+        ),
+      )}
       as={Component satisfies ContainerTags}
       className={cn(
         className,
