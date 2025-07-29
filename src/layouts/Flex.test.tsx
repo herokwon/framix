@@ -52,6 +52,7 @@ describe('[Layouts] Flex', () => {
         'items-stretch',
         'flex-nowrap',
       );
+      expect(flex).not.toHaveClass('inline-flex');
       expect(flex).toHaveStyle({
         columnGap: 'calc(var(--spacing) * 0)',
         rowGap: 'calc(var(--spacing) * 0)',
@@ -333,6 +334,83 @@ describe('[Layouts] Flex', () => {
       const flex = screen.getByTestId('flex');
 
       expect(flex).toHaveClass('flex-wrap-reverse');
+    });
+  });
+
+  describe('inline prop', () => {
+    it('applies flex class by default when inline is false', () => {
+      render(
+        <Flex inline={false} data-testid="flex">
+          Content
+        </Flex>,
+      );
+      const flex = screen.getByTestId('flex');
+
+      expect(flex).toHaveClass('flex');
+      expect(flex).not.toHaveClass('inline-flex');
+    });
+
+    it('applies inline-flex class when inline is true', () => {
+      render(
+        <Flex inline={true} data-testid="flex">
+          Content
+        </Flex>,
+      );
+      const flex = screen.getByTestId('flex');
+
+      expect(flex).toHaveClass('inline-flex');
+      expect(flex).not.toHaveClass('flex');
+    });
+
+    it('applies flex class by default when inline prop is not provided', () => {
+      render(<Flex data-testid="flex">Content</Flex>);
+      const flex = screen.getByTestId('flex');
+
+      expect(flex).toHaveClass('flex');
+      expect(flex).not.toHaveClass('inline-flex');
+    });
+
+    it('combines inline-flex with other flex properties', () => {
+      render(
+        <Flex
+          inline={true}
+          direction="column"
+          justifyContent="center"
+          alignItems="stretch"
+          data-testid="flex"
+        >
+          Content
+        </Flex>,
+      );
+      const flex = screen.getByTestId('flex');
+
+      expect(flex).toHaveClass(
+        'inline-flex',
+        'flex-col',
+        'justify-center',
+        'items-stretch',
+      );
+      expect(flex).not.toHaveClass('flex');
+    });
+
+    it('works correctly with wrap and gap properties', () => {
+      render(
+        <Flex
+          inline={true}
+          wrap="wrap"
+          gap={{ row: 1, column: 2 }}
+          data-testid="flex"
+        >
+          Content
+        </Flex>,
+      );
+      const flex = screen.getByTestId('flex');
+
+      expect(flex).toHaveClass('inline-flex', 'flex-wrap');
+      expect(flex).toHaveStyle({
+        columnGap: 'calc(var(--spacing) * 2)',
+        rowGap: 'calc(var(--spacing) * 1)',
+      });
     });
   });
 
@@ -728,12 +806,8 @@ describe('[Layouts] Flex', () => {
   });
 
   describe('edge cases', () => {
-    it('handles empty gap object', () => {
-      render(
-        <Flex gap={{}} data-testid="flex">
-          Content
-        </Flex>,
-      );
+    it('handles gap values with nothing', () => {
+      render(<Flex data-testid="flex">Content</Flex>);
       const flex = screen.getByTestId('flex');
 
       expect(flex).toHaveStyle({
@@ -743,21 +817,21 @@ describe('[Layouts] Flex', () => {
       expect(flex).toHaveTextContent('Content');
     });
 
-    it('handles zero gap values', () => {
+    it('handles number gap values', () => {
       render(
-        <Flex gap={{ row: 0, column: 0 }} data-testid="flex">
+        <Flex gap={7} data-testid="flex">
           Content
         </Flex>,
       );
       const flex = screen.getByTestId('flex');
 
       expect(flex).toHaveStyle({
-        columnGap: 'calc(var(--spacing) * 0)',
-        rowGap: 'calc(var(--spacing) * 0)',
+        columnGap: 'calc(var(--spacing) * 7)',
+        rowGap: 'calc(var(--spacing) * 7)',
       });
     });
 
-    it('handles large gap values', () => {
+    it('handles object gap values', () => {
       render(
         <Flex gap={{ row: 10, column: 15 }} data-testid="flex">
           Content

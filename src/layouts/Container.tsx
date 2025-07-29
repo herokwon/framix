@@ -30,13 +30,35 @@ type ContainerProps<T extends ContainerTags> = PolymorphicPropsWithRef<
     }
 >;
 
+/**
+ * A semantic container component with responsive width controls
+ *
+ * @example
+ * ```tsx
+ * // Default container with full width
+ * <Container>Content</Container>
+ *
+ * // Fixed container using Tailwind's container class
+ * <Container fixed>Content</Container>
+ *
+ * // Custom max-width container
+ * <Container maxWidth="lg">Content</Container>
+ *
+ * // As main element
+ * <Container as="main" maxWidth="xl">Main content</Container>
+ * ```
+ */
 const Container = <T extends ContainerTags = 'section'>(
   props: ContainerProps<T>,
-) => {
+): React.ReactElement => {
   const { as: Component = 'section', className, ...rest } = props;
   return (
     <Box
-      {...rest}
+      {...Object.fromEntries(
+        Object.entries(rest).filter(
+          ([key]) => key !== 'fixed' && key !== 'maxWidth',
+        ),
+      )}
       as={Component satisfies ContainerTags}
       className={cn(
         className,

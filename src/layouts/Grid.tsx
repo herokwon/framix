@@ -60,7 +60,45 @@ type GridProps<T extends React.ElementType> = PolymorphicPropsWithRef<
   }
 >;
 
-const Grid = <T extends React.ElementType = 'div'>(props: GridProps<T>) => {
+/**
+ * A flexible grid layout component that uses CSS Grid
+ *
+ * @example
+ * ```tsx
+ * // Basic grid with auto columns
+ * <Grid templateColumns={{ repeat: 3, size: '1fr' }}>
+ *   <div>Item 1</div>
+ *   <div>Item 2</div>
+ *   <div>Item 3</div>
+ * </Grid>
+ *
+ * // Custom grid with specific sizes
+ * <Grid templateColumns={['200px', '1fr', '100px']}>
+ *   <div>Sidebar</div>
+ *   <div>Content</div>
+ *   <div>Widget</div>
+ * </Grid>
+ *
+ * // Responsive grid with gap
+ * <Grid
+ *   templateColumns={{ repeat: 'auto-fit', size: 'minmax(300px, 1fr)' }}
+ *   gap={{ row: 2, column: 3 }}
+ * >
+ *   <div>Card 1</div>
+ *   <div>Card 2</div>
+ *   <div>Card 3</div>
+ * </Grid>
+ *
+ * // Centered grid items
+ * <Grid placeItems="center" templateColumns={{ repeat: 2, size: '1fr' }}>
+ *   <div>Centered 1</div>
+ *   <div>Centered 2</div>
+ * </Grid>
+ * ```
+ */
+const Grid = <T extends React.ElementType = 'div'>(
+  props: GridProps<T>,
+): React.ReactElement => {
   const {
     as: Component = 'div',
     templateColumns,
@@ -79,12 +117,12 @@ const Grid = <T extends React.ElementType = 'div'>(props: GridProps<T>) => {
       as={Component satisfies React.ElementType}
       style={{
         gridTemplateColumns: !templateColumns
-          ? null
+          ? undefined
           : Array.isArray(templateColumns)
             ? templateColumns.join(' ')
             : `repeat(${templateColumns?.repeat}, ${templateColumns?.size ?? '1fr'})`,
         gridTemplateRows: !templateRows
-          ? null
+          ? undefined
           : Array.isArray(templateRows)
             ? templateRows.join(' ')
             : `repeat(${templateRows?.repeat}, ${templateRows?.size ?? '1fr'})`,

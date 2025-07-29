@@ -924,21 +924,21 @@ describe('[Layouts] Grid', () => {
       expect(grid.style.gridTemplateRows).toBe('');
     });
 
-    it('handles zero gap values', () => {
+    it('handles number gap values', () => {
       render(
-        <Grid gap={{ row: 0, column: 0 }} data-testid="grid">
+        <Grid gap={7} data-testid="grid">
           Content
         </Grid>,
       );
       const grid = screen.getByTestId('grid');
 
       expect(grid).toHaveStyle({
-        columnGap: 'calc(var(--spacing) * 0)',
-        rowGap: 'calc(var(--spacing) * 0)',
+        columnGap: 'calc(var(--spacing) * 7)',
+        rowGap: 'calc(var(--spacing) * 7)',
       });
     });
 
-    it('handles large gap values', () => {
+    it('handles object gap values', () => {
       render(
         <Grid gap={{ row: 10, column: 15 }} data-testid="grid">
           Content

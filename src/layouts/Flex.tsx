@@ -34,21 +34,56 @@ type FlexProps<T extends React.ElementType> = PolymorphicPropsWithRef<
       React.CSSProperties['flexWrap'],
       'nowrap' | 'wrap' | 'wrap-reverse'
     >;
-    gap?: {
-      row?: number;
-      column?: number;
-    };
+    gap?:
+      | number
+      | {
+          row?: number;
+          column?: number;
+        };
+    inline?: boolean;
   }
 >;
 
-const Flex = <T extends React.ElementType = 'div'>(props: FlexProps<T>) => {
+/**
+ * A flexible layout component that uses CSS Flexbox
+ *
+ * @example
+ * ```tsx
+ * // Basic flex container
+ * <Flex>
+ *   <div>Item 1</div>
+ *   <div>Item 2</div>
+ * </Flex>
+ *
+ * // Column layout with gap
+ * <Flex direction="column" gap={{ row: 2, column: 1 }}>
+ *   <div>Item 1</div>
+ *   <div>Item 2</div>
+ * </Flex>
+ *
+ * // Centered content
+ * <Flex justifyContent="center" alignItems="center">
+ *   <div>Centered content</div>
+ * </Flex>
+ *
+ * // As nav element
+ * <Flex as="nav" justifyContent="space-between">
+ *   <div>Logo</div>
+ *   <div>Menu</div>
+ * </Flex>
+ * ```
+ */
+const Flex = <T extends React.ElementType = 'div'>(
+  props: FlexProps<T>,
+): React.ReactElement => {
   const {
     as: Component = 'div',
     direction = 'row',
     justifyContent = 'start',
     alignItems = 'stretch',
     wrap = 'nowrap',
-    gap,
+    gap = 0,
+    inline = false,
     className,
     style,
     ...rest
@@ -58,13 +93,13 @@ const Flex = <T extends React.ElementType = 'div'>(props: FlexProps<T>) => {
       {...rest}
       as={Component satisfies React.ElementType}
       style={{
-        columnGap: `calc(var(--spacing) * ${gap?.column ?? 0})`,
-        rowGap: `calc(var(--spacing) * ${gap?.row ?? 0})`,
+        columnGap: `calc(var(--spacing) * ${typeof gap === 'number' ? gap : (gap.column ?? 0)})`,
+        rowGap: `calc(var(--spacing) * ${typeof gap === 'number' ? gap : (gap.row ?? 0)})`,
         ...style,
       }}
       className={cn(
         className,
-        'flex',
+        inline ? 'inline-flex' : 'flex',
         (
           {
             row: 'flex-row',
