@@ -32,7 +32,7 @@ type ContainerProps<T extends ContainerTags> = PolymorphicPropsWithRef<
 
 const Container = <T extends ContainerTags = 'section'>(
   props: ContainerProps<T>,
-) => {
+): React.ReactElement => {
   const { as: Component = 'section', className, ...rest } = props;
   return (
     <Box
