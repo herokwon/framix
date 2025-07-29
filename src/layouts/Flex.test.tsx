@@ -806,12 +806,8 @@ describe('[Layouts] Flex', () => {
   });
 
   describe('edge cases', () => {
-    it('handles empty gap object', () => {
-      render(
-        <Flex gap={{}} data-testid="flex">
-          Content
-        </Flex>,
-      );
+    it('handles gap values with nothing', () => {
+      render(<Flex data-testid="flex">Content</Flex>);
       const flex = screen.getByTestId('flex');
 
       expect(flex).toHaveStyle({
@@ -821,21 +817,21 @@ describe('[Layouts] Flex', () => {
       expect(flex).toHaveTextContent('Content');
     });
 
-    it('handles zero gap values', () => {
+    it('handles number gap values', () => {
       render(
-        <Flex gap={{ row: 0, column: 0 }} data-testid="flex">
+        <Flex gap={7} data-testid="flex">
           Content
         </Flex>,
       );
       const flex = screen.getByTestId('flex');
 
       expect(flex).toHaveStyle({
-        columnGap: 'calc(var(--spacing) * 0)',
-        rowGap: 'calc(var(--spacing) * 0)',
+        columnGap: 'calc(var(--spacing) * 7)',
+        rowGap: 'calc(var(--spacing) * 7)',
       });
     });
 
-    it('handles large gap values', () => {
+    it('handles object gap values', () => {
       render(
         <Flex gap={{ row: 10, column: 15 }} data-testid="flex">
           Content
