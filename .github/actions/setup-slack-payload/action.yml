@@ -38,163 +38,77 @@ runs:
     - name: Setup payload
       id: payload
       shell: bash
+      env:
+        SLACK_CHANNEL_ID: ${{ inputs.slack_channel_id }}
+        PUBLISHED: ${{ inputs.published }}
+        PUBLISHED_PACKAGES: ${{ inputs.published_packages }}
+        PR_COMMIT: ${{ inputs.pr_commit }}
+        PR_NUMBER: ${{ inputs.pr_number }}
+        PR_TITLE: ${{ inputs.pr_title }}
+        PR_URL: ${{ inputs.pr_url }}
+        AVATAR_URL: ${{ inputs.avatar_url }}
+        GH_REPO: ${{ github.repository }}
+        GH_RUN_ID: ${{ github.run_id }}
+        GH_OWNER: ${{ github.repository_owner }}
       run: |
-        if [ "${{ inputs.published }}" = "true" ]; then
-          echo '${{ inputs.published_packages }}' > packages.json
+        set -euo pipefail
 
-          PACKAGE_NAME=$(jq -r '.[0].name' packages.json)
-          PACKAGE_VERSION=$(jq -r '.[0].version' packages.json)
+        node - <<'NODE'
+        const fs = require('fs');
 
-          echo '{
-            "channel": "${{ inputs.slack_channel_id }}",
-            "attachments": [
-              {
-                "color": "#36a64f",
-                "blocks": [
-                  {
-                    "type": "header",
-                    "text": {
-                      "type": "plain_text",
-                      "text": "✅ 패키지 배포 완료",
-                      "emoji": true
-                    }
-                  },
-                  {
-                    "type": "divider"
-                  },
-                  {
-                    "type": "section",
-                    "text": {
-                      "type": "mrkdwn",
-                      "text": "*`'$PACKAGE_NAME'`* : <https://npmjs.com/package/'$PACKAGE_NAME'/v/'$PACKAGE_VERSION'|*'$PACKAGE_VERSION'*>"
-                    }
-                  },
-                  {
-                    "type": "section",
-                    "text": {
-                      "type": "mrkdwn",
-                      "text": "*Commit*\n<https://github.com/${{ github.repository }}/commit/${{ inputs.pr_commit }}|${{ inputs.pr_commit }}>"
-                    }
-                  },
-                  {
-                    "type": "section",
-                    "text": {
-                      "type": "mrkdwn",
-                      "text": "*Pull request*\n<${{ inputs.pr_url }}|[#${{ inputs.pr_number }}] ${{ inputs.pr_title }}>"
-                    }
-                  },
-                  {
-                    "type": "actions",
-                    "elements": [
-                      {
-                        "type": "button",
-                        "text": {
-                          "type": "plain_text",
-                          "text": "⭐\t Workflow details",
-                          "emoji": true
-                        },
-                        "url": "https://github.com/${{ github.repository }}/actions/runs/${{ github.run_id }}"
-                      },
-                      {
-                        "type": "button",
-                        "text": {
-                          "type": "plain_text",
-                          "text": "📄\t Package details",
-                          "emoji": true
-                        },
-                        "url": "${{ inputs.pr_url }}"
-                      }
-                    ]
-                  },
-                  {
-                    "type": "divider"
-                  },
-                  {
-                    "type": "context",
-                    "elements": [
-                      {
-                        "type": "image",
-                        "image_url": "${{ inputs.avatar_url }}",
-                        "alt_text": "avatar_img"
-                      },
-                      {
-                        "type": "mrkdwn",
-                        "text": "<https://github.com/${{ github.repository_owner }}|*${{ github.repository_owner }}*> has approved this message."
-                      }
-                    ]
-                  }
-                ]
-              }
+        const env = process.env;
+        const esc = (s) => String(s ?? '')
+          .replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;');
+
+        const published = (env.PUBLISHED || '').toLowerCase() === 'true';
+
+        let pkgs = [];
+        try { pkgs = JSON.parse(env.PUBLISHED_PACKAGES || '[]'); } catch {}
+        const pkg = pkgs[0] || {};
+        const hasPkg = pkg.name && pkg.version;
+        const npmUrl = hasPkg ? `https://npmjs.com/package/${pkg.name}/v/${pkg.version}` : '';
+
+        const headerBlocks = published
+          ? [{ type: "header", text: { type: "plain_text", text: "✅ 패키지 배포 완료", emoji: true } }]
+          : [{ type: "header", text: { type: "plain_text", text: "❌ 패키지 배포 실패", emoji: true } }];
+
+        const packageBlock = hasPkg ? [{
+          type: "section",
+          text: { type: "mrkdwn", text: `*\\\`${esc(pkg.name)}\\\`* : <${npmUrl}|*${esc(pkg.version)}*>` }
+        }] : [];
+
+        const baseBlocks = [
+          { type: "divider" },
+          { type: "section", text: { type: "mrkdwn", text: `*Commit*\n<https://github.com/${env.GH_REPO}/commit/${env.PR_COMMIT}|${esc(env.PR_COMMIT)}>` } },
+          { type: "section", text: { type: "mrkdwn", text: `*Pull request*\n<${env.PR_URL}|[#${esc(env.PR_NUMBER)}] ${esc(env.PR_TITLE)}>` } },
+          {
+            type: "actions",
+            elements: [
+              { type: "button", text: { type: "plain_text", text: "⭐\t Workflow details", emoji: true }, url: `https://github.com/${env.GH_REPO}/actions/runs/${env.GH_RUN_ID}` },
+              { type: "button", text: { type: "plain_text", text: "📄\t Pull request", emoji: true }, url: env.PR_URL }
             ]
-          }' > slack_payload.json
-        else
-          echo '{
-            "channel": "${{ inputs.slack_channel_id }}",
-            "attachments": [
-              {
-                "color": "#ff4d4d",
-                "blocks": [
-                  {
-                    "type": "header",
-                    "text": {
-                      "type": "plain_text",
-                      "text": "❌ 패키지 배포 실패",
-                      "emoji": true
-                    }
-                  },
-                  {
-                    "type": "divider"
-                  },
-                  {
-                    "type": "section",
-                    "text": {
-                      "type": "mrkdwn",
-                      "text": "*Commit*\n<https://github.com/${{ github.repository }}/commit/${{ inputs.pr_commit }}|${{ inputs.pr_commit }}>"
-                    }
-                  },
-                  {
-                    "type": "section",
-                    "text": {
-                      "type": "mrkdwn",
-                      "text": "*Pull request*\n<${{ inputs.pr_url }}|[#${{ inputs.pr_number }}] ${{ inputs.pr_title }}>"
-                    }
-                  },
-                  {
-                    "type": "actions",
-                    "elements": [
-                      {
-                        "type": "button",
-                        "text": {
-                          "type": "plain_text",
-                          "text": "🔍\t Workflow details",
-                          "emoji": true
-                        },
-                        "url": "https://github.com/${{ github.repository }}/actions/runs/${{ github.run_id }}"
-                      }
-                    ]
-                  },
-                  {
-                    "type": "divider"
-                  },
-                  {
-                    "type": "context",
-                    "elements": [
-                      {
-                        "type": "image",
-                        "image_url": "${{ inputs.avatar_url }}",
-                        "alt_text": "avatar_img"
-                      },
-                      {
-                        "type": "mrkdwn",
-                        "text": "<https://github.com/${{ github.repository_owner }}|*${{ github.repository_owner }}*> has approved this message."
-                      }
-                    ]
-                  }
-                ]
-              }
+          },
+          { type: "divider" },
+          {
+            type: "context",
+            elements: [
+              { type: "image", image_url: env.AVATAR_URL, alt_text: "avatar_img" },
+              { type: "mrkdwn", text: `<https://github.com/${env.GH_OWNER}|*${env.GH_OWNER}*> has approved this message.` }
             ]
-          }' > slack_payload.json
-        fi
+          }
+        ];
 
-        FILE_PATH="slack_payload.json"
-        echo "file-path=$FILE_PATH" >> $GITHUB_OUTPUT
+        const payload = {
+          channel: env.SLACK_CHANNEL_ID,
+          attachments: [
+            {
+              color: published ? "#36a64f" : "#ff4d4d",
+              blocks: [...headerBlocks, ...packageBlock, ...baseBlocks]
+            }
+          ]
+        };
+
+        fs.writeFileSync('slack_payload.json', JSON.stringify(payload));
+        NODE
+
+        echo "file-path=slack_payload.json" >> "$GITHUB_OUTPUT"
