@@ -1,6 +1,8 @@
-name: CI Validation
+name: PR Checks
 
-on: [pull_request]
+on:
+  pull_request:
+    types: [opened, synchronize, reopened, ready_for_review]
 
 concurrency:
   group: ${{ github.workflow }}-${{ github.ref }}
@@ -8,7 +10,6 @@ concurrency:
 
 permissions:
   contents: read
-  pull-requests: write
 
 jobs:
   check-lint:
@@ -17,8 +18,6 @@ jobs:
     steps:
       - name: Checkout code
         uses: actions/checkout@v4
-        with:
-          fetch-depth: 0
 
       - name: Setup environment
         uses: ./.github/actions/setup-env
@@ -35,8 +34,6 @@ jobs:
     steps:
       - name: Checkout code
         uses: actions/checkout@v4
-        with:
-          fetch-depth: 0
 
       - name: Setup environment
         uses: ./.github/actions/setup-env
@@ -53,8 +50,6 @@ jobs:
     steps:
       - name: Checkout code
         uses: actions/checkout@v4
-        with:
-          fetch-depth: 0
 
       - name: Setup environment
         uses: ./.github/actions/setup-env
@@ -69,7 +64,7 @@ jobs:
     name: Merge
     needs: [check-lint, check-types, test]
     runs-on: ubuntu-latest
-    if: startsWith(github.head_ref, 'changeset-release') || github.event.pull_request.user.login == 'dependabot[bot]'
+    if: github.event.pull_request.user.login == 'dependabot[bot]' || (startsWith(github.head_ref, 'changeset-release') && github.event.pull_request.user.login == 'github-actions[bot]')
     permissions:
       contents: write
       pull-requests: write
