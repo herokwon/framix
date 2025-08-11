@@ -10,7 +10,6 @@ concurrency:
 
 permissions:
   contents: read
-  pull-requests: write
 
 jobs:
   check-lint:
@@ -71,7 +70,7 @@ jobs:
     name: Merge
     needs: [check-lint, check-types, test]
     runs-on: ubuntu-latest
-    if: startsWith(github.head_ref, 'changeset-release') || github.event.pull_request.user.login == 'dependabot[bot]'
+    if: github.event.pull_request.user.login == 'dependabot[bot]' || (startsWith(github.head_ref, 'changeset-release') && github.event.pull_request.user.login == 'github-actions[bot]')
     permissions:
       contents: write
       pull-requests: write
