@@ -42,7 +42,7 @@ jobs:
               repo: context.repo.repo,
             })).data;
 
-            if (result.length === 0) throw new Error('No pull request found for the latest commit.');
+            if (result.length === 0) throw new Error(`No pull request found for commit ${context.sha}`);
             const issueNumber = result[0].number;
 
             github.rest.issues.createComment({
