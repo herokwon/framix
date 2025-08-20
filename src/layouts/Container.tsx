@@ -1,8 +1,4 @@
-import type {
-  ElementSize,
-  PolymorphicPropsWithRef,
-  StrictExtract,
-} from '@types';
+import type { MaxWidth, PolymorphicPropsWithRef, StrictExtract } from '@types';
 
 import { cn } from '@utils';
 
@@ -26,7 +22,7 @@ type ContainerProps<T extends ContainerTags> = PolymorphicPropsWithRef<
     }
   | {
       fixed?: false;
-      maxWidth?: ElementSize;
+      maxWidth?: MaxWidth;
     }
 >;
 

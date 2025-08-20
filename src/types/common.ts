@@ -106,6 +106,7 @@ export type Not<T extends boolean> = T extends true ? false : true;
 export type ElementSize = (typeof ELEMENT_SIZES)[number];
 export type ElementSpacing = (typeof ELEMENT_SPACINGS)[number];
 export type ElementAppearance = (typeof ELEMENT_APPEARANCES)[number];
+export type MaxWidth = ElementSize | 'xl';
 
 type CamelCaseRest<S extends string> = S extends `${infer Head}${infer Tail}`
   ? Head extends ' ' | '_' | '-'
