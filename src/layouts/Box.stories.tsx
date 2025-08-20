@@ -28,7 +28,7 @@ export const AsButton: Story = {
   args: {
     as: 'button',
     className:
-      'px-normal py-3 rounded-md cursor-pointer font-semibold text-default-dark dark:text-default-light bg-primary-light hover:bg-primary-light-hover active:bg-primary-light-active dark:bg-primary-dark dark:hover:bg-primary-dark-hover dark:active:bg-primary-dark-active',
+      'px-normal py-3 rounded-md cursor-pointer font-semibold text-foreground-dark dark:text-foreground-light bg-primary-light hover:bg-primary-light-hover active:bg-primary-light-active dark:bg-primary-dark dark:hover:bg-primary-dark-hover dark:active:bg-primary-dark-active',
     onClick: fn(),
     children: 'Click me',
   },

@@ -1,4 +1,9 @@
 @theme {
+  --color-foreground-light: var(--color-gray-900);
+  --color-foreground-dark: var(--color-gray-50);
+  --color-background-light: var(--color-gray-50);
+  --color-background-dark: #121212;
+
   --color-primary-light: var(--color-indigo-600);
   --color-primary-light-hover: var(--color-indigo-700);
   --color-primary-light-active: var(--color-indigo-800);

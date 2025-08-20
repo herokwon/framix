@@ -28,22 +28,6 @@
   }
 }
 
-@utility text-default-light {
-  @apply text-gray-900;
-}
-
-@utility text-default-dark {
-  @apply text-gray-50;
-}
-
-@utility bg-default-light {
-  @apply bg-gray-50;
-}
-
-@utility bg-default-dark {
-  @apply bg-[#121212];
-}
-
 @utility bg-success-background-light {
   @apply bg-green-100;
 }
