@@ -45,8 +45,4 @@
   --color-info-dark: var(--color-blue-400);
   --color-info-dark-hover: var(--color-blue-300);
   --color-info-dark-active: var(--color-blue-200);
-
-  --opacity-text-primary: 0.87;
-  --opacity-text-secondary: 0.6;
-  --opacity-text-disabled: 0.38;
 }
