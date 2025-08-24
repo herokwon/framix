@@ -5,7 +5,7 @@ import userEvent from '@testing-library/user-event';
 
 import { ELEMENT_SIZES } from '@data';
 
-import { Container } from '@layouts';
+import Container from './Container';
 
 describe('[Layouts] Container', () => {
   describe('rendering', () => {

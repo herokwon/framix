@@ -2,7 +2,7 @@ import type { Meta, StoryObj } from '@storybook/react-vite';
 
 import { fn } from 'storybook/test';
 
-import { Box } from '@layouts';
+import Box from './Box';
 
 const meta = {
   title: 'Layouts/Box',

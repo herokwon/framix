@@ -1,6 +1,7 @@
 import type { Meta, StoryObj } from '@storybook/react-vite';
 
-import { Box, Grid } from '@layouts';
+import Box from './Box';
+import Grid from './Grid';
 
 const meta = {
   title: 'Layouts/Grid',
@@ -33,7 +34,7 @@ const GridBox = ({
       </h3>
       <Grid
         {...props}
-        className="border-neutral-light dark:border-neutral-dark p-normal *:text-default-dark *:dark:text-default-light rounded-md border font-semibold"
+        className="border-neutral-light dark:border-neutral-dark p-normal *:text-foreground-dark *:dark:text-foreground-light rounded-md border font-semibold"
       >
         {Array.from({ length }, (_, i) => (
           <Box

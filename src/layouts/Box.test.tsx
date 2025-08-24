@@ -3,7 +3,7 @@ import { vi } from 'vitest';
 import { render, screen } from '@testing-library/react';
 import userEvent from '@testing-library/user-event';
 
-import { Box } from '@layouts';
+import Box from './Box';
 
 describe('[Layouts] Box', () => {
   describe('rendering', () => {
