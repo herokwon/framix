@@ -66,9 +66,11 @@ export type KeysOfType<T, U> = {
  * type UserWithoutId = StrictOmit<User, 'id'>;        // ✅ { name: string; email: string; }
  * type Error = StrictOmit<User, 'nonexistent'>;       // ❌ Type error
  */
-export type StrictOmit<T, K extends keyof T> = {
-  [P in Exclude<keyof T, K>]: T[P];
-};
+export type StrictOmit<T, K extends keyof T> = [K] extends [never]
+  ? T
+  : [K] extends [keyof T]
+    ? Pick<T, Exclude<keyof T, K>>
+    : never;
 
 /**
  * Type-safe Extract - all K must be included in T
