@@ -5,6 +5,13 @@
 
   --shadow-outline: 0 0 0 1px rgba(0, 0, 0, 1) inset;
   --shadow-overlay: 0 2px 4px 0 rgba(0, 0, 0, 0.38);
+  --shadow-clickable:
+    0 1px 1.5px rgba(0, 0, 0, 0.1), 0 1px 1px rgba(0, 0, 0, 0.06);
+  --shadow-clickable-hover:
+    0 3px 6px rgba(0, 0, 0, 0.12), 0 2px 4px rgba(0, 0, 0, 0.08);
+  --shadow-clickable-active:
+    0 1px 1px rgba(0, 0, 0, 0.14),
+    0 0 0 1px color-mix(in oklab, currentColor 16%, transparent) inset;
 
   --animate-spin: spin 750ms linear infinite;
 }
