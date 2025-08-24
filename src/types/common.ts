@@ -110,6 +110,29 @@ export type ElementSpacing = (typeof ELEMENT_SPACINGS)[number];
 export type ElementAppearance = (typeof ELEMENT_APPEARANCES)[number];
 export type MaxWidth = ElementSize | 'xl';
 
+type TestIdProps = {
+  testId?: string;
+};
+type LabelProps = {
+  label?: string;
+};
+export type EssentialProps = TestIdProps & LabelProps;
+export type ComponentProps<T extends React.ElementType> = Omit<
+  React.ComponentProps<T>,
+  'aria-label'
+> &
+  EssentialProps;
+export type ComponentPropsWithRef<T extends React.ElementType> = Omit<
+  React.ComponentPropsWithRef<T>,
+  'aria-label'
+> &
+  EssentialProps;
+export type ComponentPropsWithoutRef<T extends React.ElementType> = Omit<
+  React.ComponentPropsWithoutRef<T>,
+  'aria-label'
+> &
+  EssentialProps;
+
 type CamelCaseRest<S extends string> = S extends `${infer Head}${infer Tail}`
   ? Head extends ' ' | '_' | '-'
     ? CamelCaseAfterSeparator<Tail>
