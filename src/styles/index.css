@@ -7,6 +7,7 @@
 @import './typography.css' layer(theme);
 
 @custom-variant dark (&:where(.dark, .dark *));
+@custom-variant active (&:active, &.active);
 
 @utility disabled {
   @apply opacity-text-disabled cursor-not-allowed **:pointer-events-none;
