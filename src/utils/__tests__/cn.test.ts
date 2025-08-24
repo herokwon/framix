@@ -66,7 +66,7 @@ describe('cn utility function', () => {
   });
 
   it('should resolve Tailwind conflicts properly', () => {
-    const result = cn('px-2 py-1 px-3', 'bg-red-200 bg-red-500');
+    const result = cn('px-2 py-1 bg-red-200', 'px-3 bg-red-500');
 
     expect(result).toBe('py-1 px-3 bg-red-500');
   });
