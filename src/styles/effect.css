@@ -14,4 +14,6 @@
     0 0 0 1px color-mix(in oklab, currentColor 16%, transparent) inset;
 
   --animate-spin: spin 750ms linear infinite;
+
+  --default-transition-duration: 200ms;
 }
