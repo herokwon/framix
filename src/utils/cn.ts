@@ -1,5 +1,24 @@
 import clsx, { type ClassValue } from 'clsx';
-import { twMerge } from 'tailwind-merge';
+import { extendTailwindMerge } from 'tailwind-merge';
+
+const twMergeCustom = extendTailwindMerge({
+  override: {
+    classGroups: {
+      'font-size': [
+        ...Array.from({ length: 2 }, (_, i) => `text-heading${i + 1}`),
+        ...Array.from({ length: 2 }, (_, i) => `text-title${i + 1}`),
+        ...Array.from({ length: 3 }, (_, i) => `text-body${i + 1}`),
+      ],
+      shadow: [
+        'shadow-outline',
+        'shadow-overlay',
+        'shadow-clickable',
+        'shadow-clickable-hover',
+        'shadow-clickable-active',
+      ],
+    },
+  },
+});
 
 /**
  * Merges CSS class names with Tailwind CSS conflict resolution.
@@ -13,5 +32,5 @@ import { twMerge } from 'tailwind-merge';
  * cn('px-4', { 'py-2': true, 'hidden': false }) // Returns 'px-4 py-2'
  */
 export default function cn(...inputs: ClassValue[]) {
-  return twMerge(clsx(...inputs));
+  return twMergeCustom(clsx(...inputs));
 }
