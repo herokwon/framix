@@ -1,5 +1,5 @@
 import type {
-  ELEMENT_APPEARANCES,
+  ELEMENT_COLORS,
   ELEMENT_SIZES,
   ELEMENT_SPACINGS,
   ELEMENT_STATUS,
@@ -107,7 +107,7 @@ export type If<C extends boolean, T, F> = C extends true ? T : F;
  */
 export type Not<T extends boolean> = T extends true ? false : true;
 
-export type ElementAppearance = (typeof ELEMENT_APPEARANCES)[number];
+export type ElementColor = (typeof ELEMENT_COLORS)[number];
 export type ElementSize = (typeof ELEMENT_SIZES)[number];
 export type ElementSpacing = (typeof ELEMENT_SPACINGS)[number];
 export type ElementStatus = (typeof ELEMENT_STATUS)[number];

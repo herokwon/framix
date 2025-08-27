@@ -1,4 +1,4 @@
-export const ELEMENT_APPEARANCES = [
+export const ELEMENT_COLORS = [
   'default',
   'primary',
   'success',
