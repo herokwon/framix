@@ -3,6 +3,7 @@ import type {
   ELEMENT_SIZES,
   ELEMENT_SPACINGS,
   ELEMENT_STATUS,
+  ELEMENT_VARIANTS,
 } from '@data';
 
 // =============================================================================
@@ -113,6 +114,7 @@ export type ElementStatus = (typeof ELEMENT_STATUS)[number];
 export type ElementStatusProps = {
   [status in ElementStatus]?: boolean;
 };
+export type ElementVariant = (typeof ELEMENT_VARIANTS)[number];
 
 export type MaxWidth = ElementSize | 'xl';
 
