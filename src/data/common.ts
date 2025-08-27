@@ -8,3 +8,9 @@ export const ELEMENT_APPEARANCES = [
   'warning',
   'info',
 ] as const;
+
+export const ICON_SIZES = {
+  sm: 20,
+  md: 24,
+  lg: 28,
+} as const;
