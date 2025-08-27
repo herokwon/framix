@@ -2,6 +2,7 @@ import type {
   ELEMENT_APPEARANCES,
   ELEMENT_SIZES,
   ELEMENT_SPACINGS,
+  ELEMENT_STATUS,
 } from '@data';
 
 // =============================================================================
@@ -105,9 +106,14 @@ export type If<C extends boolean, T, F> = C extends true ? T : F;
  */
 export type Not<T extends boolean> = T extends true ? false : true;
 
+export type ElementAppearance = (typeof ELEMENT_APPEARANCES)[number];
 export type ElementSize = (typeof ELEMENT_SIZES)[number];
 export type ElementSpacing = (typeof ELEMENT_SPACINGS)[number];
-export type ElementAppearance = (typeof ELEMENT_APPEARANCES)[number];
+export type ElementStatus = (typeof ELEMENT_STATUS)[number];
+export type ElementStatusProps = {
+  [status in ElementStatus]?: boolean;
+};
+
 export type MaxWidth = ElementSize | 'xl';
 
 type TestIdProps = {
