@@ -85,6 +85,23 @@ export type StrictOmit<T, K extends keyof T> = [K] extends [never]
  */
 export type StrictExtract<T, K extends T> = [K] extends [T] ? K : never;
 
+/**
+ * Type-safe Exclude - all U must be included in T
+ *
+ * Ensures that every member of U exists in T.
+ * If any member of U is not part of T, the type resolves to `never`
+ * (producing a compile-time error).
+ *
+ * @example
+ * type Colors = 'red' | 'blue' | 'green';
+ *
+ * type Valid = StrictExclude<Colors, 'red' | 'blue'>;    // 'green'
+ * type Error = StrictExclude<Colors, 'yellow'>;          // ❌ Type error
+ */
+export type StrictExclude<T, U extends T> = [U] extends [T]
+  ? Exclude<T, U>
+  : never;
+
 // =============================================================================
 // Conditional Logic Types
 // =============================================================================
