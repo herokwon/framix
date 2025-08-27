@@ -25,7 +25,7 @@ type Story = StoryObj<typeof meta>;
 export const Default: Story = {
   args: {
     fixed: false,
-    className: cn(meta.args.className, 'w-3/4 mx-auto'),
+    className: cn(meta.args.className, 'mx-auto w-3/4'),
   },
 };
 
@@ -33,7 +33,7 @@ export const WithMaxWidth: Story = {
   args: {
     fixed: false,
     maxWidth: 'sm',
-    className: cn(meta.args.className, 'w-3/4 mx-auto'),
+    className: cn(meta.args.className, 'mx-auto w-3/4'),
   },
   argTypes: {
     maxWidth: {
@@ -46,6 +46,6 @@ export const WithMaxWidth: Story = {
 export const Fixed: Story = {
   args: {
     fixed: true,
-    className: cn(meta.args.className, 'w-3/4 mx-auto'),
+    className: cn(meta.args.className, 'mx-auto w-3/4'),
   },
 };

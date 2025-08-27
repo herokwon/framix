@@ -66,9 +66,9 @@ describe('cn utility function', () => {
   });
 
   it('should resolve Tailwind conflicts properly', () => {
-    const result = cn('px-2 py-1 bg-red-200', 'px-3 bg-red-500');
+    const result = cn('bg-red-200 px-2 py-1', 'bg-red-500 px-3');
 
-    expect(result).toBe('py-1 px-3 bg-red-500');
+    expect(result).toBe('py-1 bg-red-500 px-3');
   });
 
   it('should handle empty input', () => {
@@ -76,7 +76,7 @@ describe('cn utility function', () => {
   });
 
   it('should handle whitespace and empty strings', () => {
-    const result = cn('', '  ', 'text-base', '   ', 'font-bold');
+    const result = cn('', ' ', 'text-base', ' ', 'font-bold');
 
     expect(result).toBe('text-base font-bold');
   });
