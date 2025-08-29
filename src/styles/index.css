@@ -10,7 +10,7 @@
 @custom-variant active (&:active, &.active);
 
 @utility disabled {
-  @apply opacity-text-disabled cursor-not-allowed **:pointer-events-none;
+  @apply opacity-text-disabled cursor-not-allowed! **:pointer-events-none;
 }
 
 @utility container {
