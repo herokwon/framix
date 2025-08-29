@@ -8,6 +8,7 @@
 
 @custom-variant dark (&:where(.dark, .dark *));
 @custom-variant active (&:active, &.active);
+@custom-variant disabled (&:disabled, &.disabled);
 
 @utility disabled {
   @apply opacity-text-disabled cursor-not-allowed! **:pointer-events-none;
