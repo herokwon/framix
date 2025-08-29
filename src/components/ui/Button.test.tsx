@@ -175,32 +175,11 @@ describe('[UI] Button', () => {
     });
   });
 
-  describe('wrapping', () => {
-    it('uses nowrap by default and flex-wrap when allowWrap=true', () => {
-      const { rerender } = render(<Button>Text</Button>);
-      let btn = screen.getByTestId('button');
-
-      expect(btn.className).toEqual(
-        expect.stringContaining('whitespace-nowrap'),
-      );
-
-      rerender(
-        <Button allowWrap>
-          This is a button with a very long text that should wrap onto multiple
-          lines
-        </Button>,
-      );
-      btn = screen.getByTestId('button');
-
-      expect(btn.className).toEqual(expect.stringContaining('flex-wrap'));
-    });
-  });
-
   describe('states', () => {
     it('disabled blocks clicks', async () => {
       const onClick = vi.fn();
       render(
-        <Button isDisabled onClick={onClick}>
+        <Button as="button" isDisabled onClick={onClick}>
           Disabled
         </Button>,
       );
@@ -363,6 +342,33 @@ describe('[UI] Button', () => {
       await userEvent.click(btn);
       expect(onClick).toHaveBeenCalledTimes(1);
     });
+
+    it('does not fire onClick when disabled', async () => {
+      const onClick = vi.fn();
+      render(
+        <Button as="button" isDisabled onClick={onClick}>
+          Disabled
+        </Button>,
+      );
+      const btn = screen.getByTestId('button');
+
+      await userEvent.click(btn);
+      expect(onClick).not.toHaveBeenCalled();
+    });
+
+    it('does not fire onClick when loading', async () => {
+      const onClick = vi.fn();
+      render(
+        <Button isLoading onClick={onClick}>
+          Loading
+        </Button>,
+      );
+      const btn = screen.getByTestId('button');
+
+      await userEvent.click(btn);
+      expect(onClick).not.toHaveBeenCalled();
+    });
+
     describe('keyboard interactions', () => {
       it('triggers onClick with Enter and Space keys', async () => {
         const onClick = vi.fn();

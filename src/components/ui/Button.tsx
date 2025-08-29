@@ -6,6 +6,8 @@ import type {
   ElementSize,
   ElementStatusProps,
   ElementVariant,
+  If,
+  PolymorphicPropsWithRef,
   StrictOmit,
 } from '@types';
 
@@ -13,30 +15,37 @@ import { cn } from '@utils';
 
 import { ICON_SIZES } from '@data';
 
+import { Box } from '@layouts';
+
 import Spinner from './Spinner';
 
-type ButtonProps = StrictOmit<
-  ComponentPropsWithRef<'button'>,
-  'children' | 'disabled'
-> &
-  ElementStatusProps & {
-    children: NonNullable<React.ReactNode>;
-    variant?: ElementVariant;
-    color?: ElementColor;
-    size?: ElementSize;
-    shape?: 'circle' | 'square';
-    allowWrap?: boolean;
-    leftIcon?: LucideIcon;
-    rightIcon?: LucideIcon;
-  };
+type ButtonElement = 'button' | 'a';
 
-const Button = ({
+type ButtonProps<T extends ButtonElement> = PolymorphicPropsWithRef<
+  T,
+  If<
+    T extends 'a' ? true : false,
+    StrictOmit<ComponentPropsWithRef<'a'>, 'children'>,
+    StrictOmit<ComponentPropsWithRef<'button'>, 'children' | 'disabled'>
+  > &
+    ElementStatusProps & {
+      children: NonNullable<React.ReactNode>;
+      variant?: ElementVariant;
+      color?: ElementColor;
+      size?: ElementSize;
+      shape?: 'circle' | 'square';
+      leftIcon?: LucideIcon;
+      rightIcon?: LucideIcon;
+    }
+>;
+
+const Button = <T extends ButtonElement = 'button'>({
   children,
+  as,
   variant = 'filled',
   color = 'default',
   size = 'md',
   shape = 'square',
-  allowWrap = false,
   leftIcon: LeftIcon,
   rightIcon: RightIcon,
   testId = 'button',
@@ -45,25 +54,37 @@ const Button = ({
   isSelected = false,
   isLoading = false,
   ...props
-}: ButtonProps) => {
+}: ButtonProps<T>) => {
   const hasOnlyOneIcon = !(
     (LeftIcon && RightIcon) ||
     (!LeftIcon && !RightIcon)
   );
 
   return (
-    <button
+    <Box
       {...props}
-      type={props.type ?? 'button'}
-      disabled={isDisabled}
+      type={
+        as === 'a'
+          ? undefined
+          : ((props.type ??
+              'button') as ComponentPropsWithRef<'button'>['type'])
+      }
+      disabled={as === 'a' ? undefined : isDisabled}
+      as={(as || 'button') satisfies ButtonElement}
+      role={as === 'button' ? undefined : 'button'}
       aria-label={label}
       data-testid={testId}
+      onClick={(e: React.MouseEvent<HTMLAnchorElement & HTMLButtonElement>) => {
+        if (isDisabled || isLoading) {
+          e.preventDefault();
+          return;
+        }
+
+        props.onClick?.(e);
+      }}
       className={cn(
         props.className,
-        'flex cursor-pointer items-center justify-center transition-all outline-none',
-
-        // allow wrapping
-        allowWrap ? 'flex-wrap' : 'whitespace-nowrap',
+        'flex cursor-pointer items-center justify-center whitespace-nowrap transition-all outline-none',
 
         // shape
         shape === 'circle' ? 'rounded-full' : 'rounded',
@@ -158,7 +179,7 @@ const Button = ({
         )[size],
 
         // states
-        isDisabled && 'disabled:disabled',
+        isDisabled && 'disabled',
         isSelected && 'active',
         isLoading &&
           `opacity-text-disabled pointer-events-none ${cn(
@@ -181,7 +202,7 @@ const Button = ({
         ) : (
           <RightIcon size={ICON_SIZES[size]} />
         ))}
-    </button>
+    </Box>
   );
 };
 

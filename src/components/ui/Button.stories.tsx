@@ -15,7 +15,6 @@ const meta = {
     variant: 'filled',
     color: 'default',
     size: 'md',
-    allowWrap: false,
     testId: 'button',
     label: 'Button',
     isDisabled: false,
@@ -93,14 +92,6 @@ export const Large: Story = {
 export const Circle: Story = {
   args: {
     shape: 'circle',
-  },
-};
-
-export const AllowWrap: Story = {
-  args: {
-    children:
-      'This is a button with a very long text that should wrap onto multiple lines',
-    allowWrap: true,
   },
 };
 
