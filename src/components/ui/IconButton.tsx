@@ -1,7 +1,9 @@
 import type { LucideIcon } from 'lucide-react';
 
 import type {
+  ComponentPropsWithRef,
   ElementSize,
+  ElementStatusProps,
   ElementVariant,
   StrictExclude,
   StrictOmit,
@@ -14,12 +16,14 @@ import { ICON_SIZES } from '@data';
 import Button from './Button';
 
 type IconButtonProps = StrictOmit<
-  Parameters<typeof Button>[0],
-  'children' | 'variant' | 'leftIcon' | 'rightIcon' | 'allowWrap'
-> & {
-  icon: LucideIcon;
-  variant?: StrictExclude<ElementVariant, 'text'> | 'icon';
-};
+  ComponentPropsWithRef<'button'>,
+  'children' | 'disabled'
+> &
+  Pick<Parameters<typeof Button>[0], 'color' | 'size' | 'shape'> &
+  ElementStatusProps & {
+    icon: LucideIcon;
+    variant?: StrictExclude<ElementVariant, 'text'> | 'icon';
+  };
 
 const IconButton = ({
   icon,
