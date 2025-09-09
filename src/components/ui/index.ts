@@ -1,4 +1,5 @@
 export { default as Button } from './Button';
+export { default as Heading } from './Heading';
 export { default as IconButton } from './IconButton';
 export { default as LinkButton } from './LinkButton';
 export { default as Spinner } from './Spinner';
