@@ -141,22 +141,58 @@ type TestIdProps = {
 type LabelProps = {
   label?: string;
 };
-export type EssentialProps = TestIdProps & LabelProps;
-export type ComponentProps<T extends React.ElementType> = Omit<
-  React.ComponentProps<T>,
-  'aria-label'
-> &
-  EssentialProps;
-export type ComponentPropsWithRef<T extends React.ElementType> = Omit<
-  React.ComponentPropsWithRef<T>,
-  'aria-label'
-> &
-  EssentialProps;
-export type ComponentPropsWithoutRef<T extends React.ElementType> = Omit<
-  React.ComponentPropsWithoutRef<T>,
-  'aria-label'
-> &
-  EssentialProps;
+/**
+ * Shared optional prop set applied to all components, branching by the BlockLabel flag.
+ *
+ * @template BlockLabel - If true, suppresses the label prop and only allows `testId` (useful when enforcing internal-only label generation for semantic/a11y policy).
+ * @example
+ * type A = EssentialProps<false>; // { testId?: string; label?: string }
+ * type B = EssentialProps<true>;  // { testId?: string }
+ */
+export type EssentialProps<BlockLabel extends boolean> = BlockLabel extends true
+  ? TestIdProps
+  : TestIdProps & LabelProps;
+/**
+ * Merges the base props of HTMLElement or custom component T (with `aria-label` removed)
+ * and the library's shared props (EssentialProps).
+ *
+ * @template T - React.ElementType (e.g. 'button', 'div', custom component)
+ * @template BlockLabel - If true, blocks the label prop (see EssentialProps docs)
+ * @remarks `aria-label` is omitted to enforce a unified `label` prop / accessibility pattern.
+ * If a component genuinely needs `aria-label`, provide a separate escape hatch type.
+ *
+ * @see {@link EssentialProps}
+ */
+export type ComponentProps<
+  T extends React.ElementType,
+  BlockLabel extends boolean = false,
+> = Omit<React.ComponentProps<T>, 'aria-label'> & EssentialProps<BlockLabel>;
+/**
+ * Ref-inclusive version based on React.ComponentPropsWithRef<T>.
+ *
+ * @template T - React.ElementType
+ * @template BlockLabel - Whether to block the label prop
+ *
+ * @see {@link EssentialProps}
+ */
+export type ComponentPropsWithRef<
+  T extends React.ElementType,
+  BlockLabel extends boolean = false,
+> = Omit<React.ComponentPropsWithRef<T>, 'aria-label'> &
+  EssentialProps<BlockLabel>;
+/**
+ * Ref-excluding version based on React.ComponentPropsWithoutRef<T>.
+ *
+ * @template T - React.ElementType
+ * @template BlockLabel - Whether to block the label prop
+ *
+ * @see {@link EssentialProps}
+ */
+export type ComponentPropsWithoutRef<
+  T extends React.ElementType,
+  BlockLabel extends boolean = false,
+> = Omit<React.ComponentPropsWithoutRef<T>, 'aria-label'> &
+  EssentialProps<BlockLabel>;
 
 type CamelCaseRest<S extends string> = S extends `${infer Head}${infer Tail}`
   ? Head extends ' ' | '_' | '-'
@@ -169,6 +205,15 @@ type CamelCaseAfterSeparator<S extends string> =
       ? CamelCaseAfterSeparator<Tail>
       : `${Uppercase<Head>}${CamelCaseRest<Tail>}`
     : S;
+/**
+ * Type-level utility that converts a string literal to camelCase.
+ * Treats spaces / underscores / hyphens as separators and capitalizes the following character.
+ *
+ * @template S - String literal to transform
+ * @example
+ * type A = CamelCase<'hello-world'>; // 'helloWorld'
+ * type B = CamelCase<'  foo_bar-baz'>; // 'fooBarBaz'
+ */
 export type CamelCase<S extends string> = S extends `${infer Head}${infer Tail}`
   ? Head extends ' ' | '_' | '-'
     ? CamelCase<Tail>

@@ -17,6 +17,7 @@ type ContainerTags = StrictExtract<
 >;
 type ContainerProps<T extends ContainerTags> = PolymorphicPropsWithRef<
   T,
+  false,
   | {
       fixed: true;
     }

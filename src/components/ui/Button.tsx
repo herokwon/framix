@@ -23,6 +23,7 @@ type ButtonElement = 'button' | 'a';
 
 type ButtonProps<T extends ButtonElement> = PolymorphicPropsWithRef<
   T,
+  false,
   If<
     T extends 'a' ? true : false,
     StrictOmit<ComponentPropsWithRef<'a'>, 'children'>,

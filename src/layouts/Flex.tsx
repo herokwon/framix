@@ -12,6 +12,7 @@ import { Box } from '@layouts';
 
 type FlexProps<T extends React.ElementType> = PolymorphicPropsWithRef<
   T,
+  false,
   {
     direction?: StrictExtract<
       React.CSSProperties['flexDirection'],
