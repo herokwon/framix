@@ -11,8 +11,8 @@ import type { PolymorphicPropsWithRef } from '@types';
 const Box = <T extends React.ElementType = 'div'>(
   props: PolymorphicPropsWithRef<T>,
 ): React.ReactElement => {
-  const { as: Component = 'div', ...rest } = props;
-  return <Component {...rest} />;
+  const { as: Component = 'div', testId, label, ...rest } = props;
+  return <Component {...rest} data-testid={testId} aria-label={label} />;
 };
 
 export default Box;

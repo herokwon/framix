@@ -73,8 +73,8 @@ const Button = <T extends ButtonElement = 'button'>({
       disabled={as === 'a' ? undefined : isDisabled}
       as={(as || 'button') satisfies ButtonElement}
       role={as === 'button' ? undefined : 'button'}
-      aria-label={label}
-      data-testid={testId}
+      label={label}
+      testId={testId}
       onClick={(e: React.MouseEvent<HTMLAnchorElement & HTMLButtonElement>) => {
         if (isDisabled || isLoading) {
           e.preventDefault();
