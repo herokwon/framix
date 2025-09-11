@@ -1,5 +1,3 @@
-import { describe, expect, it } from 'vitest';
-
 import { render, screen } from '@testing-library/react';
 
 import { ELEMENT_COLORS, ELEMENT_SIZES, TEXT_HTML_TAGS } from '@data';
@@ -72,6 +70,29 @@ describe('[UI] Text', () => {
         const el = screen.getByTestId(`text-color-${c}`);
         expect(el.className).toEqual(expect.stringContaining(colorToToken[c]));
       });
+    });
+
+    it('inverts light/dark tokens when isColorInverted is true', () => {
+      render(
+        <>
+          <Text color="primary" isColorInverted testId="inv-primary">
+            inverted-primary
+          </Text>
+          <Text color="primary" testId="norm-primary">
+            normal-primary
+          </Text>
+        </>,
+      );
+      const inverted = screen.getByTestId('inv-primary');
+      const normal = screen.getByTestId('norm-primary');
+
+      expect(inverted.className).toMatch(/text-primary-dark/);
+      expect(inverted.className).toMatch(/dark:text-primary-light/);
+
+      expect(normal.className).toMatch(/text-primary-light/);
+      expect(normal.className).toMatch(/dark:text-primary-dark/);
+
+      expect(inverted.className).not.toEqual(normal.className);
     });
 
     it('applies each size mapping', () => {

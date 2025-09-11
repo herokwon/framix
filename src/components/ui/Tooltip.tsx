@@ -85,11 +85,12 @@ const Tooltip = ({
         )}
       >
         <Text
+          isColorInverted
           id={id}
           size="sm"
           role="tooltip"
           className={cn(
-            'text-foreground-dark! dark:text-foreground-light! bg-secondary-dark dark:bg-secondary-light w-max rounded px-2 py-1',
+            'bg-secondary-dark dark:bg-secondary-light w-max rounded px-2 py-1',
           )}
         >
           {content}

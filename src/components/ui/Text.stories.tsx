@@ -1,6 +1,11 @@
 import type { Meta, StoryObj } from '@storybook/react-vite';
 
-import { ELEMENT_COLORS, ELEMENT_SIZES, TEXT_HTML_TAGS } from '@data';
+import {
+  ELEMENT_COLORS,
+  ELEMENT_SIZES,
+  HORIZONTAL_ALIGNMENTS,
+  TEXT_HTML_TAGS,
+} from '@data';
 
 import { Flex } from '@layouts';
 
@@ -13,6 +18,7 @@ const meta = {
   args: {
     as: 'span',
     color: 'default',
+    isColorInverted: false,
     size: 'md',
     align: 'left',
     weight: 'normal',
@@ -71,6 +77,28 @@ export const Colors: Story = {
   },
 };
 
+export const ColorInverted: Story = {
+  args: {
+    isColorInverted: true,
+  },
+  render: args => {
+    return (
+      <Flex
+        direction="column"
+        alignItems="center"
+        gap={{ row: 2 }}
+        className="bg-background-dark dark:bg-background-light p-8"
+      >
+        {ELEMENT_COLORS.map(color => (
+          <Text {...args} key={color} color={color}>
+            {`Text color: ${color} (inverted)`}
+          </Text>
+        ))}
+      </Flex>
+    );
+  },
+};
+
 export const Sizes: Story = {
   render: args => {
     return (
@@ -93,7 +121,7 @@ export const Alignments: Story = {
         gap={{ row: 2 }}
         className="shadow-outline shadow-secondary-light dark:shadow-secondary-dark w-[75vw] p-4"
       >
-        {(['left', 'center', 'right'] as const).map(align => (
+        {HORIZONTAL_ALIGNMENTS.map(align => (
           <Text {...args} key={align} align={align}>
             {`Text align: ${align}`}
           </Text>
