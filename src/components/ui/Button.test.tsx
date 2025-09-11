@@ -148,6 +148,13 @@ describe('[UI] Button', () => {
       expect(btn).toHaveClass('h-10', 'gap-x-2.5');
       expect(btn.className).toEqual(expect.stringContaining('px-5'));
     });
+
+    it('applies full width when isFullWidth is true', () => {
+      render(<Button isFullWidth>Wide</Button>);
+      const btn = screen.getByTestId('button');
+
+      expect(btn.className).toContain('w-full');
+    });
   });
 
   describe('shape', () => {

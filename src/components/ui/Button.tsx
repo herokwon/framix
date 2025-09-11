@@ -29,15 +29,18 @@ type ButtonProps<T extends ButtonElement> = PolymorphicPropsWithRef<
     StrictOmit<ComponentPropsWithRef<'a'>, 'children'>,
     StrictOmit<ComponentPropsWithRef<'button'>, 'children' | 'disabled'>
   > &
-    ElementStatusProps & {
-      children: NonNullable<React.ReactNode>;
-      variant?: ElementVariant;
-      color?: ElementColor;
-      size?: ElementSize;
-      shape?: 'circle' | 'square';
-      leftIcon?: LucideIcon;
-      rightIcon?: LucideIcon;
-    }
+    ElementStatusProps &
+    NonNullable<
+      React.PropsWithChildren<{
+        isFullWidth?: boolean;
+        variant?: ElementVariant;
+        color?: ElementColor;
+        size?: ElementSize;
+        shape?: 'circle' | 'square';
+        leftIcon?: LucideIcon;
+        rightIcon?: LucideIcon;
+      }>
+    >
 >;
 
 const Button = <T extends ButtonElement = 'button'>({
@@ -51,6 +54,7 @@ const Button = <T extends ButtonElement = 'button'>({
   rightIcon: RightIcon,
   testId = 'button',
   label = 'Button',
+  isFullWidth = false,
   isDisabled = false,
   isSelected = false,
   isLoading = false,
@@ -72,7 +76,7 @@ const Button = <T extends ButtonElement = 'button'>({
       }
       disabled={as === 'a' ? undefined : isDisabled}
       as={(as || 'button') satisfies ButtonElement}
-      role={as === 'button' ? undefined : 'button'}
+      role={as === 'a' ? 'button' : undefined}
       label={label}
       testId={testId}
       onClick={(e: React.MouseEvent<HTMLAnchorElement & HTMLButtonElement>) => {
@@ -86,6 +90,9 @@ const Button = <T extends ButtonElement = 'button'>({
       className={cn(
         props.className,
         'flex cursor-pointer items-center justify-center whitespace-nowrap transition-all outline-none',
+
+        // full width
+        isFullWidth && 'w-full',
 
         // shape
         shape === 'circle' ? 'rounded-full' : 'rounded',

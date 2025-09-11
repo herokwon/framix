@@ -115,7 +115,7 @@ export const Positioning: Story = {
             content={position}
             style={gridPosition}
           >
-            <Button className="w-full">{position}</Button>
+            <Button isFullWidth>{position}</Button>
           </Tooltip>
         ))}
       </Grid>

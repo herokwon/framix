@@ -95,6 +95,19 @@ export const Circle: Story = {
   },
 };
 
+export const FullWidth: Story = {
+  args: {
+    isFullWidth: true,
+  },
+  render: args => {
+    return (
+      <div className="w-[75vw]">
+        <Button {...args}>Full width</Button>
+      </div>
+    );
+  },
+};
+
 export const Disabled: Story = {
   args: {
     isDisabled: true,
