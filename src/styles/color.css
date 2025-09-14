@@ -35,9 +35,9 @@
   --color-warning-light: var(--color-yellow-400);
   --color-warning-light-hover: var(--color-yellow-500);
   --color-warning-light-active: var(--color-yellow-600);
-  --color-warning-dark: var(--color-yellow-300);
-  --color-warning-dark-hover: var(--color-yellow-400);
-  --color-warning-dark-active: var(--color-yellow-500);
+  --color-warning-dark: var(--color-yellow-400);
+  --color-warning-dark-hover: var(--color-yellow-500);
+  --color-warning-dark-active: var(--color-yellow-600);
 
   --color-info-light: var(--color-blue-600);
   --color-info-light-hover: var(--color-blue-700);
