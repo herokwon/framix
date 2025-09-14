@@ -7,7 +7,7 @@ import {
   TEXT_HTML_TAGS,
 } from '@data';
 
-import { Flex } from '@layouts';
+import { Flex, Grid } from '@layouts';
 
 import Text from './Text';
 
@@ -52,27 +52,27 @@ export const Default: Story = {
 export const RenderedHTMLElement: Story = {
   render: args => {
     return (
-      <Flex direction="column" alignItems="center" gap={{ row: 2 }}>
+      <Grid placeItems="center" gap={{ row: 4 }}>
         {TEXT_HTML_TAGS.map(element => (
           <Text {...args} key={element} as={element}>
             {`Text as <${element}>`}
           </Text>
         ))}
-      </Flex>
+      </Grid>
     );
   },
 };
 
-export const Colors: Story = {
+export const Color: Story = {
   render: args => {
     return (
-      <Flex direction="column" alignItems="center" gap={{ row: 2 }}>
+      <Grid placeItems="center" gap={4} templateColumns={{ repeat: 3 }}>
         {ELEMENT_COLORS.map(color => (
           <Text {...args} key={color} color={color}>
-            {`Text color: ${color}`}
+            {color[0].toUpperCase() + color.substring(1)}
           </Text>
         ))}
-      </Flex>
+      </Grid>
     );
   },
 };
@@ -83,42 +83,42 @@ export const ColorInverted: Story = {
   },
   render: args => {
     return (
-      <Flex
-        direction="column"
-        alignItems="center"
-        gap={{ row: 2 }}
+      <Grid
+        placeItems="center"
+        gap={4}
+        templateColumns={{ repeat: 3 }}
         className="bg-background-dark dark:bg-background-light p-8"
       >
         {ELEMENT_COLORS.map(color => (
           <Text {...args} key={color} color={color}>
-            {`Text color: ${color} (inverted)`}
+            {`${color} (inverted)`}
           </Text>
         ))}
-      </Flex>
+      </Grid>
     );
   },
 };
 
-export const Sizes: Story = {
+export const Size: Story = {
   render: args => {
     return (
-      <Flex direction="column" alignItems="center" gap={{ row: 1 }}>
+      <Grid placeItems="center" gap={{ row: 4 }}>
         {ELEMENT_SIZES.map(size => (
           <Text {...args} key={size} size={size}>
             {`Font size: ${size}`}
           </Text>
         ))}
-      </Flex>
+      </Grid>
     );
   },
 };
 
-export const Alignments: Story = {
+export const Alignment: Story = {
   render: args => {
     return (
       <Flex
         direction="column"
-        gap={{ row: 2 }}
+        gap={{ row: 4 }}
         className="shadow-outline shadow-secondary-light dark:shadow-secondary-dark w-[75vw] p-4"
       >
         {HORIZONTAL_ALIGNMENTS.map(align => (
@@ -131,16 +131,16 @@ export const Alignments: Story = {
   },
 };
 
-export const Weights: Story = {
+export const Weight: Story = {
   render: args => {
     return (
-      <Flex direction="column" alignItems="center" gap={{ row: 2 }}>
+      <Grid placeItems="center" gap={{ row: 4 }}>
         {(['normal', 'medium', 'semibold', 'bold'] as const).map(weight => (
           <Text {...args} key={weight} weight={weight}>
             {`Font weight: ${weight}`}
           </Text>
         ))}
-      </Flex>
+      </Grid>
     );
   },
 };

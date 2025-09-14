@@ -4,9 +4,14 @@ import { fn } from 'storybook/test';
 
 import { Check, Plus } from 'lucide-react';
 
-import { BUTTON_HTML_TAGS } from '@data';
+import {
+  BUTTON_HTML_TAGS,
+  ELEMENT_COLORS,
+  ELEMENT_SIZES,
+  ELEMENT_VARIANTS,
+} from '@data';
 
-import { Grid } from '@layouts';
+import { Flex, Grid } from '@layouts';
 
 import Button from './Button';
 
@@ -58,45 +63,45 @@ export const RenderedHTMLElement: Story = {
   },
 };
 
-export const Primary: Story = {
-  args: {
-    color: 'primary',
+export const Variant: Story = {
+  render: args => {
+    return (
+      <Flex gap={{ column: 4 }}>
+        {ELEMENT_VARIANTS.map(variant => (
+          <Button {...args} key={variant} variant={variant}>
+            {variant}
+          </Button>
+        ))}
+      </Flex>
+    );
   },
 };
 
-export const Success: Story = {
-  args: {
-    color: 'success',
+export const Color: Story = {
+  render: args => {
+    return (
+      <Grid placeItems="center" gap={4} templateColumns={{ repeat: 3 }}>
+        {ELEMENT_COLORS.map(color => (
+          <Button {...args} key={color} color={color}>
+            {color[0].toUpperCase() + color.substring(1)}
+          </Button>
+        ))}
+      </Grid>
+    );
   },
 };
 
-export const Danger: Story = {
-  args: {
-    color: 'danger',
-  },
-};
-
-export const Warning: Story = {
-  args: {
-    color: 'warning',
-  },
-};
-
-export const Info: Story = {
-  args: {
-    color: 'info',
-  },
-};
-
-export const Small: Story = {
-  args: {
-    size: 'sm',
-  },
-};
-
-export const Large: Story = {
-  args: {
-    size: 'lg',
+export const Size: Story = {
+  render: args => {
+    return (
+      <Flex alignItems="center" gap={{ column: 4 }}>
+        {ELEMENT_SIZES.map(size => (
+          <Button {...args} key={size} size={size}>
+            {size}
+          </Button>
+        ))}
+      </Flex>
+    );
   },
 };
 
@@ -137,21 +142,39 @@ export const Loading: Story = {
   },
 };
 
-export const LeftIcon: Story = {
-  args: {
-    leftIcon: Check,
-  },
-};
-
-export const RightIcon: Story = {
-  args: {
-    rightIcon: Check,
-  },
-};
-
-export const BothIcons: Story = {
-  args: {
-    leftIcon: Plus,
-    rightIcon: Plus,
+export const Icon: Story = {
+  render: args => {
+    return (
+      <Grid placeItems="center" gap={4}>
+        <Button
+          {...args}
+          leftIcon={Check}
+          testId="button-left-icon"
+          style={{ gridColumn: 1, gridRow: 1 }}
+        >
+          Left Icon
+        </Button>
+        <Button
+          {...args}
+          rightIcon={Check}
+          testId="button-right-icon"
+          style={{ gridColumn: 2, gridRow: 1 }}
+        >
+          Right Icon
+        </Button>
+        <Button
+          {...args}
+          leftIcon={Plus}
+          rightIcon={Plus}
+          testId="button-both-icons"
+          style={{
+            gridColumn: '1 / 3',
+            gridRow: 2,
+          }}
+        >
+          Both Icons
+        </Button>
+      </Grid>
+    );
   },
 };

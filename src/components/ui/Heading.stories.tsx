@@ -1,8 +1,12 @@
 import type { Meta, StoryObj } from '@storybook/react-vite';
 
-import { ELEMENT_COLORS, HEADING_HTML_TAGS } from '@data';
+import {
+  ELEMENT_COLORS,
+  HEADING_HTML_TAGS,
+  HORIZONTAL_ALIGNMENTS,
+} from '@data';
 
-import { Flex } from '@layouts';
+import { Flex, Grid } from '@layouts';
 
 import Heading from './Heading';
 import TextMeta from './Text.stories';
@@ -37,42 +41,42 @@ export const Default: Story = {
 export const RenderedHTMLElement: Story = {
   render: args => {
     return (
-      <Flex direction="column" alignItems="center" gap={{ row: 2 }}>
+      <Grid placeItems="center" gap={{ row: 4 }}>
         {HEADING_HTML_TAGS.map(element => (
           <Heading {...args} key={element} as={element}>
             {`Heading as <${element}>`}
           </Heading>
         ))}
-      </Flex>
+      </Grid>
     );
   },
 };
 
-export const Colors: Story = {
+export const Color: Story = {
   render: args => {
     return (
-      <Flex direction="column" alignItems="center" gap={{ row: 2 }}>
+      <Grid placeItems="center" gap={4} templateColumns={{ repeat: 3 }}>
         {ELEMENT_COLORS.map(color => (
           <Heading {...args} key={color} color={color}>
-            {`Heading color: ${color}`}
+            {color[0].toUpperCase() + color.substring(1)}
           </Heading>
         ))}
-      </Flex>
+      </Grid>
     );
   },
 };
 
-export const Alignments: Story = {
+export const Alignment: Story = {
   render: args => {
     return (
       <Flex
         direction="column"
-        gap={{ row: 2 }}
-        className="shadow-outline shadow-secondary-light dark:shadow-secondary-dark w-[75vw] p-4"
+        gap={{ row: 4 }}
+        className="shadow-outline shadow-secondary-light dark:shadow-secondary-dark w-[75vw] rounded p-4"
       >
-        {(['left', 'center', 'right'] as const).map(align => (
+        {HORIZONTAL_ALIGNMENTS.map(align => (
           <Heading {...args} key={align} align={align}>
-            {`Heading align: ${align}`}
+            {`${align}-aligned`}
           </Heading>
         ))}
       </Flex>

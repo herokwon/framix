@@ -1,5 +1,9 @@
 import type { Meta, StoryObj } from '@storybook/react-vite';
 
+import { ELEMENT_SIZES } from '@data';
+
+import { Flex } from '@layouts';
+
 import Spinner from './Spinner';
 
 const meta = {
@@ -19,14 +23,14 @@ type Story = StoryObj<typeof meta>;
 
 export const Default: Story = {};
 
-export const Small: Story = {
-  args: {
-    size: 'sm',
-  },
-};
-
-export const Large: Story = {
-  args: {
-    size: 'lg',
+export const Size: Story = {
+  render: args => {
+    return (
+      <Flex gap={{ column: 4 }}>
+        {ELEMENT_SIZES.map(size => (
+          <Spinner {...args} key={size} size={size} />
+        ))}
+      </Flex>
+    );
   },
 };

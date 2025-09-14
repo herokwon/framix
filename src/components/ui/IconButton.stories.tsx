@@ -4,7 +4,15 @@ import { fn } from 'storybook/test';
 
 import { Check } from 'lucide-react';
 
+import { ELEMENT_COLORS, ELEMENT_SIZES, ELEMENT_VARIANTS } from '@data';
+
+import { Grid } from '@layouts';
+
 import IconButton from './IconButton';
+
+const ICON_BUTTON_VARIANTS = ELEMENT_VARIANTS.map(variant =>
+  variant === 'text' ? 'icon' : variant,
+);
 
 const meta = {
   title: 'Components/UI/IconButton',
@@ -22,6 +30,10 @@ const meta = {
     onClick: fn(),
   },
   argTypes: {
+    variant: {
+      control: 'radio',
+      options: ICON_BUTTON_VARIANTS,
+    },
     shape: {
       control: 'radio',
       options: ['circle', 'square'],
@@ -34,57 +46,39 @@ type Story = StoryObj<typeof meta>;
 
 export const Default: Story = {};
 
-export const Outlined: Story = {
-  args: {
-    variant: 'outlined',
+export const Variant: Story = {
+  render: args => {
+    return (
+      <Grid gap={4}>
+        {ICON_BUTTON_VARIANTS.map(variant => (
+          <IconButton {...args} key={variant} variant={variant} />
+        ))}
+      </Grid>
+    );
   },
 };
 
-export const Icon: Story = {
-  args: {
-    variant: 'icon',
+export const Color: Story = {
+  render: args => {
+    return (
+      <Grid gap={4} templateColumns={{ repeat: 3 }}>
+        {ELEMENT_COLORS.map(color => (
+          <IconButton {...args} key={color} color={color} />
+        ))}
+      </Grid>
+    );
   },
 };
 
-export const Primary: Story = {
-  args: {
-    color: 'primary',
-  },
-};
-
-export const Success: Story = {
-  args: {
-    color: 'success',
-  },
-};
-
-export const Danger: Story = {
-  args: {
-    color: 'danger',
-  },
-};
-
-export const Warning: Story = {
-  args: {
-    color: 'warning',
-  },
-};
-
-export const Info: Story = {
-  args: {
-    color: 'info',
-  },
-};
-
-export const Small: Story = {
-  args: {
-    size: 'sm',
-  },
-};
-
-export const Large: Story = {
-  args: {
-    size: 'lg',
+export const Size: Story = {
+  render: args => {
+    return (
+      <Grid gap={4}>
+        {ELEMENT_SIZES.map(size => (
+          <IconButton {...args} key={size} size={size} />
+        ))}
+      </Grid>
+    );
   },
 };
 

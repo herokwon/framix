@@ -4,7 +4,9 @@ import { ArrowRight } from 'lucide-react';
 
 import { isLocalURL } from '@utils';
 
-import { Flex } from '@layouts';
+import { ELEMENT_VARIANTS } from '@data';
+
+import { Flex, Grid } from '@layouts';
 
 import LinkButton from './LinkButton';
 
@@ -29,15 +31,17 @@ type Story = StoryObj<typeof meta>;
 
 export const Default: Story = {};
 
-export const Outlined: Story = {
-  args: {
-    variant: 'outlined',
-  },
-};
-
-export const Text: Story = {
-  args: {
-    variant: 'text',
+export const Variant: Story = {
+  render: args => {
+    return (
+      <Flex gap={{ column: 4 }}>
+        {ELEMENT_VARIANTS.map(variant => (
+          <LinkButton {...args} key={variant} variant={variant}>
+            {variant}
+          </LinkButton>
+        ))}
+      </Flex>
+    );
   },
 };
 
@@ -52,10 +56,10 @@ export const InternalURL: Story = {
     });
 
     return (
-      <Flex direction="column" gap={{ row: 1 }}>
+      <Grid placeItems="center" gap={{ row: 1 }}>
         <LinkButton {...args} />
         <p className="text-body3 text-info-light dark:text-info-dark font-semibold">{`${hasExternalUrl ? 'External' : 'Internal'} URL`}</p>
-      </Flex>
+      </Grid>
     );
   },
 };
@@ -71,10 +75,10 @@ export const ExternalURL: Story = {
     });
 
     return (
-      <Flex direction="column" gap={{ row: 1 }}>
+      <Grid placeItems="center" gap={{ row: 1 }}>
         <LinkButton {...args} />
         <p className="text-body3 text-info-light dark:text-info-dark font-semibold">{`${hasExternalUrl ? 'External' : 'Internal'} URL`}</p>
-      </Flex>
+      </Grid>
     );
   },
 };
