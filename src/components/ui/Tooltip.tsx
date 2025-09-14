@@ -32,7 +32,6 @@ const Tooltip = ({
   ...props
 }: TooltipProps) => {
   const id = `tooltip-${React.useId()}`;
-
   const trigger =
     !isDisabled && React.isValidElement<DescribableChild>(children)
       ? React.cloneElement(children as React.ReactElement<DescribableChild>, {
@@ -55,7 +54,7 @@ const Tooltip = ({
       {trigger}
       <div
         className={cn(
-          'absolute z-10 grid w-max place-content-stretch opacity-0 transition-all',
+          'pointer-events-none absolute z-10 grid w-max place-content-stretch opacity-0 transition-all',
 
           // position
           position.startsWith('top')
