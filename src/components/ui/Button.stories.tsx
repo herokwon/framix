@@ -4,6 +4,10 @@ import { fn } from 'storybook/test';
 
 import { Check, Plus } from 'lucide-react';
 
+import { BUTTON_HTML_TAGS } from '@data';
+
+import { Grid } from '@layouts';
+
 import Button from './Button';
 
 const meta = {
@@ -11,6 +15,7 @@ const meta = {
   tags: ['autodocs'],
   component: Button,
   args: {
+    as: 'button',
     children: 'Click me',
     variant: 'filled',
     color: 'default',
@@ -23,6 +28,10 @@ const meta = {
     onClick: fn(),
   },
   argTypes: {
+    as: {
+      control: 'radio',
+      options: BUTTON_HTML_TAGS,
+    },
     shape: {
       control: 'radio',
       options: ['circle', 'square'],
@@ -35,15 +44,17 @@ type Story = StoryObj<typeof meta>;
 
 export const Default: Story = {};
 
-export const Outlined: Story = {
-  args: {
-    variant: 'outlined',
-  },
-};
-
-export const Text: Story = {
-  args: {
-    variant: 'text',
+export const RenderedHTMLElement: Story = {
+  render: args => {
+    return (
+      <Grid placeItems="center" gap={{ row: 4 }}>
+        {BUTTON_HTML_TAGS.map(element => (
+          <Button {...args} key={element} as={element}>
+            {`Button as <${element}>`}
+          </Button>
+        ))}
+      </Grid>
+    );
   },
 };
 

@@ -1,6 +1,7 @@
 import type { LucideIcon } from 'lucide-react';
 
 import type {
+  ButtonHtmlTag,
   ComponentPropsWithRef,
   ElementColor,
   ElementSize,
@@ -19,9 +20,7 @@ import { Box } from '@layouts';
 
 import Spinner from './Spinner';
 
-type ButtonElement = 'button' | 'a';
-
-type ButtonProps<T extends ButtonElement> = PolymorphicPropsWithRef<
+type ButtonProps<T extends ButtonHtmlTag> = PolymorphicPropsWithRef<
   T,
   false,
   If<
@@ -43,7 +42,7 @@ type ButtonProps<T extends ButtonElement> = PolymorphicPropsWithRef<
     >
 >;
 
-const Button = <T extends ButtonElement = 'button'>({
+const Button = <T extends ButtonHtmlTag = 'button'>({
   children,
   as,
   variant = 'filled',
@@ -60,6 +59,7 @@ const Button = <T extends ButtonElement = 'button'>({
   isLoading = false,
   ...props
 }: ButtonProps<T>) => {
+  const buttonTag = (as || 'button') satisfies ButtonHtmlTag;
   const hasOnlyOneIcon = !(
     (LeftIcon && RightIcon) ||
     (!LeftIcon && !RightIcon)
@@ -69,14 +69,14 @@ const Button = <T extends ButtonElement = 'button'>({
     <Box
       {...props}
       type={
-        as === 'a'
+        buttonTag === 'a'
           ? undefined
           : ((props.type ??
               'button') as ComponentPropsWithRef<'button'>['type'])
       }
-      disabled={as === 'a' ? undefined : isDisabled}
-      as={(as || 'button') satisfies ButtonElement}
-      role={as === 'a' ? 'button' : undefined}
+      disabled={buttonTag === 'a' ? undefined : isDisabled}
+      as={buttonTag}
+      role={buttonTag === 'a' ? 'button' : undefined}
       label={label}
       testId={testId}
       onClick={(e: React.MouseEvent<HTMLAnchorElement & HTMLButtonElement>) => {
