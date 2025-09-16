@@ -38,6 +38,14 @@
   @apply text-yellow-400!;
 }
 
+@utility border-warning-light {
+  @apply border-yellow-600!;
+}
+
+@utility border-warning-dark {
+  @apply border-yellow-400!;
+}
+
 @utility bg-primary-background-light {
   @apply bg-indigo-100;
 }
