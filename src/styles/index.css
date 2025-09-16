@@ -30,6 +30,14 @@
   }
 }
 
+@utility text-warning-light {
+  @apply text-yellow-600!;
+}
+
+@utility text-warning-dark {
+  @apply text-yellow-400!;
+}
+
 @utility bg-primary-background-light {
   @apply bg-indigo-100;
 }
