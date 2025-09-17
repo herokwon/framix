@@ -7,9 +7,11 @@
 @import './typography.css' layer(theme);
 
 @custom-variant dark (&:where(.dark, .dark *));
+@custom-variant active (&:active, &.active);
+@custom-variant disabled (&:disabled, &.disabled);
 
 @utility disabled {
-  @apply opacity-text-disabled cursor-not-allowed **:pointer-events-none;
+  @apply opacity-text-disabled cursor-not-allowed! *:pointer-events-none;
 }
 
 @utility container {
@@ -28,52 +30,85 @@
   }
 }
 
-@utility text-default-light {
-  @apply text-gray-900;
+@utility text-warning-light {
+  @apply text-yellow-600!;
 }
 
-@utility text-default-dark {
-  @apply text-gray-50;
+@utility text-warning-dark {
+  @apply text-yellow-400!;
 }
 
-@utility bg-default-light {
-  @apply bg-gray-50;
+@utility border-warning-light {
+  @apply border-yellow-600!;
 }
 
-@utility bg-default-dark {
-  @apply bg-[#121212];
+@utility border-warning-dark {
+  @apply border-yellow-400!;
+}
+
+@utility bg-primary-background-light {
+  @apply bg-indigo-100;
+}
+@utility bg-primary-background-light-hover {
+  @apply bg-indigo-200;
+}
+@utility bg-primary-background-dark {
+  @apply bg-indigo-950;
+}
+@utility bg-primary-background-dark-hover {
+  @apply bg-indigo-900;
 }
 
 @utility bg-success-background-light {
   @apply bg-green-100;
 }
-
+@utility bg-success-background-light-hover {
+  @apply bg-green-200;
+}
 @utility bg-success-background-dark {
   @apply bg-green-950;
+}
+@utility bg-success-background-dark-hover {
+  @apply bg-green-900;
 }
 
 @utility bg-danger-background-light {
   @apply bg-red-100;
 }
-
+@utility bg-danger-background-light-hover {
+  @apply bg-red-200;
+}
 @utility bg-danger-background-dark {
   @apply bg-red-950;
+}
+@utility bg-danger-background-dark-hover {
+  @apply bg-red-900;
 }
 
 @utility bg-warning-background-light {
   @apply bg-yellow-100;
 }
-
+@utility bg-warning-background-light-hover {
+  @apply bg-yellow-200;
+}
 @utility bg-warning-background-dark {
   @apply bg-yellow-950;
+}
+@utility bg-warning-background-dark-hover {
+  @apply bg-yellow-900;
 }
 
 @utility bg-info-background-light {
   @apply bg-sky-100;
 }
-
+@utility bg-info-background-light-hover {
+  @apply bg-sky-200;
+}
 @utility bg-info-background-dark {
   @apply bg-sky-950;
+}
+@utility bg-info-background-dark-hover {
+  @apply bg-sky-900;
 }
 
 @utility underline-gradient-* {

@@ -1,6 +1,7 @@
 import type { Meta, StoryObj } from '@storybook/react-vite';
 
-import { Box, Flex } from '@layouts';
+import Box from './Box';
+import Flex from './Flex';
 
 const meta = {
   title: 'Layouts/Flex',
@@ -33,7 +34,7 @@ const FlexBox = ({
       </h3>
       <Flex
         {...props}
-        className="border-neutral-light dark:border-neutral-dark p-normal *:text-default-dark *:dark:text-default-light rounded-md border font-semibold"
+        className="border-neutral-light dark:border-neutral-dark p-normal *:text-foreground-dark *:dark:text-foreground-light rounded-md border font-semibold"
       >
         {Array.from({ length }, (_, i) => (
           <Box

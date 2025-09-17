@@ -3,12 +3,12 @@ import { vi } from 'vitest';
 import { render, screen } from '@testing-library/react';
 import userEvent from '@testing-library/user-event';
 
-import { Flex } from '@layouts';
+import Flex from './Flex';
 
 describe('[Layouts] Flex', () => {
   describe('rendering', () => {
     it('renders as div by default', () => {
-      render(<Flex data-testid="flex">Content</Flex>);
+      render(<Flex testId="flex">Content</Flex>);
       const flex = screen.getByTestId('flex');
 
       expect(flex.tagName).toBe('DIV');
@@ -18,7 +18,7 @@ describe('[Layouts] Flex', () => {
 
     it('renders with custom className', () => {
       render(
-        <Flex data-testid="flex" className="rounded-md border p-4">
+        <Flex testId="flex" className="rounded-md border p-4">
           Content
         </Flex>,
       );
@@ -30,7 +30,7 @@ describe('[Layouts] Flex', () => {
 
     it('renders children correctly', () => {
       render(
-        <Flex data-testid="flex">
+        <Flex testId="flex">
           <span>Child 1</span>
           <span>Child 2</span>
         </Flex>,
@@ -42,7 +42,7 @@ describe('[Layouts] Flex', () => {
     });
 
     it('applies default prop values', () => {
-      render(<Flex data-testid="flex">Content</Flex>);
+      render(<Flex testId="flex">Content</Flex>);
       const flex = screen.getByTestId('flex');
 
       expect(flex).toHaveClass(
@@ -63,7 +63,7 @@ describe('[Layouts] Flex', () => {
   describe('polymorphic behavior', () => {
     it('renders as button when as="button"', () => {
       render(
-        <Flex as="button" data-testid="flex">
+        <Flex as="button" testId="flex">
           Click me
         </Flex>,
       );
@@ -76,7 +76,7 @@ describe('[Layouts] Flex', () => {
 
     it('renders as main when as="main"', () => {
       render(
-        <Flex as="main" data-testid="flex">
+        <Flex as="main" testId="flex">
           Main content
         </Flex>,
       );
@@ -89,7 +89,7 @@ describe('[Layouts] Flex', () => {
 
     it('renders as section when as="section"', () => {
       render(
-        <Flex as="section" data-testid="flex">
+        <Flex as="section" testId="flex">
           Section content
         </Flex>,
       );
@@ -102,7 +102,7 @@ describe('[Layouts] Flex', () => {
 
     it('renders as header when as="header"', () => {
       render(
-        <Flex as="header" data-testid="flex">
+        <Flex as="header" testId="flex">
           Header content
         </Flex>,
       );
@@ -115,7 +115,7 @@ describe('[Layouts] Flex', () => {
 
     it('renders as footer when as="footer"', () => {
       render(
-        <Flex as="footer" data-testid="flex">
+        <Flex as="footer" testId="flex">
           Footer content
         </Flex>,
       );
@@ -130,7 +130,7 @@ describe('[Layouts] Flex', () => {
   describe('direction prop', () => {
     it('applies flex-row class for row direction', () => {
       render(
-        <Flex direction="row" data-testid="flex">
+        <Flex direction="row" testId="flex">
           Content
         </Flex>,
       );
@@ -142,7 +142,7 @@ describe('[Layouts] Flex', () => {
 
     it('applies flex-row-reverse class for row-reverse direction', () => {
       render(
-        <Flex direction="row-reverse" data-testid="flex">
+        <Flex direction="row-reverse" testId="flex">
           Content
         </Flex>,
       );
@@ -154,7 +154,7 @@ describe('[Layouts] Flex', () => {
 
     it('applies flex-col class for column direction', () => {
       render(
-        <Flex direction="column" data-testid="flex">
+        <Flex direction="column" testId="flex">
           Content
         </Flex>,
       );
@@ -166,7 +166,7 @@ describe('[Layouts] Flex', () => {
 
     it('applies flex-col-reverse class for column-reverse direction', () => {
       render(
-        <Flex direction="column-reverse" data-testid="flex">
+        <Flex direction="column-reverse" testId="flex">
           Content
         </Flex>,
       );
@@ -180,7 +180,7 @@ describe('[Layouts] Flex', () => {
   describe('justifyContent prop', () => {
     it('applies justify-start class for start justification', () => {
       render(
-        <Flex justifyContent="start" data-testid="flex">
+        <Flex justifyContent="start" testId="flex">
           Content
         </Flex>,
       );
@@ -191,7 +191,7 @@ describe('[Layouts] Flex', () => {
 
     it('applies justify-center class for center justification', () => {
       render(
-        <Flex justifyContent="center" data-testid="flex">
+        <Flex justifyContent="center" testId="flex">
           Content
         </Flex>,
       );
@@ -202,7 +202,7 @@ describe('[Layouts] Flex', () => {
 
     it('applies justify-end class for end justification', () => {
       render(
-        <Flex justifyContent="end" data-testid="flex">
+        <Flex justifyContent="end" testId="flex">
           Content
         </Flex>,
       );
@@ -213,7 +213,7 @@ describe('[Layouts] Flex', () => {
 
     it('applies justify-around class for space-around justification', () => {
       render(
-        <Flex justifyContent="space-around" data-testid="flex">
+        <Flex justifyContent="space-around" testId="flex">
           Content
         </Flex>,
       );
@@ -224,7 +224,7 @@ describe('[Layouts] Flex', () => {
 
     it('applies justify-between class for space-between justification', () => {
       render(
-        <Flex justifyContent="space-between" data-testid="flex">
+        <Flex justifyContent="space-between" testId="flex">
           Content
         </Flex>,
       );
@@ -235,7 +235,7 @@ describe('[Layouts] Flex', () => {
 
     it('applies justify-evenly class for space-evenly justification', () => {
       render(
-        <Flex justifyContent="space-evenly" data-testid="flex">
+        <Flex justifyContent="space-evenly" testId="flex">
           Content
         </Flex>,
       );
@@ -248,7 +248,7 @@ describe('[Layouts] Flex', () => {
   describe('alignItems prop', () => {
     it('applies items-start class for start alignment', () => {
       render(
-        <Flex alignItems="start" data-testid="flex">
+        <Flex alignItems="start" testId="flex">
           Content
         </Flex>,
       );
@@ -259,7 +259,7 @@ describe('[Layouts] Flex', () => {
 
     it('applies items-center class for center alignment', () => {
       render(
-        <Flex alignItems="center" data-testid="flex">
+        <Flex alignItems="center" testId="flex">
           Content
         </Flex>,
       );
@@ -270,7 +270,7 @@ describe('[Layouts] Flex', () => {
 
     it('applies items-end class for end alignment', () => {
       render(
-        <Flex alignItems="end" data-testid="flex">
+        <Flex alignItems="end" testId="flex">
           Content
         </Flex>,
       );
@@ -281,7 +281,7 @@ describe('[Layouts] Flex', () => {
 
     it('applies items-stretch class for stretch alignment', () => {
       render(
-        <Flex alignItems="stretch" data-testid="flex">
+        <Flex alignItems="stretch" testId="flex">
           Content
         </Flex>,
       );
@@ -292,7 +292,7 @@ describe('[Layouts] Flex', () => {
 
     it('applies items-baseline class for baseline alignment', () => {
       render(
-        <Flex alignItems="baseline" data-testid="flex">
+        <Flex alignItems="baseline" testId="flex">
           Content
         </Flex>,
       );
@@ -305,7 +305,7 @@ describe('[Layouts] Flex', () => {
   describe('wrap prop', () => {
     it('applies flex-nowrap class for nowrap', () => {
       render(
-        <Flex wrap="nowrap" data-testid="flex">
+        <Flex wrap="nowrap" testId="flex">
           Content
         </Flex>,
       );
@@ -316,7 +316,7 @@ describe('[Layouts] Flex', () => {
 
     it('applies flex-wrap class for wrap', () => {
       render(
-        <Flex wrap="wrap" data-testid="flex">
+        <Flex wrap="wrap" testId="flex">
           Content
         </Flex>,
       );
@@ -327,7 +327,7 @@ describe('[Layouts] Flex', () => {
 
     it('applies flex-wrap-reverse class for wrap-reverse', () => {
       render(
-        <Flex wrap="wrap-reverse" data-testid="flex">
+        <Flex wrap="wrap-reverse" testId="flex">
           Content
         </Flex>,
       );
@@ -340,7 +340,7 @@ describe('[Layouts] Flex', () => {
   describe('inline prop', () => {
     it('applies flex class by default when inline is false', () => {
       render(
-        <Flex inline={false} data-testid="flex">
+        <Flex inline={false} testId="flex">
           Content
         </Flex>,
       );
@@ -352,7 +352,7 @@ describe('[Layouts] Flex', () => {
 
     it('applies inline-flex class when inline is true', () => {
       render(
-        <Flex inline={true} data-testid="flex">
+        <Flex inline={true} testId="flex">
           Content
         </Flex>,
       );
@@ -363,7 +363,7 @@ describe('[Layouts] Flex', () => {
     });
 
     it('applies flex class by default when inline prop is not provided', () => {
-      render(<Flex data-testid="flex">Content</Flex>);
+      render(<Flex testId="flex">Content</Flex>);
       const flex = screen.getByTestId('flex');
 
       expect(flex).toHaveClass('flex');
@@ -377,7 +377,7 @@ describe('[Layouts] Flex', () => {
           direction="column"
           justifyContent="center"
           alignItems="stretch"
-          data-testid="flex"
+          testId="flex"
         >
           Content
         </Flex>,
@@ -399,7 +399,7 @@ describe('[Layouts] Flex', () => {
           inline={true}
           wrap="wrap"
           gap={{ row: 1, column: 2 }}
-          data-testid="flex"
+          testId="flex"
         >
           Content
         </Flex>,
@@ -416,7 +416,7 @@ describe('[Layouts] Flex', () => {
 
   describe('gap prop', () => {
     it('applies default gap values when gap is not provided', () => {
-      render(<Flex data-testid="flex">Content</Flex>);
+      render(<Flex testId="flex">Content</Flex>);
       const flex = screen.getByTestId('flex');
 
       expect(flex).toHaveStyle({
@@ -427,7 +427,7 @@ describe('[Layouts] Flex', () => {
 
     it('applies custom column gap', () => {
       render(
-        <Flex gap={{ column: 2 }} data-testid="flex">
+        <Flex gap={{ column: 2 }} testId="flex">
           Content
         </Flex>,
       );
@@ -441,7 +441,7 @@ describe('[Layouts] Flex', () => {
 
     it('applies custom row gap', () => {
       render(
-        <Flex gap={{ row: 3 }} data-testid="flex">
+        <Flex gap={{ row: 3 }} testId="flex">
           Content
         </Flex>,
       );
@@ -455,7 +455,7 @@ describe('[Layouts] Flex', () => {
 
     it('applies both row and column gaps', () => {
       render(
-        <Flex gap={{ row: 2, column: 1 }} data-testid="flex">
+        <Flex gap={{ row: 2, column: 1 }} testId="flex">
           Content
         </Flex>,
       );
@@ -469,7 +469,7 @@ describe('[Layouts] Flex', () => {
 
     it('handles partial gap object', () => {
       render(
-        <Flex gap={{ column: 4 }} data-testid="flex">
+        <Flex gap={{ column: 4 }} testId="flex">
           Content
         </Flex>,
       );
@@ -491,7 +491,7 @@ describe('[Layouts] Flex', () => {
           alignItems="stretch"
           wrap="wrap"
           gap={{ row: 1, column: 2 }}
-          data-testid="flex"
+          testId="flex"
         >
           Content
         </Flex>,
@@ -519,7 +519,7 @@ describe('[Layouts] Flex', () => {
           alignItems="baseline"
           wrap="nowrap"
           gap={{ row: 3, column: 3 }}
-          data-testid="flex"
+          testId="flex"
         >
           Content
         </Flex>,
@@ -544,7 +544,7 @@ describe('[Layouts] Flex', () => {
     it('handles click events when rendered as button', async () => {
       const handleClick = vi.fn();
       render(
-        <Flex as="button" onClick={handleClick} data-testid="flex">
+        <Flex as="button" onClick={handleClick} testId="flex">
           Click me
         </Flex>,
       );
@@ -565,7 +565,7 @@ describe('[Layouts] Flex', () => {
         <Flex
           onMouseEnter={handleMouseEnter}
           onMouseLeave={handleMouseLeave}
-          data-testid="flex"
+          testId="flex"
         >
           Hover me
         </Flex>,
@@ -583,12 +583,7 @@ describe('[Layouts] Flex', () => {
     it('handles keyboard events on focusable elements', async () => {
       const handleKeyDown = vi.fn();
       render(
-        <Flex
-          as="div"
-          tabIndex={0}
-          onKeyDown={handleKeyDown}
-          data-testid="flex"
-        >
+        <Flex as="div" tabIndex={0} onKeyDown={handleKeyDown} testId="flex">
           Press me
         </Flex>,
       );
@@ -608,9 +603,9 @@ describe('[Layouts] Flex', () => {
     it('supports aria attributes', () => {
       render(
         <Flex
-          aria-label="Custom flex container"
           aria-describedby="description"
-          data-testid="flex"
+          testId="flex"
+          label="Custom flex container"
         >
           Content
         </Flex>,
@@ -624,7 +619,7 @@ describe('[Layouts] Flex', () => {
 
     it('supports role attribute', () => {
       render(
-        <Flex role="navigation" data-testid="flex">
+        <Flex role="navigation" testId="flex">
           Navigation content
         </Flex>,
       );
@@ -636,8 +631,8 @@ describe('[Layouts] Flex', () => {
 
     it('supports semantic HTML elements for accessibility', () => {
       render(
-        <Flex as="nav" data-testid="flex">
-          <Flex as="ul" data-testid="list">
+        <Flex as="nav" testId="flex">
+          <Flex as="ul" testId="list">
             <li>Item 1</li>
             <li>Item 2</li>
           </Flex>
@@ -657,24 +652,24 @@ describe('[Layouts] Flex', () => {
   describe('complex content', () => {
     it('renders nested Flex components correctly', () => {
       render(
-        <Flex as="main" direction="column" data-testid="parent">
-          <Flex as="header" justifyContent="center" data-testid="header">
+        <Flex as="main" direction="column" testId="parent">
+          <Flex as="header" justifyContent="center" testId="header">
             Header
           </Flex>
           <Flex
             as="div"
             direction="row"
             justifyContent="space-between"
-            data-testid="content"
+            testId="content"
           >
-            <Flex as="aside" direction="column" data-testid="sidebar">
+            <Flex as="aside" direction="column" testId="sidebar">
               Sidebar
             </Flex>
-            <Flex as="article" data-testid="article">
+            <Flex as="article" testId="article">
               Article content
             </Flex>
           </Flex>
-          <Flex as="footer" justifyContent="center" data-testid="footer">
+          <Flex as="footer" justifyContent="center" testId="footer">
             Footer
           </Flex>
         </Flex>,
@@ -713,7 +708,7 @@ describe('[Layouts] Flex', () => {
           direction="column"
           className="md:flex-row"
           gap={{ row: 2, column: 3 }}
-          data-testid="flex"
+          testId="flex"
         >
           <div>Content 1</div>
           <div>Content 2</div>
@@ -739,7 +734,7 @@ describe('[Layouts] Flex', () => {
           id="custom-id"
           title="Custom title"
           tabIndex={0}
-          data-testid="flex"
+          testId="flex"
         >
           Content
         </Flex>,
@@ -756,7 +751,7 @@ describe('[Layouts] Flex', () => {
 
     it('forwards data attributes', () => {
       render(
-        <Flex data-testid="flex" data-custom="value" data-analytics="track">
+        <Flex testId="flex" data-custom="value" data-analytics="track">
           Content
         </Flex>,
       );
@@ -772,7 +767,7 @@ describe('[Layouts] Flex', () => {
         <Flex
           direction="column"
           className="bg-blue-500 text-white"
-          data-testid="flex"
+          testId="flex"
         >
           Styled flex
         </Flex>,
@@ -788,7 +783,7 @@ describe('[Layouts] Flex', () => {
         <Flex
           style={{ backgroundColor: 'red', color: 'white' }}
           gap={{ row: 1, column: 2 }}
-          data-testid="flex"
+          testId="flex"
         >
           Custom styled
         </Flex>,
@@ -807,7 +802,7 @@ describe('[Layouts] Flex', () => {
 
   describe('edge cases', () => {
     it('handles gap values with nothing', () => {
-      render(<Flex data-testid="flex">Content</Flex>);
+      render(<Flex testId="flex">Content</Flex>);
       const flex = screen.getByTestId('flex');
 
       expect(flex).toHaveStyle({
@@ -819,7 +814,7 @@ describe('[Layouts] Flex', () => {
 
     it('handles number gap values', () => {
       render(
-        <Flex gap={7} data-testid="flex">
+        <Flex gap={7} testId="flex">
           Content
         </Flex>,
       );
@@ -833,7 +828,7 @@ describe('[Layouts] Flex', () => {
 
     it('handles object gap values', () => {
       render(
-        <Flex gap={{ row: 10, column: 15 }} data-testid="flex">
+        <Flex gap={{ row: 10, column: 15 }} testId="flex">
           Content
         </Flex>,
       );

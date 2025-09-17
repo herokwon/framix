@@ -17,6 +17,7 @@
     "@utils",
     "@data",
     "@layouts",
+    "^@components(.*)$",
     "^[./].*(?<!\\.(css|scss|sass|less))$",
     "@styles/.*\\.(css|scss|sass|less)$",
     "\\.(css|scss|sass|less)$"
@@ -27,5 +28,6 @@
   "plugins": [
     "@trivago/prettier-plugin-sort-imports",
     "prettier-plugin-tailwindcss"
-  ]
+  ],
+  "tailwindFunctions": ["cn"]
 }

@@ -1,6 +1,4 @@
-export const ELEMENT_SIZES = ['sm', 'md', 'lg', 'xl'] as const;
-export const ELEMENT_SPACINGS = ['compact', 'normal', 'loose'] as const;
-export const ELEMENT_APPEARANCES = [
+export const ELEMENT_COLORS = [
   'default',
   'primary',
   'success',
@@ -8,3 +6,17 @@ export const ELEMENT_APPEARANCES = [
   'warning',
   'info',
 ] as const;
+export const ELEMENT_SIZES = ['sm', 'md', 'lg'] as const;
+export const ELEMENT_SPACINGS = ['compact', 'normal', 'loose'] as const;
+export const ELEMENT_STATUS = [
+  'isDisabled',
+  'isSelected',
+  'isLoading',
+] as const;
+export const ELEMENT_VARIANTS = ['filled', 'outlined', 'text'] as const;
+
+export const ICON_SIZES = {
+  sm: 20,
+  md: 24,
+  lg: 28,
+} as const;

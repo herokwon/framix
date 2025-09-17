@@ -1,6 +1,13 @@
 import { withThemeByClassName } from '@storybook/addon-themes';
 import type { Preview } from '@storybook/react-vite';
 
+import {
+  ELEMENT_COLORS,
+  ELEMENT_SIZES,
+  ELEMENT_SPACINGS,
+  ELEMENT_VARIANTS,
+} from '@data';
+
 import '@styles/index.css';
 
 const preview: Preview = {
@@ -21,6 +28,40 @@ const preview: Preview = {
     },
     docs: {
       toc: true,
+    },
+  },
+  argTypes: {
+    color: {
+      control: 'select',
+      options: ELEMENT_COLORS,
+      if: {
+        arg: 'color',
+        exists: true,
+      },
+    },
+    size: {
+      control: 'radio',
+      options: ELEMENT_SIZES,
+      if: {
+        arg: 'size',
+        exists: true,
+      },
+    },
+    spacing: {
+      control: 'radio',
+      options: ELEMENT_SPACINGS,
+      if: {
+        arg: 'spacing',
+        exists: true,
+      },
+    },
+    variant: {
+      control: 'radio',
+      options: ELEMENT_VARIANTS,
+      if: {
+        arg: 'variant',
+        exists: true,
+      },
     },
   },
   decorators: [

@@ -19,6 +19,7 @@ type GridTemplateTypes =
 
 type GridProps<T extends React.ElementType> = PolymorphicPropsWithRef<
   T,
+  false,
   {
     /** Grid template columns definition */
     templateColumns?: GridTemplateTypes;

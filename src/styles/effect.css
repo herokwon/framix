@@ -5,4 +5,34 @@
 
   --shadow-outline: 0 0 0 1px rgba(0, 0, 0, 1) inset;
   --shadow-overlay: 0 2px 4px 0 rgba(0, 0, 0, 0.38);
+  --shadow-clickable:
+    0 1px 1.5px rgba(0, 0, 0, 0.1), 0 1px 1px rgba(0, 0, 0, 0.06);
+  --shadow-clickable-hover:
+    0 3px 6px rgba(0, 0, 0, 0.12), 0 2px 4px rgba(0, 0, 0, 0.08);
+  --shadow-clickable-active:
+    0 1px 1px rgba(0, 0, 0, 0.14),
+    0 0 0 1px color-mix(in oklab, currentColor 16%, transparent) inset;
+
+  --animate-spin: spin 1s ease-in-out forwards;
+  --animate-spin-wrap: spin-wrap 860ms cubic-bezier(0.4, 0.15, 0.6, 0.85)
+    infinite;
+
+  @keyframes spin {
+    0% {
+      transform: rotate(50deg);
+      stroke-dashoffset: 75;
+    }
+    100% {
+      transform: rotate(230deg);
+      stroke-dashoffset: 50;
+    }
+  }
+
+  @keyframes spin-wrap {
+    100% {
+      transform: rotate(1turn);
+    }
+  }
+
+  --default-transition-duration: 200ms;
 }

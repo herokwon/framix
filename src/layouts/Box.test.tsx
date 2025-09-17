@@ -3,12 +3,12 @@ import { vi } from 'vitest';
 import { render, screen } from '@testing-library/react';
 import userEvent from '@testing-library/user-event';
 
-import { Box } from '@layouts';
+import Box from './Box';
 
 describe('[Layouts] Box', () => {
   describe('rendering', () => {
     it('renders as div by default', () => {
-      render(<Box data-testid="box">Content</Box>);
+      render(<Box testId="box">Content</Box>);
       const box = screen.getByTestId('box');
 
       expect(box.tagName).toBe('DIV');
@@ -17,7 +17,7 @@ describe('[Layouts] Box', () => {
 
     it('renders with custom className', () => {
       render(
-        <Box data-testid="box" className="rounded-md border p-4">
+        <Box testId="box" className="rounded-md border p-4">
           Content
         </Box>,
       );
@@ -28,7 +28,7 @@ describe('[Layouts] Box', () => {
 
     it('renders children correctly', () => {
       render(
-        <Box data-testid="box">
+        <Box testId="box">
           <span>Child 1</span>
           <span>Child 2</span>
         </Box>,
@@ -43,7 +43,7 @@ describe('[Layouts] Box', () => {
   describe('polymorphic behavior', () => {
     it('renders as button when as="button"', () => {
       render(
-        <Box as="button" data-testid="box">
+        <Box as="button" testId="box">
           Click me
         </Box>,
       );
@@ -55,12 +55,7 @@ describe('[Layouts] Box', () => {
 
     it('renders as anchor when as="a"', () => {
       render(
-        <Box
-          as="a"
-          href="https://example.com"
-          target="_blank"
-          data-testid="box"
-        >
+        <Box as="a" href="https://example.com" target="_blank" testId="box">
           Go to example.com
         </Box>,
       );
@@ -74,7 +69,7 @@ describe('[Layouts] Box', () => {
 
     it('renders as header when as="header"', () => {
       render(
-        <Box as="header" data-testid="box">
+        <Box as="header" testId="box">
           Header content
         </Box>,
       );
@@ -86,7 +81,7 @@ describe('[Layouts] Box', () => {
 
     it('renders as main when as="main"', () => {
       render(
-        <Box as="main" data-testid="box">
+        <Box as="main" testId="box">
           Main content
         </Box>,
       );
@@ -98,7 +93,7 @@ describe('[Layouts] Box', () => {
 
     it('renders as aside when as="aside"', () => {
       render(
-        <Box as="aside" data-testid="box">
+        <Box as="aside" testId="box">
           Aside content
         </Box>,
       );
@@ -110,7 +105,7 @@ describe('[Layouts] Box', () => {
 
     it('renders as footer when as="footer"', () => {
       render(
-        <Box as="footer" data-testid="box">
+        <Box as="footer" testId="box">
           Footer content
         </Box>,
       );
@@ -125,7 +120,7 @@ describe('[Layouts] Box', () => {
     it('handles click events when rendered as button', async () => {
       const handleClick = vi.fn();
       render(
-        <Box as="button" onClick={handleClick} data-testid="box">
+        <Box as="button" onClick={handleClick} testId="box">
           Click me
         </Box>,
       );
@@ -144,7 +139,7 @@ describe('[Layouts] Box', () => {
         <Box
           onMouseEnter={handleMouseEnter}
           onMouseLeave={handleMouseLeave}
-          data-testid="box"
+          testId="box"
         >
           Hover me
         </Box>,
@@ -162,11 +157,7 @@ describe('[Layouts] Box', () => {
   describe('accessibility', () => {
     it('supports aria attributes', () => {
       render(
-        <Box
-          aria-label="Custom box"
-          aria-describedby="description"
-          data-testid="box"
-        >
+        <Box aria-describedby="description" testId="box" label="Custom box">
           Content
         </Box>,
       );
@@ -179,7 +170,7 @@ describe('[Layouts] Box', () => {
 
     it('supports role attribute', () => {
       render(
-        <Box role="banner" data-testid="box">
+        <Box role="banner" testId="box">
           Banner content
         </Box>,
       );
@@ -193,17 +184,17 @@ describe('[Layouts] Box', () => {
   describe('complex content', () => {
     it('renders nested Box components correctly', () => {
       render(
-        <Box data-testid="parent">
-          <Box as="header" data-testid="header">
+        <Box testId="parent">
+          <Box as="header" testId="header">
             Header
           </Box>
-          <Box as="main" data-testid="main">
-            <Box as="ul" data-testid="list">
+          <Box as="main" testId="main">
+            <Box as="ul" testId="list">
               <li>Item 1</li>
               <li>Item 2</li>
             </Box>
           </Box>
-          <Box as="footer" data-testid="footer">
+          <Box as="footer" testId="footer">
             Footer
           </Box>
         </Box>,
@@ -235,7 +226,7 @@ describe('[Layouts] Box', () => {
           type="text"
           placeholder="Enter text"
           disabled
-          data-testid="box"
+          testId="box"
         />,
       );
       const input = screen.getByTestId('box');
@@ -248,7 +239,7 @@ describe('[Layouts] Box', () => {
 
     it('forwards data attributes', () => {
       render(
-        <Box data-testid="box" data-custom="value" data-analytics="track">
+        <Box testId="box" data-custom="value" data-analytics="track">
           Content
         </Box>,
       );

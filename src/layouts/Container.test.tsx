@@ -5,12 +5,12 @@ import userEvent from '@testing-library/user-event';
 
 import { ELEMENT_SIZES } from '@data';
 
-import { Container } from '@layouts';
+import Container from './Container';
 
 describe('[Layouts] Container', () => {
   describe('rendering', () => {
     it('renders as section by default', () => {
-      render(<Container data-testid="container">Content</Container>);
+      render(<Container testId="container">Content</Container>);
       const container = screen.getByTestId('container');
 
       expect(container.tagName).toBe('SECTION');
@@ -19,7 +19,7 @@ describe('[Layouts] Container', () => {
 
     it('renders with custom className', () => {
       render(
-        <Container data-testid="container" className="rounded-md border p-4">
+        <Container testId="container" className="rounded-md border p-4">
           Content
         </Container>,
       );
@@ -31,7 +31,7 @@ describe('[Layouts] Container', () => {
 
     it('renders children correctly', () => {
       render(
-        <Container data-testid="container">
+        <Container testId="container">
           <span>Child 1</span>
           <span>Child 2</span>
         </Container>,
@@ -46,7 +46,7 @@ describe('[Layouts] Container', () => {
   describe('polymorphic behavior', () => {
     it('renders as main when as="main"', () => {
       render(
-        <Container as="main" data-testid="container">
+        <Container as="main" testId="container">
           Main content
         </Container>,
       );
@@ -58,7 +58,7 @@ describe('[Layouts] Container', () => {
 
     it('renders as div when as="div"', () => {
       render(
-        <Container as="div" data-testid="container">
+        <Container as="div" testId="container">
           Div content
         </Container>,
       );
@@ -70,7 +70,7 @@ describe('[Layouts] Container', () => {
 
     it('renders as article when as="article"', () => {
       render(
-        <Container as="article" data-testid="container">
+        <Container as="article" testId="container">
           Article content
         </Container>,
       );
@@ -82,7 +82,7 @@ describe('[Layouts] Container', () => {
 
     it('renders as aside when as="aside"', () => {
       render(
-        <Container as="aside" data-testid="container">
+        <Container as="aside" testId="container">
           Aside content
         </Container>,
       );
@@ -94,7 +94,7 @@ describe('[Layouts] Container', () => {
 
     it('renders as header when as="header"', () => {
       render(
-        <Container as="header" data-testid="container">
+        <Container as="header" testId="container">
           Header content
         </Container>,
       );
@@ -106,7 +106,7 @@ describe('[Layouts] Container', () => {
 
     it('renders as footer when as="footer"', () => {
       render(
-        <Container as="footer" data-testid="container">
+        <Container as="footer" testId="container">
           Footer content
         </Container>,
       );
@@ -118,7 +118,7 @@ describe('[Layouts] Container', () => {
 
     it('renders as dialog when as="dialog"', () => {
       render(
-        <Container as="dialog" data-testid="container">
+        <Container as="dialog" testId="container">
           Dialog content
         </Container>,
       );
@@ -132,7 +132,7 @@ describe('[Layouts] Container', () => {
   describe('container behavior', () => {
     it('applies fixed container styles when fixed=true', () => {
       render(
-        <Container fixed={true} data-testid="container">
+        <Container fixed={true} testId="container">
           Fixed container
         </Container>,
       );
@@ -144,7 +144,7 @@ describe('[Layouts] Container', () => {
 
     it('applies w-full by default when fixed=false and no maxWidth', () => {
       render(
-        <Container fixed={false} data-testid="container">
+        <Container fixed={false} testId="container">
           Fluid container
         </Container>,
       );
@@ -155,7 +155,7 @@ describe('[Layouts] Container', () => {
     });
 
     it('applies w-full when no fixed prop and no maxWidth', () => {
-      render(<Container data-testid="container">Default container</Container>);
+      render(<Container testId="container">Default container</Container>);
       const container = screen.getByTestId('container');
 
       expect(container).toHaveClass('w-full');
@@ -164,7 +164,7 @@ describe('[Layouts] Container', () => {
 
     it('applies max-width styles when maxWidth is specified', () => {
       render(
-        <Container maxWidth="sm" data-testid="container">
+        <Container maxWidth="sm" testId="container">
           Small container
         </Container>,
       );
@@ -176,7 +176,7 @@ describe('[Layouts] Container', () => {
 
     it('applies correct max-width for different sizes', () => {
       const { rerender } = render(
-        <Container maxWidth="md" data-testid="container">
+        <Container maxWidth="md" testId="container">
           Medium container
         </Container>,
       );
@@ -184,7 +184,7 @@ describe('[Layouts] Container', () => {
       expect(container).toHaveClass('md:max-w-3xl');
 
       rerender(
-        <Container maxWidth="lg" data-testid="container">
+        <Container maxWidth="lg" testId="container">
           Large container
         </Container>,
       );
@@ -192,7 +192,7 @@ describe('[Layouts] Container', () => {
       expect(container).toHaveClass('lg:max-w-5xl');
 
       rerender(
-        <Container maxWidth="xl" data-testid="container">
+        <Container maxWidth="xl" testId="container">
           Extra large container
         </Container>,
       );
@@ -202,7 +202,7 @@ describe('[Layouts] Container', () => {
 
     it('ignores maxWidth when fixed=true', () => {
       render(
-        <Container fixed={true} data-testid="container">
+        <Container fixed={true} testId="container">
           Fixed container with ignored maxWidth
         </Container>,
       );
@@ -226,7 +226,7 @@ describe('[Layouts] Container', () => {
         <Container
           as="div"
           onClick={handleClick}
-          data-testid="container"
+          testId="container"
           role="button"
           tabIndex={0}
         >
@@ -249,7 +249,7 @@ describe('[Layouts] Container', () => {
         <Container
           onMouseEnter={handleMouseEnter}
           onMouseLeave={handleMouseLeave}
-          data-testid="container"
+          testId="container"
         >
           Hover me
         </Container>,
@@ -269,9 +269,9 @@ describe('[Layouts] Container', () => {
     it('supports aria attributes', () => {
       render(
         <Container
-          aria-label="Custom container"
           aria-describedby="description"
-          data-testid="container"
+          testId="container"
+          label="Custom container"
         >
           Content
         </Container>,
@@ -285,7 +285,7 @@ describe('[Layouts] Container', () => {
 
     it('supports role attribute', () => {
       render(
-        <Container role="banner" data-testid="container">
+        <Container role="banner" testId="container">
           Banner content
         </Container>,
       );
@@ -297,17 +297,17 @@ describe('[Layouts] Container', () => {
 
     it('supports semantic HTML elements for accessibility', () => {
       render(
-        <Container as="main" data-testid="container">
-          <Container as="header" data-testid="header">
+        <Container as="main" testId="container">
+          <Container as="header" testId="header">
             Header
           </Container>
-          <Container as="article" data-testid="article">
+          <Container as="article" testId="article">
             Article content
           </Container>
-          <Container as="aside" data-testid="aside">
+          <Container as="aside" testId="aside">
             Sidebar
           </Container>
-          <Container as="footer" data-testid="footer">
+          <Container as="footer" testId="footer">
             Footer
           </Container>
         </Container>,
@@ -330,16 +330,16 @@ describe('[Layouts] Container', () => {
   describe('complex content', () => {
     it('renders nested Container components correctly', () => {
       render(
-        <Container as="main" data-testid="parent">
-          <Container as="header" fixed={true} data-testid="header">
+        <Container as="main" testId="parent">
+          <Container as="header" fixed={true} testId="header">
             Header
           </Container>
-          <Container as="div" maxWidth="lg" data-testid="content">
-            <Container as="article" data-testid="article">
+          <Container as="div" maxWidth="lg" testId="content">
+            <Container as="article" testId="article">
               Article content
             </Container>
           </Container>
-          <Container as="footer" data-testid="footer">
+          <Container as="footer" testId="footer">
             Footer
           </Container>
         </Container>,
@@ -376,7 +376,7 @@ describe('[Layouts] Container', () => {
           id="custom-id"
           title="Custom title"
           tabIndex={0}
-          data-testid="container"
+          testId="container"
         >
           Content
         </Container>,
@@ -393,7 +393,7 @@ describe('[Layouts] Container', () => {
     it('forwards data attributes', () => {
       render(
         <Container
-          data-testid="container"
+          testId="container"
           data-custom="value"
           data-analytics="track"
         >
@@ -412,7 +412,7 @@ describe('[Layouts] Container', () => {
         <Container
           fixed={true}
           className="bg-blue-500 text-white"
-          data-testid="container"
+          testId="container"
         >
           Styled container
         </Container>,
@@ -428,7 +428,7 @@ describe('[Layouts] Container', () => {
     it('works with all valid element sizes', () => {
       ELEMENT_SIZES.forEach(size => {
         render(
-          <Container maxWidth={size} data-testid={`container-${size}`}>
+          <Container maxWidth={size} testId={`container-${size}`}>
             {size} container
           </Container>,
         );

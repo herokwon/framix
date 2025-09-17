@@ -1,4 +1,9 @@
 @theme {
+  --color-foreground-light: var(--color-gray-900);
+  --color-foreground-dark: var(--color-gray-50);
+  --color-background-light: var(--color-gray-50);
+  --color-background-dark: #121212;
+
   --color-primary-light: var(--color-indigo-600);
   --color-primary-light-hover: var(--color-indigo-700);
   --color-primary-light-active: var(--color-indigo-800);
@@ -6,12 +11,12 @@
   --color-primary-dark-hover: var(--color-indigo-300);
   --color-primary-dark-active: var(--color-indigo-200);
 
-  --color-neutral-light: var(--color-slate-200);
-  --color-neutral-light-hover: var(--color-slate-300);
-  --color-neutral-light-active: var(--color-slate-400);
-  --color-neutral-dark: var(--color-slate-800);
-  --color-neutral-dark-hover: var(--color-slate-700);
-  --color-neutral-dark-active: var(--color-slate-600);
+  --color-secondary-light: var(--color-slate-200);
+  --color-secondary-light-hover: var(--color-slate-300);
+  --color-secondary-light-active: var(--color-slate-400);
+  --color-secondary-dark: var(--color-slate-800);
+  --color-secondary-dark-hover: var(--color-slate-700);
+  --color-secondary-dark-active: var(--color-slate-600);
 
   --color-success-light: var(--color-green-600);
   --color-success-light-hover: var(--color-green-700);
@@ -30,9 +35,9 @@
   --color-warning-light: var(--color-yellow-400);
   --color-warning-light-hover: var(--color-yellow-500);
   --color-warning-light-active: var(--color-yellow-600);
-  --color-warning-dark: var(--color-yellow-300);
-  --color-warning-dark-hover: var(--color-yellow-400);
-  --color-warning-dark-active: var(--color-yellow-500);
+  --color-warning-dark: var(--color-yellow-400);
+  --color-warning-dark-hover: var(--color-yellow-500);
+  --color-warning-dark-active: var(--color-yellow-600);
 
   --color-info-light: var(--color-blue-600);
   --color-info-light-hover: var(--color-blue-700);
@@ -40,8 +45,4 @@
   --color-info-dark: var(--color-blue-400);
   --color-info-dark-hover: var(--color-blue-300);
   --color-info-dark-active: var(--color-blue-200);
-
-  --opacity-text-primary: 0.87;
-  --opacity-text-secondary: 0.6;
-  --opacity-text-disabled: 0.38;
 }

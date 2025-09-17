@@ -7,7 +7,8 @@ describe('utils/index.ts', () => {
     const exports = Object.keys(utilsIndex);
 
     expect(exports).toContain('cn');
-    expect(exports.length).toBeGreaterThan(0);
+    expect(exports).toContain('isLocalURL');
+    expect(exports.length).toBe(2);
   });
 
   it('should re-export cn from cn module', async () => {
@@ -17,5 +18,14 @@ describe('utils/index.ts', () => {
     expect(indexModule.cn).toBe(cnModule.default);
     expect(indexModule.cn).toBeDefined();
     expect(typeof indexModule.cn).toBe('function');
+  });
+
+  it('should re-export isLocalURL from is-local-url module', async () => {
+    const indexModule = await import('../index');
+    const isLocalURLModule = await import('../is-local-url');
+
+    expect(indexModule.isLocalURL).toBe(isLocalURLModule.default);
+    expect(indexModule.isLocalURL).toBeDefined();
+    expect(typeof indexModule.isLocalURL).toBe('function');
   });
 });
