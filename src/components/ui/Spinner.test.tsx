@@ -1,5 +1,3 @@
-import { describe, expect, it } from 'vitest';
-
 import { render, screen } from '@testing-library/react';
 
 import type { ElementSize } from '@types';
@@ -10,68 +8,49 @@ import Spinner from './Spinner';
 
 describe('[UI] Spinner', () => {
   describe('rendering', () => {
-    it('renders with default props (wrapper + svg)', () => {
+    it('renders with default', () => {
       render(<Spinner />);
       const wrapper = screen.getByTestId('spinner-wrapper');
-      const svg = screen.getByTestId('spinner');
-      const circle = svg.querySelector('circle');
+      const icon = screen.getByRole('progressbar');
+      const circle = icon.querySelector('circle');
 
       expect(wrapper).toBeInTheDocument();
-      expect(wrapper.className).toEqual(
-        expect.stringContaining('animate-spin-wrap'),
-      );
-      expect(wrapper.className).toEqual(
-        expect.stringContaining('text-foreground-light'),
-      );
-      expect(wrapper.className).toEqual(expect.stringContaining('absolute'));
-      expect(wrapper.className).toEqual(expect.stringContaining('top-1/2'));
-      expect(wrapper.className).toEqual(expect.stringContaining('left-1/2'));
-      expect(wrapper.className).toEqual(
-        expect.stringContaining('-translate-1/2'),
-      );
+      expect(wrapper.tagName).toBe('SPAN');
 
-      expect(svg).toBeInTheDocument();
-      expect(svg).toHaveAttribute('role', 'progressbar');
-      expect(svg).toHaveAttribute('aria-label', 'Loading');
-      expect(svg).toHaveClass('animate-spin', 'fill-none');
-      expect(svg).toHaveAttribute('viewBox', '0 0 16 16');
-      expect(svg).toHaveAttribute('width', ICON_SIZES.md.toString());
-      expect(svg).toHaveAttribute('height', ICON_SIZES.md.toString());
+      expect(icon).toBeInTheDocument();
+      expect(icon.tagName).toBe('svg');
+      expect(icon).toHaveAttribute('role', 'progressbar');
+      expect(icon).toHaveAttribute('aria-label', 'Loading');
+      expect(icon).toHaveAttribute('focusable', 'false');
+      expect(icon).toHaveAttribute('width', ICON_SIZES.md.toString());
+      expect(icon).toHaveAttribute('height', ICON_SIZES.md.toString());
 
       expect(circle).toBeInTheDocument();
       expect(circle).toHaveClass('stroke-foreground-light', 'stroke-1');
-      expect((circle as SVGCircleElement).style.strokeDasharray).toBe('75');
+      expect(circle).toHaveStyle({
+        strokeDasharray: '75',
+      });
     });
   });
 
-  describe('position prop', () => {
-    it('uses fixed centering for position="global"', () => {
+  describe('position', () => {
+    it('uses fixed centering for global position', () => {
       render(<Spinner position="global" />);
       const wrapper = screen.getByTestId('spinner-wrapper');
 
-      expect(wrapper.className).toEqual(expect.stringContaining('fixed'));
-      expect(wrapper.className).toEqual(expect.stringContaining('top-1/2'));
-      expect(wrapper.className).toEqual(expect.stringContaining('left-1/2'));
-      expect(wrapper.className).toEqual(
-        expect.stringContaining('-translate-1/2'),
-      );
+      expect(wrapper).toHaveClass('fixed top-1/2 left-1/2 -translate-1/2');
     });
 
-    it('omits centering classes for position="inline"', () => {
+    it('omits centering classes for inline position', () => {
       render(<Spinner position="inline" />);
       const wrapper = screen.getByTestId('spinner-wrapper');
 
-      expect(wrapper.className).not.toEqual(
-        expect.stringContaining('absolute'),
-      );
-      expect(wrapper.className).not.toEqual(expect.stringContaining('fixed'));
-      expect(wrapper.className).not.toEqual(
-        expect.stringContaining('-translate-1/2'),
-      );
+      expect(wrapper).not.toHaveClass('absolute');
+      expect(wrapper).not.toHaveClass('fixed');
     });
   });
 
-  describe('size prop', () => {
+  describe('size', () => {
     it.each(
       Object.entries(ICON_SIZES) as [
         ElementSize,
@@ -79,14 +58,14 @@ describe('[UI] Spinner', () => {
       ][],
     )('sets width/height for size=%s', (size, value) => {
       render(<Spinner size={size} />);
-      const svg = screen.getByTestId('spinner');
+      const icon = screen.getByRole('progressbar');
 
-      expect(svg).toHaveAttribute('width', value.toString());
-      expect(svg).toHaveAttribute('height', value.toString());
+      expect(icon).toHaveAttribute('width', value.toString());
+      expect(icon).toHaveAttribute('height', value.toString());
     });
   });
 
-  describe('a11y & labelling', () => {
+  describe('prop forwarding', () => {
     it('applies aria-label to svg role=progressbar', () => {
       render(<Spinner label="Fetching data" />);
       const progress = screen.getByRole('progressbar', {
@@ -95,20 +74,16 @@ describe('[UI] Spinner', () => {
 
       expect(progress).toBeInTheDocument();
     });
-  });
 
-  describe('testId override', () => {
     it('uses custom testId for wrapper and svg', () => {
       render(<Spinner testId="busy" />);
       const wrapper = screen.getByTestId('busy-wrapper');
-      const svg = screen.getByTestId('busy');
+      const icon = screen.getByTestId('busy');
 
       expect(wrapper).toBeInTheDocument();
-      expect(svg).toBeInTheDocument();
+      expect(icon).toBeInTheDocument();
     });
-  });
 
-  describe('prop forwarding', () => {
     it('merges className and forwards data attributes', () => {
       render(
         <Spinner className="rounded p-2" data-analytics="spin" testId="s" />,

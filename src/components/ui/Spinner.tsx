@@ -35,6 +35,7 @@ const Spinner = ({
         className="animate-spin cursor-progress fill-none"
         viewBox="0 0 16 16"
         role="progressbar"
+        focusable={false}
         aria-label={label}
         data-testid={testId}
       >
