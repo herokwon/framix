@@ -95,23 +95,20 @@ describe('[UI] Alert', () => {
   });
 
   describe('color', () => {
-    it.each(COLORS)(
-      'applies background token for color=%s (variant=text)',
-      color => {
-        render(<Alert color={color}>{color}</Alert>);
-        const alert = screen.getByRole('alert');
+    it.each(COLORS)('applies background token for color', color => {
+      render(<Alert color={color}>{color}</Alert>);
+      const alert = screen.getByRole('alert');
 
-        expect(alert).toHaveClass(
-          color === 'default'
-            ? 'bg-secondary-light'
-            : `bg-${color}-background-light`,
-        );
-      },
-    );
+      expect(alert).toHaveClass(
+        color === 'default'
+          ? 'bg-secondary-light'
+          : `bg-${color}-background-light`,
+      );
+    });
   });
 
   describe('outlined borders per color', () => {
-    it.each(COLORS)('applies outlined border token for color=%s', color => {
+    it.each(COLORS)('applies outlined border token for color', color => {
       render(
         <Alert variant="outlined" color={color}>
           {color}
