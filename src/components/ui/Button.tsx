@@ -186,7 +186,7 @@ const Button = <T extends ButtonHtmlTag = 'button'>({
           variant === 'filled' && color !== 'default' && color !== 'warning'
         }
         size={size}
-        weight="medium"
+        weight={variant === 'filled' ? 'semibold' : 'medium'}
         className={cn(
           variant === 'filled' &&
             color === 'warning' &&

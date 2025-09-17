@@ -58,6 +58,8 @@ describe('[UI] Button', () => {
       const text = screen.getByText('Filled Primary');
 
       expect(button).toHaveClass('bg-primary-light dark:bg-primary-dark');
+
+      expect(text).toHaveClass('font-semibold');
       expect(text).toHaveClass('text-foreground-dark');
     });
 
@@ -73,6 +75,8 @@ describe('[UI] Button', () => {
       expect(button).toHaveClass(
         'border border-foreground-light/38 dark:border-foreground-dark/38',
       );
+
+      expect(text).toHaveClass('font-medium');
       expect(text).toHaveClass(
         'text-foreground-light dark:text-foreground-dark',
       );
@@ -90,6 +94,8 @@ describe('[UI] Button', () => {
       expect(button).toHaveClass(
         'hover:not-disabled:bg-success-background-light dark:hover:not-disabled:bg-success-background-dark',
       );
+
+      expect(text).toHaveClass('font-medium');
       expect(text).toHaveClass('text-success-light dark:text-success-dark');
     });
 
@@ -103,6 +109,8 @@ describe('[UI] Button', () => {
       const text = screen.getByText('Warn');
 
       expect(button).toHaveClass('bg-warning-light dark:bg-warning-dark');
+
+      expect(text).toHaveClass('font-semibold');
       expect(text).toHaveClass('text-foreground-light');
     });
   });
