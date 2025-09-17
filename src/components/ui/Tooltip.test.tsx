@@ -13,7 +13,7 @@ describe('[UI] Tooltip', () => {
     );
     const trigger = screen.getByRole('button');
     const tooltip = screen.getByRole('tooltip');
-    const id = tooltip.getAttribute('id');
+    const id = tooltip.id;
 
     expect(id).toMatch(/^tooltip-/);
     expect(trigger).toHaveAttribute('aria-describedby', id!);
@@ -28,7 +28,8 @@ describe('[UI] Tooltip', () => {
     );
     const trigger = screen.getByRole('button');
     const tooltip = screen.getByRole('tooltip');
-    const id = tooltip.getAttribute('id');
+    const id = tooltip.id;
+
     expect(id).toMatch(/^tooltip-/);
     expect(trigger.getAttribute('aria-describedby')).toBe(`base ${id}`);
   });
@@ -54,9 +55,7 @@ describe('[UI] Tooltip', () => {
     const tooltip = screen.getByRole('tooltip');
     const container = tooltip.parentElement!;
 
-    expect(container.className).toEqual(expect.stringContaining('bottom-full'));
-    expect(container.className).toEqual(expect.stringContaining('left-0'));
-    expect(container.className).toEqual(expect.stringContaining('py-1'));
+    expect(container).toHaveClass('bottom-full left-0 py-1');
   });
 
   it('applies horizontal-first position class tokens (left-top)', () => {
@@ -68,9 +67,7 @@ describe('[UI] Tooltip', () => {
     const tooltip = screen.getByRole('tooltip');
     const container = tooltip.parentElement!;
 
-    expect(container.className).toEqual(expect.stringContaining('right-full'));
-    expect(container.className).toEqual(expect.stringContaining('top-0'));
-    expect(container.className).toEqual(expect.stringContaining('px-1'));
+    expect(container).toHaveClass('top-0 right-full px-1');
   });
 
   it('applies middle alignment translation (right-middle)', () => {
@@ -82,11 +79,7 @@ describe('[UI] Tooltip', () => {
     const tooltip = screen.getByRole('tooltip');
     const container = tooltip.parentElement!;
 
-    expect(container.className).toEqual(expect.stringContaining('left-full'));
-    expect(container.className).toEqual(expect.stringContaining('top-1/2'));
-    expect(container.className).toEqual(
-      expect.stringContaining('-translate-y-1/2'),
-    );
+    expect(container).toHaveClass('top-1/2 left-full -translate-y-1/2');
   });
 
   it('centers horizontally for bottom-center', () => {
@@ -98,11 +91,7 @@ describe('[UI] Tooltip', () => {
     const tooltip = screen.getByRole('tooltip');
     const container = tooltip.parentElement!;
 
-    expect(container.className).toEqual(expect.stringContaining('top-full'));
-    expect(container.className).toEqual(expect.stringContaining('left-1/2'));
-    expect(container.className).toEqual(
-      expect.stringContaining('-translate-x-1/2'),
-    );
+    expect(container).toHaveClass('top-full left-1/2 -translate-x-1/2');
   });
 
   it('forwards wrapper className and data-* attributes', () => {
@@ -127,7 +116,7 @@ describe('[UI] Tooltip', () => {
     const tooltip = screen.getByRole('tooltip');
     const container = tooltip.parentElement!;
 
-    expect(container.className).toEqual(expect.stringContaining('opacity-0'));
+    expect(container).toHaveClass('opacity-0');
 
     await userEvent.hover(screen.getByRole('button'));
     expect(screen.getByRole('tooltip')).toBe(tooltip);

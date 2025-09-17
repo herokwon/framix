@@ -1,4 +1,4 @@
-import { afterEach, describe, expect, it, vi } from 'vitest';
+import { afterEach, vi } from 'vitest';
 
 import { fireEvent, render, screen } from '@testing-library/react';
 import userEvent from '@testing-library/user-event';
@@ -18,7 +18,7 @@ describe('[UI] LinkButton', () => {
   const stubLocationReplace = () => {
     originalLocation = window.location;
     const replace = vi.fn();
-    // Override only replace while preserving other commonly used fields
+
     Object.defineProperty(window, 'location', {
       value: {
         ...originalLocation,
