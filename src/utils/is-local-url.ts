@@ -9,12 +9,13 @@
  * - This helper is framework-agnostic and SSR/CSR safe:
  *   it does not read window/process at module scope.
  * - For SSR, pass options.baseOrigin (e.g., 'https://example.com') to enable same-origin checks.
- * - Non-http(s) schemes like mailto:, tel:, data: do not match the regex below.
- *   They will be treated as "local" by returning true (so the browser handles them normally).
+ * - Safe non-http(s) schemes (mailto:, tel:, data:, blob:) are treated as "local"
+ *   so the browser handles them. Dangerous schemes (javascript:, vbscript:) are rejected.
  */
 
 // Treat protocol-relative URLs (//host) as absolute as well.
 const ABSOLUTE_URL_REGEX = /^(\/\/|[a-zA-Z][a-zA-Z\d+\-.]*?:\/\/)/;
+const DANGEROUS_SCHEME_REGEX = /^\s*(javascript:|vbscript:)/i;
 
 export type IsLocalOptions = {
   baseOrigin?: string;
@@ -27,6 +28,9 @@ export default function isLocalURL({
   url: string;
   options?: IsLocalOptions;
 }): boolean {
+  // Block dangerous schemes outright.
+  if (DANGEROUS_SCHEME_REGEX.test(url)) return false;
+
   // Relative/hash/query-only URLs are considered local to avoid breaking default anchor behavior.
   if (!ABSOLUTE_URL_REGEX.test(url)) return true;
 

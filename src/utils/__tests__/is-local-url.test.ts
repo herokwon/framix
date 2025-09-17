@@ -52,6 +52,11 @@ describe('isLocalURL utility', () => {
     expect(isLocalURL({ url: 'data:text/plain;base64,SGVsbG8=' })).toBe(true);
   });
 
+  it('rejects dangerous schemes like javascript:', () => {
+    expect(isLocalURL({ url: 'javascript:alert(1)' })).toBe(false);
+    expect(isLocalURL({ url: '  JAVASCRIPT:alert(1)' })).toBe(false);
+  });
+
   it('returns false for invalid absolute URLs (parsing failure)', () => {
     expect(
       isLocalURL({ url: 'https://exa mple.com', options: { baseOrigin } }),
