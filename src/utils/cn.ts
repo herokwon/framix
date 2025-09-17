@@ -1,13 +1,26 @@
 import clsx, { type ClassValue } from 'clsx';
 import { extendTailwindMerge } from 'tailwind-merge';
 
+const HEADING_CLASS_COUNT = 2;
+const TITLE_CLASS_COUNT = 2;
+const BODY_CLASS_COUNT = 3;
+
 const twMergeCustom = extendTailwindMerge({
   override: {
     classGroups: {
       'font-size': [
-        ...Array.from({ length: 2 }, (_, i) => `text-heading${i + 1}`),
-        ...Array.from({ length: 2 }, (_, i) => `text-title${i + 1}`),
-        ...Array.from({ length: 3 }, (_, i) => `text-body${i + 1}`),
+        ...Array.from(
+          { length: HEADING_CLASS_COUNT },
+          (_, i) => `text-heading${i + 1}`,
+        ),
+        ...Array.from(
+          { length: TITLE_CLASS_COUNT },
+          (_, i) => `text-title${i + 1}`,
+        ),
+        ...Array.from(
+          { length: BODY_CLASS_COUNT },
+          (_, i) => `text-body${i + 1}`,
+        ),
       ],
       shadow: [
         'shadow-outline',
