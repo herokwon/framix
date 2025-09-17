@@ -7,6 +7,7 @@
 - f624760: 📄 Release Note
 
   ### 🔧 **Enhancements & Refactors**
+  
   - **Box**
     - Corrected function return type
     - Added `JSDoc` comments
@@ -29,11 +30,13 @@
   <br />
 
   ### 📦 **Dependencies**
+
   - Upgraded vulnerable packages flagged by [`Security - Dependabot alerts / #2`](https://github.com/herokwon/framix/security/dependabot/2)
 
   <br />
 
   ### 🧪 **Testing**
+
   - Added and updated test cases for layout components
     - Focused on behavior of new props and internal logic
     - Ensured proper prop filtering and rendering across all variants
@@ -41,6 +44,7 @@
   <br />
 
   ### 📚 **Documentation**
+
   - All layout components (`Box`, `Container`, `Flex`, `Grid`) now include:
     - One-line JSDoc summaries
     - Usage examples
@@ -57,6 +61,7 @@
 - 72ce4b0: 📄 Release Note
 
   ### ✨ **New Features**
+
   - **Layout Component System**: Introduced comprehensive layout components with polymorphic architecture
   - **CSS Grid & Flexbox Support**: Added complete CSS Grid and Flexbox layout utilities
   - **Testing Infrastructure**: Comprehensive test coverage with React Testing Library and Vitest
