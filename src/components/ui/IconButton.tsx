@@ -58,7 +58,12 @@ const IconButton = ({
         )[size],
       )}
     >
-      <Icon size={ICON_SIZES[size]} />
+      <Icon
+        role="img"
+        aria-hidden={true}
+        focusable={false}
+        size={ICON_SIZES[size]}
+      />
     </Button>
   );
 };
