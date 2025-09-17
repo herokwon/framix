@@ -11,7 +11,7 @@ export default defineConfig({
   injectStyle: true,
   target: 'es2020',
   tsconfig: 'tsconfig.app.json',
-  external: ['react', 'react-dom', 'tailwindcss'],
+  external: ['react', 'react-dom', 'tailwindcss', 'lucide-react'],
   esbuildOptions: opts => {
     opts.jsx = 'automatic';
   },
