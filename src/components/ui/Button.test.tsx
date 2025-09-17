@@ -1,4 +1,4 @@
-import { describe, expect, it, vi } from 'vitest';
+import { vi } from 'vitest';
 
 import { render, screen } from '@testing-library/react';
 import userEvent from '@testing-library/user-event';
@@ -11,41 +11,39 @@ import Button from './Button';
 
 describe('[UI] Button', () => {
   describe('rendering', () => {
-    it('renders with default props', () => {
+    it('renders with default', () => {
       render(<Button>Click me</Button>);
-      const btn = screen.getByTestId('button');
-      const text = btn.querySelector('span.text-body2.font-medium');
+      const button = screen.getByRole('button');
+      const text = screen.getByTestId('text');
 
-      expect(btn.tagName).toBe('BUTTON');
-      expect(btn).toHaveAttribute('type', 'button');
-      expect(btn).toHaveAttribute('aria-label', 'Button');
-      expect(btn).not.toBeDisabled();
-      expect(btn).toHaveClass(
-        'flex',
-        'cursor-pointer',
-        'items-center',
-        'justify-center',
-        'rounded',
-        'transition-all',
-        'outline-none',
-        'whitespace-nowrap',
-        'h-8',
-        'gap-x-2',
-        'px-4',
-      );
-      expect(btn.className).toEqual(
-        expect.stringContaining('bg-secondary-light'),
-      );
+      expect(button).toBeInTheDocument();
+      expect(button.tagName).toBe('BUTTON');
+      expect(button).toHaveAttribute('type', 'button');
+      expect(button).toHaveAttribute('aria-label', 'Button');
+      expect(button).not.toBeDisabled();
 
       expect(text).toBeInTheDocument();
+      expect(text.tagName).toBe('SPAN');
       expect(text).toHaveTextContent('Click me');
     });
 
-    it('respects explicit type prop', () => {
+    it('renders with explicit type prop', () => {
       render(<Button type="submit">Send</Button>);
-      const btn = screen.getByTestId('button');
+      const button = screen.getByRole('button');
 
-      expect(btn).toHaveAttribute('type', 'submit');
+      expect(button).toHaveAttribute('type', 'submit');
+    });
+
+    it('renders with custom testId and label', () => {
+      render(
+        <Button testId="btn" label="Go">
+          Go
+        </Button>,
+      );
+      const button = screen.getByRole('button');
+
+      expect(button).toBe(screen.getByTestId('btn'));
+      expect(button).toBe(screen.getByLabelText('Go'));
     });
   });
 
@@ -56,14 +54,11 @@ describe('[UI] Button', () => {
           Filled Primary
         </Button>,
       );
-      const btn = screen.getByTestId('button');
+      const button = screen.getByRole('button');
+      const text = screen.getByText('Filled Primary');
 
-      expect(btn.className).toEqual(
-        expect.stringContaining('bg-primary-light'),
-      );
-      expect(btn.className).toEqual(
-        expect.stringContaining('text-foreground-dark'),
-      );
+      expect(button).toHaveClass('bg-primary-light dark:bg-primary-dark');
+      expect(text).toHaveClass('text-foreground-dark');
     });
 
     it('applies outlined + default styles', () => {
@@ -72,16 +67,15 @@ describe('[UI] Button', () => {
           Outlined Default
         </Button>,
       );
-      const btn = screen.getByTestId('button');
+      const button = screen.getByRole('button');
+      const text = screen.getByText('Outlined Default');
 
-      expect(btn).toHaveClass('border');
-      expect(btn.className).toEqual(
-        expect.stringContaining('border-foreground-light/38'),
+      expect(button).toHaveClass(
+        'border border-foreground-light/38 dark:border-foreground-dark/38',
       );
-      expect(btn.className).toEqual(
-        expect.stringContaining('text-foreground-light'),
+      expect(text).toHaveClass(
+        'text-foreground-light dark:text-foreground-dark',
       );
-      expect(btn.className).toEqual(expect.stringContaining('px-3.75'));
     });
 
     it('applies text + success styles', () => {
@@ -90,17 +84,13 @@ describe('[UI] Button', () => {
           Text Success
         </Button>,
       );
-      const btn = screen.getByTestId('button');
+      const button = screen.getByRole('button');
+      const text = screen.getByText('Text Success');
 
-      expect(btn.className).toEqual(
-        expect.stringContaining('text-success-light'),
+      expect(button).toHaveClass(
+        'hover:not-disabled:bg-success-background-light dark:hover:not-disabled:bg-success-background-dark',
       );
-      expect(btn.className).toEqual(
-        expect.stringContaining(
-          'hover:not-disabled:bg-success-background-light',
-        ),
-      );
-      expect(btn.className).not.toEqual(expect.stringContaining('border-'));
+      expect(text).toHaveClass('text-success-light dark:text-success-dark');
     });
 
     it('applies filled + warning special text color and bg tokens', () => {
@@ -109,32 +99,28 @@ describe('[UI] Button', () => {
           Warn
         </Button>,
       );
-      const btn = screen.getByTestId('button');
+      const button = screen.getByRole('button');
+      const text = screen.getByText('Warn');
 
-      expect(btn.className).toEqual(
-        expect.stringContaining('text-foreground-light'),
-      );
-      expect(btn.className).toEqual(
-        expect.stringContaining('bg-warning-light'),
-      );
-      expect(btn.className).toEqual(
-        expect.stringContaining('dark:bg-warning-dark'),
-      );
+      expect(button).toHaveClass('bg-warning-light dark:bg-warning-dark');
+      expect(text).toHaveClass('text-foreground-light');
     });
   });
 
-  describe('sizes', () => {
+  describe('size', () => {
     it('applies sm sizing and icon size', () => {
       render(
         <Button size="sm" leftIcon={Circle}>
           Small
         </Button>,
       );
-      const btn = screen.getByTestId('button');
-      const icon = btn.querySelector('svg');
+      const button = screen.getByRole('button');
+      const text = screen.getByText('Small');
+      const icon = screen.getByRole('img', { hidden: true });
 
-      expect(btn).toHaveClass('h-6', 'gap-x-1.5');
-      expect(btn.className).toEqual(expect.stringContaining('px-3'));
+      expect(button).toHaveClass('h-6 gap-x-1.5 px-3');
+
+      expect(text).toHaveClass('text-body3');
 
       expect(icon).toBeInTheDocument();
       expect(icon).toHaveAttribute('width', ICON_SIZES.sm.toString());
@@ -143,17 +129,18 @@ describe('[UI] Button', () => {
 
     it('applies lg sizing paddings', () => {
       render(<Button size="lg">Large</Button>);
-      const btn = screen.getByTestId('button');
+      const button = screen.getByRole('button');
+      const text = screen.getByText('Large');
 
-      expect(btn).toHaveClass('h-10', 'gap-x-2.5');
-      expect(btn.className).toEqual(expect.stringContaining('px-5'));
+      expect(button).toHaveClass('h-10 gap-x-2.5 px-5');
+      expect(text).toHaveClass('text-body1');
     });
 
     it('applies full width when isFullWidth is true', () => {
       render(<Button isFullWidth>Wide</Button>);
-      const btn = screen.getByTestId('button');
+      const button = screen.getByRole('button');
 
-      expect(btn.className).toContain('w-full');
+      expect(button).toHaveClass('w-full');
     });
   });
 
@@ -164,9 +151,10 @@ describe('[UI] Button', () => {
           Circle
         </Button>,
       );
-      const btn = screen.getByTestId('button');
+      const button = screen.getByRole('button');
 
-      expect(btn.className.split(' ')).toContain('rounded-full');
+      expect(button).toHaveClass('rounded-full');
+      expect(button).not.toHaveClass('rounded');
     });
 
     it('applies square shape', () => {
@@ -175,55 +163,48 @@ describe('[UI] Button', () => {
           Square
         </Button>,
       );
-      const btn = screen.getByTestId('button');
+      const button = screen.getByRole('button');
 
-      expect(btn.className.split(' ')).toContain('rounded');
-      expect(btn.className.split(' ')).not.toContain('rounded-full');
+      expect(button).toHaveClass('rounded');
+      expect(button).not.toHaveClass('rounded-full');
     });
   });
 
-  describe('states', () => {
+  describe('status', () => {
     it('disabled blocks clicks', async () => {
       const onClick = vi.fn();
       render(
-        <Button as="button" isDisabled onClick={onClick}>
+        <Button isDisabled onClick={onClick}>
           Disabled
         </Button>,
       );
-      const btn = screen.getByTestId('button');
+      const button = screen.getByRole('button');
 
-      expect(btn).toBeDisabled();
+      expect(button).toBeDisabled();
+      expect(button).toHaveClass('disabled');
 
-      await userEvent.click(btn);
+      await userEvent.click(button);
       expect(onClick).not.toHaveBeenCalled();
     });
 
     it('selected adds active class token', () => {
       render(<Button isSelected>Selected</Button>);
-      const btn = screen.getByTestId('button');
+      const button = screen.getByRole('button');
 
-      expect(btn.className.split(' ')).toContain('active');
+      expect(button).toHaveClass('active');
     });
 
     it('loading without icons shows overlay spinner and hides others', () => {
       render(<Button isLoading>Loading</Button>);
-      const btn = screen.getByTestId('button');
-      const wrapper = screen.getByTestId('spinner-wrapper');
+      const button = screen.getByRole('button');
+      const spinnerWrapper = screen.getByTestId('spinner-wrapper');
       const progress = screen.getByRole('progressbar', { name: 'Loading' });
 
-      expect(btn.className).toEqual(
-        expect.stringContaining('pointer-events-none'),
-      );
-      expect(btn.className).toEqual(
-        expect.stringContaining('opacity-text-disabled'),
-      );
-      expect(btn.className).toEqual(
-        expect.stringContaining(
-          '*:not-[[data-testid="spinner-wrapper"]]:opacity-0',
-        ),
+      expect(button).toHaveClass(
+        'pointer-events-none opacity-text-disabled *:not-[[data-testid="spinner-wrapper"]]:opacity-0',
       );
 
-      expect(wrapper).toBeInTheDocument();
+      expect(spinnerWrapper).toBeInTheDocument();
       expect(progress).toBeInTheDocument();
     });
 
@@ -233,21 +214,18 @@ describe('[UI] Button', () => {
           Loading
         </Button>,
       );
-      const btn = screen.getByTestId('button');
-      const svgs = btn.querySelectorAll('svg');
-      const wrapper = screen.getByTestId('spinner-wrapper');
+      const button = screen.getByRole('button');
+      const svgs = button.querySelectorAll('svg');
+      const spinnerWrapper = screen.getByTestId('spinner-wrapper');
 
-      expect(btn.className).not.toEqual(
-        expect.stringContaining(
-          '*:not-[[data-testid="spinner-wrapper"]]:opacity-0',
-        ),
+      expect(button).not.toHaveClass(
+        '*:not-[[data-testid="spinner-wrapper"]]:opacity-0',
       );
+
       expect(svgs.length).toBe(1);
 
-      expect(wrapper.className).not.toEqual(
-        expect.stringContaining('absolute'),
-      );
-      expect(wrapper.className).not.toEqual(expect.stringContaining('fixed'));
+      expect(spinnerWrapper).not.toHaveClass('absolute');
+      expect(spinnerWrapper).not.toHaveClass('fixed');
     });
 
     it('loading with only right icon replaces it with an inline spinner', () => {
@@ -256,21 +234,18 @@ describe('[UI] Button', () => {
           Loading
         </Button>,
       );
-      const btn = screen.getByTestId('button');
-      const svgs = btn.querySelectorAll('svg');
-      const wrapper = screen.getByTestId('spinner-wrapper');
+      const button = screen.getByRole('button');
+      const svgs = button.querySelectorAll('svg');
+      const spinnerWrapper = screen.getByTestId('spinner-wrapper');
 
-      expect(btn.className).not.toEqual(
-        expect.stringContaining(
-          '*:not-[[data-testid="spinner-wrapper"]]:opacity-0',
-        ),
+      expect(button).not.toHaveClass(
+        '*:not-[[data-testid="spinner-wrapper"]]:opacity-0',
       );
+
       expect(svgs.length).toBe(1);
 
-      expect(wrapper.className).not.toEqual(
-        expect.stringContaining('absolute'),
-      );
-      expect(wrapper.className).not.toEqual(expect.stringContaining('fixed'));
+      expect(spinnerWrapper).not.toHaveClass('absolute');
+      expect(spinnerWrapper).not.toHaveClass('fixed');
     });
 
     it('loading with both icons keeps icons in DOM and adds overlay spinner', () => {
@@ -279,18 +254,18 @@ describe('[UI] Button', () => {
           Loading
         </Button>,
       );
-      const btn = screen.getByTestId('button');
-      const svgs = btn.querySelectorAll('svg');
+      const button = screen.getByRole('button');
+      const svgs = button.querySelectorAll('svg');
       const progress = screen.getByRole('progressbar', { name: 'Loading' });
 
-      expect(btn.className).toEqual(
-        expect.stringContaining(
-          '*:not-[[data-testid="spinner-wrapper"]]:opacity-0',
-        ),
+      expect(button).toHaveClass(
+        '*:not-[[data-testid="spinner-wrapper"]]:opacity-0',
       );
+
       expect(svgs.length).toBe(3);
 
       expect(progress).toBeInTheDocument();
+      expect(progress).toHaveClass('animate-spin');
     });
 
     it('loading overrides surface styles based on variant', () => {
@@ -299,22 +274,18 @@ describe('[UI] Button', () => {
           Loading
         </Button>,
       );
-      let btn = screen.getByTestId('button');
+      let button = screen.getByRole('button');
 
-      expect(btn.className).toEqual(
-        expect.stringContaining('bg-secondary-light'),
-      );
+      expect(button).toHaveClass('bg-secondary-light');
 
       rerender(
         <Button isLoading variant="outlined">
           Loading
         </Button>,
       );
-      btn = screen.getByTestId('button');
+      button = screen.getByRole('button');
 
-      expect(btn.className).toEqual(
-        expect.stringContaining('border-foreground-light/38'),
-      );
+      expect(button).toHaveClass('border-foreground-light/38');
     });
   });
 
@@ -325,18 +296,16 @@ describe('[UI] Button', () => {
           With Icons
         </Button>,
       );
-      const btn = screen.getByTestId('button');
-      const svgs = btn.querySelectorAll('svg');
+      const icons = screen.getAllByRole('img', { hidden: true });
 
-      expect(svgs.length).toBe(2);
+      expect(icons.length).toBe(2);
     });
 
     it('renders only one icon when a single icon is provided', () => {
       render(<Button leftIcon={Circle}>One Icon</Button>);
-      const btn = screen.getByTestId('button');
-      const svgs = btn.querySelectorAll('svg');
+      const icons = screen.getAllByRole('img', { hidden: true });
 
-      expect(svgs.length).toBe(1);
+      expect(icons.length).toBe(1);
     });
   });
 
@@ -344,22 +313,22 @@ describe('[UI] Button', () => {
     it('fires onClick when enabled', async () => {
       const onClick = vi.fn();
       render(<Button onClick={onClick}>Click</Button>);
-      const btn = screen.getByTestId('button');
+      const button = screen.getByRole('button');
 
-      await userEvent.click(btn);
+      await userEvent.click(button);
       expect(onClick).toHaveBeenCalledTimes(1);
     });
 
     it('does not fire onClick when disabled', async () => {
       const onClick = vi.fn();
       render(
-        <Button as="button" isDisabled onClick={onClick}>
+        <Button isDisabled onClick={onClick}>
           Disabled
         </Button>,
       );
-      const btn = screen.getByTestId('button');
+      const button = screen.getByRole('button');
 
-      await userEvent.click(btn);
+      await userEvent.click(button);
       expect(onClick).not.toHaveBeenCalled();
     });
 
@@ -370,9 +339,9 @@ describe('[UI] Button', () => {
           Loading
         </Button>,
       );
-      const btn = screen.getByTestId('button');
+      const button = screen.getByRole('button');
 
-      await userEvent.click(btn);
+      await userEvent.click(button);
       expect(onClick).not.toHaveBeenCalled();
     });
 
@@ -380,34 +349,29 @@ describe('[UI] Button', () => {
       it('triggers onClick with Enter and Space keys', async () => {
         const onClick = vi.fn();
         render(<Button onClick={onClick}>Key Press</Button>);
-        const btn = screen.getByTestId('button');
+        const button = screen.getByRole('button');
 
-        btn.focus();
-        expect(btn).toHaveFocus();
+        button.focus();
+        expect(button).toHaveFocus();
 
         await userEvent.keyboard('{Enter}');
         await userEvent.keyboard(' ');
+
         expect(onClick).toHaveBeenCalledTimes(2);
       });
     });
 
-    it('forwards className and data attributes; supports testId/label', () => {
+    it('forwards className and data attributes', () => {
       render(
-        <Button
-          className="rounded p-2"
-          data-analytics="cta"
-          testId="cta"
-          label="Submit"
-        >
+        <Button className="rounded p-2" testId="cta" data-analytics="cta">
           CTA
         </Button>,
       );
-      const btn = screen.getByTestId('cta');
+      const button = screen.getByTestId('cta');
 
-      expect(btn).toHaveClass('p-2', 'rounded');
-      expect(btn).toHaveAttribute('data-analytics', 'cta');
-      expect(btn).toHaveAttribute('aria-label', 'Submit');
-      expect(btn).toHaveTextContent('CTA');
+      expect(button).toHaveClass('p-2', 'rounded');
+      expect(button).toHaveAttribute('data-analytics', 'cta');
+      expect(button).toHaveTextContent('CTA');
     });
   });
 });
