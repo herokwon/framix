@@ -3,11 +3,23 @@
   "private": false,
   "version": "0.3.1",
   "type": "module",
-  "main": "./dist/index.cjs",
-  "module": "./dist/index.js",
-  "types": "./dist/index.d.ts",
+  "exports": {
+    ".": {
+      "types": "./dist/types/index.d.ts",
+      "import": "./dist/index.js",
+      "require": "./dist/index.cjs",
+      "default": "./dist/index.js"
+    },
+    "./client": {
+      "types": "./dist/types/client.d.ts",
+      "import": "./dist/client.js",
+      "require": "./dist/client.cjs",
+      "default": "./dist/client.js"
+    },
+    "./styles.css": "./dist/index.css"
+  },
   "sideEffects": [
-    "*.css"
+    "./dist/index.css"
   ],
   "files": [
     "dist"
@@ -18,7 +30,7 @@
   },
   "scripts": {
     "dev": "vite",
-    "build": "tsc -b && tsup",
+    "build": "vite build",
     "preview": "vite preview",
     "lint": "eslint . --max-warnings 0",
     "format": "prettier --write \"**/*.{ts,tsx,md}\"",
