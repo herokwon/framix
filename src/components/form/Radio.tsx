@@ -1,5 +1,3 @@
-import { useEffect, useState } from 'react';
-
 import type {
   CheckableStatusProps,
   ComponentPropsWithRef,
@@ -12,30 +10,33 @@ import { Grid } from '@layouts';
 
 import { Text } from '@components/ui';
 
+import { useRadioGroup } from './RadioGroup.context';
+
 type RadioProps = StrictOmit<
   ComponentPropsWithRef<'input'>,
-  'children' | 'type' | 'size' | 'checked'
+  | 'children'
+  | 'type'
+  | 'size'
+  | 'checked'
+  | 'defaultChecked'
+  | 'value'
+  | 'onChange'
 > &
-  StrictOmit<CheckableStatusProps, 'isLoading'>;
+  Pick<CheckableStatusProps, 'isDisabled'> & {
+    value?: string;
+  };
 
 const Radio = ({
   testId = 'radio',
-  label = '',
-  isDisabled = false,
-  isChecked: checked,
-  onChange,
-  defaultChecked = false,
+  value = '',
+  label = value,
+  isDisabled: disabled = false,
   ...props
 }: RadioProps) => {
-  const isControlled = typeof checked === 'boolean';
+  const group = useRadioGroup();
 
-  const [isChecked, setIsChecked] = useState<boolean>(
-    isControlled ? checked : defaultChecked,
-  );
-
-  useEffect(() => {
-    if (isControlled) setIsChecked(checked);
-  }, [isControlled, checked]);
+  const isChecked = group.value === value;
+  const isDisabled: boolean = disabled || group.isDisabled;
 
   return (
     <Grid
@@ -56,12 +57,11 @@ const Radio = ({
         tabIndex={0}
         type="radio"
         data-testid={testId}
+        value={value}
+        name={group.name}
         checked={isChecked}
         disabled={isDisabled}
-        onChange={e => {
-          if (!isControlled) setIsChecked(e.target.checked);
-          onChange?.(e);
-        }}
+        onChange={e => group.onChange(e.target.value)}
         className={cn(
           props.className,
           'col-[1/2] row-[1/2] size-6 cursor-pointer appearance-none opacity-0',
@@ -81,9 +81,12 @@ const Radio = ({
             r={8}
             strokeWidth={1.5}
             className={cn(
-              'stroke-foreground-light/38 group-hover:stroke-foreground-light dark:stroke-foreground-dark/38 dark:group-hover:stroke-foreground-dark fill-transparent transition-colors',
+              'stroke-foreground-light/38 dark:stroke-foreground-dark/38 fill-transparent transition-colors',
 
-              isChecked && 'stroke-primary-light dark:stroke-primary-dark',
+              // status
+              isChecked
+                ? 'stroke-primary-light dark:stroke-primary-dark'
+                : 'group-not-disabled:group-hover:stroke-foreground-light dark:group-not-disabled:group-hover:stroke-foreground-dark',
             )}
           />
           <circle
