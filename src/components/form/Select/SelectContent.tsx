@@ -8,7 +8,7 @@ import type SelectItem from './SelectItem';
 const SelectContent = ({
   children,
 }: {
-  children: React.ReactElement<typeof SelectItem>[];
+  children: React.ReactElement<React.ComponentProps<typeof SelectItem>>[];
 }) => {
   const { ids, open } = useSelect('SelectContent');
 
