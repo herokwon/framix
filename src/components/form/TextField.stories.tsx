@@ -2,7 +2,7 @@ import { useState } from 'react';
 
 import type { Meta, StoryObj } from '@storybook/react-vite';
 
-import { Eye, EyeOff, Mail } from 'lucide-react';
+import { Eye, EyeOff } from 'lucide-react';
 
 import { IconButton } from '@components/ui';
 
@@ -99,7 +99,7 @@ export const EmailType: Story = {
     name: 'email-text-field',
   },
   render: args => {
-    return <TextField {...args} leftInput={<Mail />} />;
+    return <TextField {...args} />;
   },
 };
 
