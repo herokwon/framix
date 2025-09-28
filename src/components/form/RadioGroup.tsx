@@ -20,15 +20,15 @@ type RadioGroupProps = EssentialProps<true> & {
 const RadioGroup = ({
   children,
   testId = 'radio-group',
-  value = '',
-  defaultValue = value,
+  value,
+  defaultValue = '',
   name = 'radio-group',
   onChange,
   isDisabled = false,
 }: RadioGroupProps) => {
   const [selectedValue, setSelectedValue] = useState<string>(defaultValue);
 
-  const isControlled = value.length > 0;
+  const isControlled = typeof value !== 'undefined';
   const currentValue = isControlled ? value : selectedValue;
 
   const handleChange = (value: string) => {
