@@ -128,10 +128,13 @@ export type ElementColor = (typeof ELEMENT_COLORS)[number];
 export type ElementSize = (typeof ELEMENT_SIZES)[number];
 export type ElementSpacing = (typeof ELEMENT_SPACINGS)[number];
 export type ElementStatus = (typeof ELEMENT_STATUS)[number];
-export type ElementStatusProps = {
-  [status in ElementStatus]?: boolean;
-};
+export type ElementStatusProps = Partial<Record<ElementStatus, boolean>>;
 export type ElementVariant = (typeof ELEMENT_VARIANTS)[number];
+
+export type CheckableStatus =
+  | StrictExclude<ElementStatus, 'isSelected'>
+  | 'isChecked';
+export type CheckableStatusProps = Partial<Record<CheckableStatus, boolean>>;
 
 export type MaxWidth = ElementSize | 'xl';
 
