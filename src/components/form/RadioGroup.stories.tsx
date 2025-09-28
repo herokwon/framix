@@ -50,7 +50,7 @@ export const Controlled: Story = {
     }, [args.value]);
 
     return (
-      <Grid gap={{ row: 4 }} className="w-40 justify-stretch!">
+      <Grid justifyContent="stretch" gap={{ row: 4 }} className="w-40">
         <RadioGroup {...args} value={value} onChange={handleChange}>
           <Radio value="red" label="Red" />
           <Radio value="blue" label="Blue" />
