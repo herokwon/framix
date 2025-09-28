@@ -1,5 +1,3 @@
-'use client';
-
 import { useEffect, useState } from 'react';
 
 import { SquareCheck } from 'lucide-react';
@@ -13,6 +11,8 @@ import type {
 import { cn } from '@utils';
 
 import { Grid } from '@layouts';
+
+import { Text } from '@components/ui';
 
 type CheckboxProps = StrictOmit<
   ComponentPropsWithRef<'input'>,
@@ -48,9 +48,7 @@ const Checkbox = ({
       testId={`${testId}-wrapper`}
       templateColumns={['min-content', 'auto']}
       placeItems="center"
-      gap={{
-        column: 1,
-      }}
+      gap={{ column: 1 }}
       className={cn(
         'cursor-pointer auto-cols-[1fr] auto-rows-min',
 
@@ -94,9 +92,7 @@ const Checkbox = ({
         )}
       </SquareCheck>
       {label.length > 0 && (
-        <span className="text-body2 col-[2/3] row-[1/2] my-auto w-full">
-          {label}
-        </span>
+        <Text className="col-[2/3] row-[1/2] my-auto w-full">{label}</Text>
       )}
     </Grid>
   );
