@@ -34,6 +34,7 @@ type GridProps<T extends React.ElementType> = PolymorphicPropsWithRef<
       | 'space-around'
       | 'space-between'
       | 'space-evenly'
+      | 'stretch'
     >;
     /** Aligns grid along the block (column) axis */
     alignContent?: StrictExtract<
@@ -142,6 +143,7 @@ const Grid = <T extends React.ElementType = 'div'>(
             spaceAround: 'justify-around',
             spaceBetween: 'justify-between',
             spaceEvenly: 'justify-evenly',
+            stretch: 'justify-stretch',
           } satisfies CSSValueToClassMap<typeof justifyContent>
         )[camelCase(justifyContent)],
         (
