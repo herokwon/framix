@@ -19,8 +19,9 @@ const SelectContent = ({
       id={ids.content}
       label="Select content"
       testId="select-content"
+      justifyContent="stretch"
       className={cn(
-        'bg-background-light shadow-overlay dark:bg-secondary-dark absolute top-full z-10 mt-1 min-w-full justify-stretch! rounded py-2 transition-all',
+        'bg-background-light shadow-overlay dark:bg-secondary-dark absolute top-full z-10 mt-1 min-w-full rounded py-2 transition-all',
         !open && 'pointer-events-none translate-y-1 opacity-0',
       )}
     >
