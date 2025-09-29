@@ -6,7 +6,6 @@ import Box from './Box';
 
 const meta = {
   title: 'Layouts/Box',
-  tags: ['autodocs'],
   component: Box,
   args: {
     as: 'div',

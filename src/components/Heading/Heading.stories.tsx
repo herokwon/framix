@@ -13,7 +13,6 @@ import { Heading } from './Heading';
 
 const meta = {
   title: 'Components/Heading',
-  tags: ['autodocs'],
   component: Heading,
   args: {
     as: 'h1',

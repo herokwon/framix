@@ -5,7 +5,6 @@ import Grid from './Grid';
 
 const meta = {
   title: 'Layouts/Grid',
-  tags: ['autodocs'],
   component: Grid,
   args: {
     as: 'div',

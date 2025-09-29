@@ -13,7 +13,6 @@ import { Text } from './Text';
 
 const meta = {
   title: 'Components/Text',
-  tags: ['autodocs'],
   component: Text,
   args: {
     as: 'span',

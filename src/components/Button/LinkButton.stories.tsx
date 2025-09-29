@@ -12,7 +12,6 @@ import { LinkButton } from './LinkButton';
 
 const meta = {
   title: 'Components/LinkButton',
-  tags: ['autodocs'],
   component: LinkButton,
   args: {
     children: 'Link',

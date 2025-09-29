@@ -10,7 +10,6 @@ const AlertColors = ELEMENT_COLORS.filter(color => color !== 'primary');
 
 const meta = {
   title: 'Components/Alert',
-  tags: ['autodocs'],
   component: Alert,
   args: {
     variant: 'text',

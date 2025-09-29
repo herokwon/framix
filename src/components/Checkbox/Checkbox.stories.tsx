@@ -8,7 +8,6 @@ import { Checkbox } from './Checkbox';
 
 const meta = {
   title: 'Components/Checkbox',
-  tags: ['autodocs'],
   component: Checkbox,
   args: {
     testId: 'checkbox',

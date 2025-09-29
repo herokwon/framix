@@ -16,7 +16,6 @@ const ICON_BUTTON_VARIANTS = ELEMENT_VARIANTS.map(variant =>
 
 const meta = {
   title: 'Components/IconButton',
-  tags: ['autodocs'],
   component: IconButton,
   args: {
     icon: Check,

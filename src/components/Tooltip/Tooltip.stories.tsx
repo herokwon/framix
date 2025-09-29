@@ -70,7 +70,6 @@ const gridPositions = {
 
 const meta = {
   title: 'Components/Tooltip',
-  tags: ['autodocs'],
   component: Tooltip,
   args: {
     position: 'bottom-center',

@@ -5,7 +5,6 @@ import Flex from './Flex';
 
 const meta = {
   title: 'Layouts/Flex',
-  tags: ['autodocs'],
   component: Flex,
   args: {
     as: 'div',

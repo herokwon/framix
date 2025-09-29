@@ -8,7 +8,6 @@ import Container from './Container';
 
 const meta = {
   title: 'Layouts/Container',
-  tags: ['autodocs'],
   component: Container,
   args: {
     as: 'section',

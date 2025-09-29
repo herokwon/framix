@@ -8,7 +8,6 @@ import { Spinner } from './Spinner';
 
 const meta = {
   title: 'Components/Spinner',
-  tags: ['autodocs'],
   component: Spinner,
   args: {
     position: 'local',
