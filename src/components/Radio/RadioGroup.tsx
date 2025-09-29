@@ -2,7 +2,7 @@ import { useState } from 'react';
 
 import type { ElementStatusProps, EssentialProps } from '@types';
 
-import { Box } from '@layouts';
+import { Box } from '@layouts/Box';
 
 import { Radio } from './Radio';
 import { RadioGroupProvider } from './RadioGroup.context';

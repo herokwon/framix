@@ -6,7 +6,7 @@ import type {
 
 import { cn } from '@utils';
 
-import { Grid } from '@layouts';
+import { Grid } from '@layouts/Grid';
 
 import { Text } from '../Text';
 import { useRadioGroup } from './RadioGroup.context';

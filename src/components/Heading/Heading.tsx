@@ -6,7 +6,7 @@ import type {
 
 import { cn } from '@utils';
 
-import { Box } from '@layouts';
+import { Box } from '@layouts/Box';
 
 import type { Text } from '../Text';
 

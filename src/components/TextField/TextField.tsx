@@ -8,7 +8,7 @@ import type {
 
 import { cn } from '@utils';
 
-import { Flex } from '@layouts';
+import { Flex } from '@layouts/Flex';
 
 type TextFieldType = StrictExtract<
   React.HTMLInputTypeAttribute,

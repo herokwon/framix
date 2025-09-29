@@ -7,7 +7,8 @@ import {
   TEXT_HTML_TAGS,
 } from '@data';
 
-import { Flex, Grid } from '@layouts';
+import { Flex } from '@layouts/Flex';
+import { Grid } from '@layouts/Grid';
 
 import { Text } from './Text';
 

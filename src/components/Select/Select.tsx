@@ -8,7 +8,7 @@ import type {
 
 import { cn } from '@utils';
 
-import { Box } from '@layouts';
+import { Box } from '@layouts/Box';
 
 import { type SelectIds, SelectProvider } from './Select.context';
 import { SelectContent } from './SelectContent';

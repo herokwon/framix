@@ -4,7 +4,7 @@ import type { OverlayPosition } from '@types';
 
 import { HORIZONTAL_ALIGNMENTS, VERTICAL_ALIGNMENTS } from '@data';
 
-import { Grid } from '@layouts';
+import { Grid } from '@layouts/Grid';
 
 import { Button } from '../Button';
 import { Tooltip } from './Tooltip';

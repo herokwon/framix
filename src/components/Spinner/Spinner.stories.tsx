@@ -2,7 +2,7 @@ import type { Meta, StoryObj } from '@storybook/react-vite';
 
 import { ELEMENT_SIZES } from '@data';
 
-import { Flex } from '@layouts';
+import { Flex } from '@layouts/Flex';
 
 import { Spinner } from './Spinner';
 

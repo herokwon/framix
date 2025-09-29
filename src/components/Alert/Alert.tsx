@@ -18,7 +18,7 @@ import { cn } from '@utils';
 
 import { ICON_SIZES } from '@data';
 
-import { Flex } from '@layouts';
+import { Flex } from '@layouts/Flex';
 
 import { Text } from '../Text';
 

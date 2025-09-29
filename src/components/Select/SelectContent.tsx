@@ -1,6 +1,6 @@
 import { cn } from '@utils';
 
-import { Grid } from '@layouts';
+import { Grid } from '@layouts/Grid';
 
 import { useSelect } from './Select.context';
 import type { SelectItem } from './SelectItem';

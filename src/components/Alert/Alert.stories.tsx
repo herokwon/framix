@@ -2,7 +2,7 @@ import type { Meta, StoryObj } from '@storybook/react-vite';
 
 import { ELEMENT_COLORS, ELEMENT_VARIANTS } from '@data';
 
-import { Grid } from '@layouts';
+import { Grid } from '@layouts/Grid';
 
 import { Alert } from './Alert';
 

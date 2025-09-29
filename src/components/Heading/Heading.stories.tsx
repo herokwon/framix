@@ -6,7 +6,8 @@ import {
   HORIZONTAL_ALIGNMENTS,
 } from '@data';
 
-import { Flex, Grid } from '@layouts';
+import { Flex } from '@layouts/Flex';
+import { Grid } from '@layouts/Grid';
 
 import TextMeta from '../Text/Text.stories';
 import { Heading } from './Heading';

@@ -2,7 +2,8 @@ import { useCallback, useEffect, useState } from 'react';
 
 import type { Meta, StoryObj } from '@storybook/react-vite';
 
-import { Box, Flex } from '@layouts';
+import { Box } from '@layouts/Box';
+import { Flex } from '@layouts/Flex';
 
 import { Checkbox } from './Checkbox';
 

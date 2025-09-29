@@ -11,7 +11,8 @@ import {
   ELEMENT_VARIANTS,
 } from '@data';
 
-import { Flex, Grid } from '@layouts';
+import { Flex } from '@layouts/Flex';
+import { Grid } from '@layouts/Grid';
 
 import { Button } from './Button';
 

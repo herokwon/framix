@@ -16,7 +16,7 @@ import { cn } from '@utils';
 
 import { ICON_SIZES } from '@data';
 
-import { Box } from '@layouts';
+import { Box } from '@layouts/Box';
 
 import { Spinner } from '../Spinner';
 import { Text } from '../Text';

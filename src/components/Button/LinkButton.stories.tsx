@@ -6,7 +6,8 @@ import { isLocalURL } from '@utils';
 
 import { ELEMENT_VARIANTS } from '@data';
 
-import { Flex, Grid } from '@layouts';
+import { Flex } from '@layouts/Flex';
+import { Grid } from '@layouts/Grid';
 
 import { LinkButton } from './LinkButton';
 

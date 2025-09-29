@@ -11,7 +11,7 @@ const meta = {
   component: Container,
   args: {
     as: 'section',
-    className: 'bg-neutral-light dark:bg-neutral-dark h-screen',
+    className: 'bg-secondary-light dark:bg-secondary-dark h-screen',
   },
   parameters: {
     layout: 'fullscreen',

@@ -6,7 +6,7 @@ import { Check } from 'lucide-react';
 
 import { ELEMENT_COLORS, ELEMENT_SIZES, ELEMENT_VARIANTS } from '@data';
 
-import { Grid } from '@layouts';
+import { Grid } from '@layouts/Grid';
 
 import { IconButton } from './IconButton';
 

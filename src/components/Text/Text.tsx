@@ -8,7 +8,7 @@ import type {
 
 import { cn } from '@utils';
 
-import { Box } from '@layouts';
+import { Box } from '@layouts/Box';
 
 type TextAlign = StrictExtract<
   React.CSSProperties['textAlign'],
