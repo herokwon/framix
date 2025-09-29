@@ -17,6 +17,18 @@ labels: "🐞 BugFix"
 
 <br />
 
+## 💻 Environment
+
+- **Framix Version**: 
+  > (e.g., v1.2.3)
+
+<br />
+
+- **Framework & Version**:
+  > (e.g., Next.js 14.2, Vite 5.1)
+
+<br />
+
 ## ⚙️ Device Information
 
 - **Device Type**
