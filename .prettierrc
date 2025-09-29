@@ -16,7 +16,7 @@
     "@types",
     "@utils",
     "@data",
-    "@layouts",
+    "@layouts(.*)$",
     "^@components(.*)$",
     "^[./].*(?<!\\.(css|scss|sass|less))$",
     "@styles/.*\\.(css|scss|sass|less)$",
