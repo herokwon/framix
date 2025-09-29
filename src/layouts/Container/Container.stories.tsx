@@ -4,7 +4,7 @@ import { cn } from '@utils';
 
 import { ELEMENT_SIZES } from '@data';
 
-import Container from './Container';
+import { Container } from './Container';
 
 const meta = {
   title: 'Layouts/Container',

@@ -1,7 +1,7 @@
 import type { Meta, StoryObj } from '@storybook/react-vite';
 
-import Box from './Box';
-import Grid from './Grid';
+import { Box } from '../Box';
+import { Grid } from './Grid';
 
 const meta = {
   title: 'Layouts/Grid',

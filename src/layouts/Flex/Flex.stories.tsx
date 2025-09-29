@@ -1,7 +1,7 @@
 import type { Meta, StoryObj } from '@storybook/react-vite';
 
-import Box from './Box';
-import Flex from './Flex';
+import { Box } from '../Box';
+import { Flex } from './Flex';
 
 const meta = {
   title: 'Layouts/Flex',

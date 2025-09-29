@@ -8,7 +8,7 @@ import type {
 
 import { cn } from '@utils';
 
-import { Box } from '@layouts';
+import { Box } from '../Box';
 
 type GridTemplateTypes =
   | {
@@ -17,7 +17,7 @@ type GridTemplateTypes =
     }
   | [string, ...string[]];
 
-type GridProps<T extends React.ElementType> = PolymorphicPropsWithRef<
+export type GridProps<T extends React.ElementType> = PolymorphicPropsWithRef<
   T,
   false,
   {
@@ -98,7 +98,7 @@ type GridProps<T extends React.ElementType> = PolymorphicPropsWithRef<
  * </Grid>
  * ```
  */
-const Grid = <T extends React.ElementType = 'div'>(
+export const Grid = <T extends React.ElementType = 'div'>(
   props: GridProps<T>,
 ): React.ReactElement => {
   const {
@@ -170,5 +170,3 @@ const Grid = <T extends React.ElementType = 'div'>(
     />
   );
 };
-
-export default Grid;

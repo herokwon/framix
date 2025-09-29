@@ -8,9 +8,9 @@ import type {
 
 import { cn } from '@utils';
 
-import { Box } from '@layouts';
+import { Box } from '../Box';
 
-type FlexProps<T extends React.ElementType> = PolymorphicPropsWithRef<
+export type FlexProps<T extends React.ElementType> = PolymorphicPropsWithRef<
   T,
   false,
   {
@@ -74,7 +74,7 @@ type FlexProps<T extends React.ElementType> = PolymorphicPropsWithRef<
  * </Flex>
  * ```
  */
-const Flex = <T extends React.ElementType = 'div'>(
+export const Flex = <T extends React.ElementType = 'div'>(
   props: FlexProps<T>,
 ): React.ReactElement => {
   const {
@@ -139,5 +139,3 @@ const Flex = <T extends React.ElementType = 'div'>(
     />
   );
 };
-
-export default Flex;

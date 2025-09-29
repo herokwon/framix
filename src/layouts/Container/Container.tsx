@@ -2,7 +2,7 @@ import type { MaxWidth, PolymorphicPropsWithRef, StrictExtract } from '@types';
 
 import { cn } from '@utils';
 
-import { Box } from '@layouts';
+import { Box } from '../Box';
 
 type ContainerTags = StrictExtract<
   React.ElementType,
@@ -15,7 +15,7 @@ type ContainerTags = StrictExtract<
   | 'footer'
   | 'dialog'
 >;
-type ContainerProps<T extends ContainerTags> = PolymorphicPropsWithRef<
+export type ContainerProps<T extends ContainerTags> = PolymorphicPropsWithRef<
   T,
   false,
   | {
@@ -45,7 +45,7 @@ type ContainerProps<T extends ContainerTags> = PolymorphicPropsWithRef<
  * <Container as="main" maxWidth="xl">Main content</Container>
  * ```
  */
-const Container = <T extends ContainerTags = 'section'>(
+export const Container = <T extends ContainerTags = 'section'>(
   props: ContainerProps<T>,
 ): React.ReactElement => {
   const { as: Component = 'section', className, ...rest } = props;
@@ -75,5 +75,3 @@ const Container = <T extends ContainerTags = 'section'>(
     />
   );
 };
-
-export default Container;

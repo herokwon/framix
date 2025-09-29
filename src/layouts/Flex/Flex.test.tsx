@@ -3,7 +3,7 @@ import { vi } from 'vitest';
 import { render, screen } from '@testing-library/react';
 import userEvent from '@testing-library/user-event';
 
-import Flex from './Flex';
+import { Flex } from './Flex';
 
 describe('[Layouts] Flex', () => {
   describe('rendering', () => {
