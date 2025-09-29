@@ -36,7 +36,7 @@ const renderBase = (
     </Select>,
   );
 
-describe('[Form] Select (current implementation)', () => {
+describe('[Components] Select (current implementation)', () => {
   describe('rendering & structure', () => {
     it('renders trigger (combobox) with aria linkage to listbox and placeholder label', () => {
       renderBase();

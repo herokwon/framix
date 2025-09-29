@@ -5,7 +5,7 @@ import userEvent from '@testing-library/user-event';
 
 import { Checkbox } from './Checkbox';
 
-describe('[Form] Checkbox', () => {
+describe('[Components] Checkbox', () => {
   describe('rendering', () => {
     it('renders input type=checkbox with defaults', () => {
       render(<Checkbox />);

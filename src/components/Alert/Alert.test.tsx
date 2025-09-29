@@ -6,7 +6,7 @@ import { Alert } from './Alert';
 
 const COLORS = ELEMENT_COLORS.filter(color => color !== 'primary');
 
-describe('[UI] Alert', () => {
+describe('[Components] Alert', () => {
   describe('rendering', () => {
     it('renders with default props (variant=text, color=default)', () => {
       render(<Alert>Message</Alert>);

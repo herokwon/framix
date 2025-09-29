@@ -6,7 +6,7 @@ import { ICON_SIZES } from '@data';
 
 import { Spinner } from './Spinner';
 
-describe('[UI] Spinner', () => {
+describe('[Components] Spinner', () => {
   describe('rendering', () => {
     it('renders with default', () => {
       render(<Spinner />);

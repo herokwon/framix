@@ -9,7 +9,7 @@ import { ICON_SIZES } from '@data';
 
 import { IconButton } from './IconButton';
 
-describe('[UI] IconButton', () => {
+describe('[Components] IconButton', () => {
   describe('rendering', () => {
     it('renders with default', () => {
       render(<IconButton icon={Circle} />);

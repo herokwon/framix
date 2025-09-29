@@ -5,7 +5,7 @@ import userEvent from '@testing-library/user-event';
 
 import { TextField } from './TextField';
 
-describe('[Form] TextField', () => {
+describe('[Components] TextField', () => {
   const base = (override?: Partial<Parameters<typeof TextField>[0]>) => (
     <TextField label="Label" id="tf-id" name="tf" {...override} />
   );

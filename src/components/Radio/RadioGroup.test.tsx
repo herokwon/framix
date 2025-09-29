@@ -6,7 +6,7 @@ import userEvent from '@testing-library/user-event';
 import { Radio } from './Radio';
 import { RadioGroup } from './RadioGroup';
 
-describe('[Form] RadioGroup (comprehensive)', () => {
+describe('[Components] RadioGroup (comprehensive)', () => {
   describe('rendering and name propagation', () => {
     it('renders children and propagates name', () => {
       render(

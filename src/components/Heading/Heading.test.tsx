@@ -8,7 +8,7 @@ import {
 
 import { Heading } from './Heading';
 
-describe('[UI] Heading', () => {
+describe('[Components] Heading', () => {
   describe('rendering', () => {
     it('renders with default', () => {
       render(<Heading>Title</Heading>);

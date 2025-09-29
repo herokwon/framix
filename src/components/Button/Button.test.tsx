@@ -9,7 +9,7 @@ import { ICON_SIZES } from '@data';
 
 import { Button } from './Button';
 
-describe('[UI] Button', () => {
+describe('[Components] Button', () => {
   describe('rendering', () => {
     it('renders with default', () => {
       render(<Button>Click me</Button>);

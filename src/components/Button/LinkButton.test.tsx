@@ -5,7 +5,7 @@ import userEvent from '@testing-library/user-event';
 
 import { LinkButton } from './LinkButton';
 
-describe('[UI] LinkButton', () => {
+describe('[Components] LinkButton', () => {
   let originalLocation: Location | undefined;
 
   const restoreLocation = () => {

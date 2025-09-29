@@ -9,7 +9,7 @@ import {
 
 import { Text } from './Text';
 
-describe('[UI] Text', () => {
+describe('[Components] Text', () => {
   describe('rendering', () => {
     it('renders with defaults', () => {
       render(<Text>Plain text</Text>);

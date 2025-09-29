@@ -8,7 +8,7 @@ import { Switch } from './Switch';
 const getSwitchElement = (testId: string = 'switch') =>
   screen.getByTestId(testId);
 
-describe('[Form] Switch', () => {
+describe('[Components] Switch', () => {
   describe('rendering & structure', () => {
     it('renders as button role=switch with default unchecked state', () => {
       render(<Switch />);

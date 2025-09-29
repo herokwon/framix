@@ -4,7 +4,7 @@ import userEvent from '@testing-library/user-event';
 import { Button } from '../Button';
 import { Tooltip } from './Tooltip';
 
-describe('[UI] Tooltip', () => {
+describe('[Components] Tooltip', () => {
   it('links trigger and tooltip via aria-describedby', () => {
     render(
       <Tooltip content="Helpful info">
