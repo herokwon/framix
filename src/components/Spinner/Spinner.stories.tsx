@@ -7,7 +7,7 @@ import { Flex } from '@layouts';
 import { Spinner } from './Spinner';
 
 const meta = {
-  title: 'Components/UI/Spinner',
+  title: 'Components/Spinner',
   tags: ['autodocs'],
   component: Spinner,
   args: {

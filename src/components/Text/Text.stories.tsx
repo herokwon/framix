@@ -12,7 +12,7 @@ import { Flex, Grid } from '@layouts';
 import { Text } from './Text';
 
 const meta = {
-  title: 'Components/UI/Text',
+  title: 'Components/Text',
   tags: ['autodocs'],
   component: Text,
   args: {

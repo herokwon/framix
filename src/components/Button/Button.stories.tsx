@@ -16,7 +16,7 @@ import { Flex, Grid } from '@layouts';
 import { Button } from './Button';
 
 const meta = {
-  title: 'Components/UI/Button',
+  title: 'Components/Button',
   tags: ['autodocs'],
   component: Button,
   args: {

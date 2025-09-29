@@ -8,7 +8,7 @@ import { IconButton } from '../Button';
 import { TextField, type TextFieldProps } from './TextField';
 
 const meta = {
-  title: 'Components/Form/TextField',
+  title: 'Components/TextField',
   tags: ['autodocs'],
   component: TextField,
   args: {

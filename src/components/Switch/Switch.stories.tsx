@@ -7,7 +7,7 @@ import { fn } from 'storybook/test';
 import { Switch } from './Switch';
 
 const meta = {
-  title: 'Components/Form/Switch',
+  title: 'Components/Switch',
   component: Switch,
   args: {
     isDisabled: false,

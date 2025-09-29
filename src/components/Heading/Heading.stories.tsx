@@ -12,7 +12,7 @@ import TextMeta from '../Text/Text.stories';
 import { Heading } from './Heading';
 
 const meta = {
-  title: 'Components/UI/Heading',
+  title: 'Components/Heading',
   tags: ['autodocs'],
   component: Heading,
   args: {

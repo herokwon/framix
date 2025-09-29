@@ -9,7 +9,7 @@ import { Alert } from './Alert';
 const AlertColors = ELEMENT_COLORS.filter(color => color !== 'primary');
 
 const meta = {
-  title: 'Components/UI/Alert',
+  title: 'Components/Alert',
   tags: ['autodocs'],
   component: Alert,
   args: {

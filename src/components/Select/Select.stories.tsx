@@ -6,7 +6,7 @@ import { SelectItem } from './SelectItem';
 import { SelectTrigger } from './SelectTrigger';
 
 const meta = {
-  title: 'Components/Form/Select',
+  title: 'Components/Select',
   component: Select,
   args: {},
 } satisfies Meta<typeof Select>;

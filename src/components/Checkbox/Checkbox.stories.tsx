@@ -7,7 +7,7 @@ import { Box, Flex } from '@layouts';
 import { Checkbox } from './Checkbox';
 
 const meta = {
-  title: 'Components/Form/Checkbox',
+  title: 'Components/Checkbox',
   tags: ['autodocs'],
   component: Checkbox,
   args: {

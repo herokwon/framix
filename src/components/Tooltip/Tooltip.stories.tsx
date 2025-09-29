@@ -69,7 +69,7 @@ const gridPositions = {
 } satisfies Record<OverlayPosition, { gridColumn: number; gridRow: number }>;
 
 const meta = {
-  title: 'Components/UI/Tooltip',
+  title: 'Components/Tooltip',
   tags: ['autodocs'],
   component: Tooltip,
   args: {

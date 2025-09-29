@@ -9,7 +9,7 @@ import { Radio } from './Radio';
 import { RadioGroup } from './RadioGroup';
 
 const meta = {
-  title: 'Components/Form/RadioGroup',
+  title: 'Components/RadioGroup',
   component: RadioGroup,
   args: {
     isDisabled: false,
