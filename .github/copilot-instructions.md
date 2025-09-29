@@ -56,7 +56,7 @@ import { cn } from '@utils/cn';
 Types, story files, test files, config scripts, declaration files are excluded (see `vite.config.ts` coverage.exclude).
 
 ### Reference Files
-- `src/components/Button/Button.tsx`, `src/layouts/Box.tsx`, `src/utils/cn.ts` illustrate styling, layout composition, utility patterns.
+- `src/components/Button/Button.tsx`, `src/layouts/Box/Box.tsx`, `src/utils/cn.ts` illustrate styling, layout composition, utility patterns.
 
 ---
 This guide gives AI coding agents the minimal, project-specific knowledge to be productive quickly. For gaps or clarifications, open an issue or update this file.
