@@ -1,6 +1,7 @@
 import type {
   ElementColor,
   HeadingHtmlTag,
+  HorizontalAlignment,
   PolymorphicPropsWithoutRef,
 } from '@types';
 
@@ -8,15 +9,12 @@ import { cn } from '@utils';
 
 import { Box } from '@layouts/Box';
 
-import type { Text } from '../Text';
-
-type TextAlign = NonNullable<Parameters<typeof Text>[0]['align']>;
 export type HeadingProps<T extends HeadingHtmlTag> = PolymorphicPropsWithoutRef<
   T,
   true,
   {
     color?: ElementColor;
-    align?: TextAlign;
+    align?: HorizontalAlignment;
   }
 >;
 
@@ -55,7 +53,7 @@ export const Heading = <T extends HeadingHtmlTag = 'h1'>({
             left: '',
             center: 'text-center',
             right: 'text-right',
-          } satisfies Record<TextAlign, string>
+          } satisfies Record<HorizontalAlignment, string>
         )[align],
 
         // font style
