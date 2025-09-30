@@ -1,8 +1,4 @@
-import type {
-  ComponentPropsWithRef,
-  ElementStatusProps,
-  StrictOmit,
-} from '@types';
+import type { ElementStatusProps, StrictOmit } from '@types';
 
 import { isLocalURL } from '@utils';
 
@@ -14,13 +10,9 @@ type UrlObject = {
 };
 
 export type LinkButtonProps = StrictOmit<
-  ComponentPropsWithRef<'a'>,
-  'children' | 'href'
+  React.ComponentProps<typeof Button<'a'>>,
+  'href'
 > &
-  Pick<
-    Parameters<typeof Button>[0],
-    'children' | 'variant' | 'size' | 'shape' | 'leftIcon' | 'rightIcon'
-  > &
   ElementStatusProps & {
     href?: string | UrlObject;
   };
