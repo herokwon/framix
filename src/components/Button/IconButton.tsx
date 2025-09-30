@@ -10,7 +10,7 @@ import { Button } from './Button';
 
 export type IconButtonProps = StrictOmit<
   React.ComponentProps<typeof Button<'button'>>,
-  'as'
+  'as' | 'children'
 > & {
   icon: LucideIcon;
 };
