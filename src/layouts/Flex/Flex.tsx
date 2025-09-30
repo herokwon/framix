@@ -1,7 +1,6 @@
-import { camelCase } from 'es-toolkit';
-
 import type {
-  CSSValueToClassMap,
+  ContentAlignment,
+  ItemsAlignment,
   PolymorphicPropsWithRef,
   StrictExtract,
 } from '@types';
@@ -10,32 +9,22 @@ import { cn } from '@utils';
 
 import { Box } from '../Box';
 
+type FlexDirection = StrictExtract<
+  React.CSSProperties['flexDirection'],
+  'column' | 'column-reverse' | 'row' | 'row-reverse'
+>;
+type FlexWrap = StrictExtract<
+  React.CSSProperties['flexWrap'],
+  'nowrap' | 'wrap' | 'wrap-reverse'
+>;
 export type FlexProps<T extends React.ElementType> = PolymorphicPropsWithRef<
   T,
   false,
   {
-    direction?: StrictExtract<
-      React.CSSProperties['flexDirection'],
-      'column' | 'column-reverse' | 'row' | 'row-reverse'
-    >;
-    justifyContent?: StrictExtract<
-      React.CSSProperties['justifyContent'],
-      | 'start'
-      | 'center'
-      | 'end'
-      | 'space-around'
-      | 'space-between'
-      | 'space-evenly'
-      | 'stretch'
-    >;
-    alignItems?: StrictExtract<
-      React.CSSProperties['alignItems'],
-      'start' | 'center' | 'end' | 'stretch' | 'baseline'
-    >;
-    wrap?: StrictExtract<
-      React.CSSProperties['flexWrap'],
-      'nowrap' | 'wrap' | 'wrap-reverse'
-    >;
+    direction?: FlexDirection;
+    justifyContent?: ContentAlignment;
+    alignItems?: ItemsAlignment;
+    wrap?: FlexWrap;
     gap?:
       | number
       | {
@@ -104,23 +93,23 @@ export const Flex = <T extends React.ElementType = 'div'>(
         inline ? 'inline-flex' : 'flex',
         (
           {
-            row: 'flex-row',
-            rowReverse: 'flex-row-reverse',
+            row: '',
+            'row-reverse': 'flex-row-reverse',
             column: 'flex-col',
-            columnReverse: 'flex-col-reverse',
-          } satisfies CSSValueToClassMap<typeof direction>
-        )[camelCase(direction)],
+            'column-reverse': 'flex-col-reverse',
+          } satisfies Record<FlexDirection, string>
+        )[direction],
         (
           {
             start: 'justify-start',
             center: 'justify-center',
             end: 'justify-end',
-            spaceAround: 'justify-around',
-            spaceBetween: 'justify-between',
-            spaceEvenly: 'justify-evenly',
+            'space-around': 'justify-around',
+            'space-between': 'justify-between',
+            'space-evenly': 'justify-evenly',
             stretch: 'justify-stretch',
-          } satisfies CSSValueToClassMap<typeof justifyContent>
-        )[camelCase(justifyContent)],
+          } satisfies Record<ContentAlignment, string>
+        )[justifyContent],
         (
           {
             start: 'items-start',
@@ -128,15 +117,15 @@ export const Flex = <T extends React.ElementType = 'div'>(
             end: 'items-end',
             stretch: 'items-stretch',
             baseline: 'items-baseline',
-          } satisfies CSSValueToClassMap<typeof alignItems>
-        )[camelCase(alignItems)],
+          } satisfies Record<ItemsAlignment, string>
+        )[alignItems],
         (
           {
             nowrap: 'flex-nowrap',
             wrap: 'flex-wrap',
-            wrapReverse: 'flex-wrap-reverse',
-          } satisfies CSSValueToClassMap<typeof wrap>
-        )[camelCase(wrap)],
+            'wrap-reverse': 'flex-wrap-reverse',
+          } satisfies Record<FlexWrap, string>
+        )[wrap],
       )}
     />
   );
