@@ -40,7 +40,6 @@ export const SelectTrigger = ({
         <IconButton
           tabIndex={-1}
           icon={ChevronDown}
-          variant="icon"
           size="sm"
           className={cn('transition-transform', open && 'rotate-180')}
           onClick={updateOpenState}

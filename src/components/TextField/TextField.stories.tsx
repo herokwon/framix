@@ -119,7 +119,6 @@ export const RightInput: Story = {
         rightInput={
           <IconButton
             icon={isShowing ? Eye : EyeOff}
-            variant="icon"
             size="sm"
             onClick={toggleShowing}
           />

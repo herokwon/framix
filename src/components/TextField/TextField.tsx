@@ -63,7 +63,7 @@ export const TextField = ({
 
               // position
               variant === 'outlined' ? 'top-0' : 'top-0.5',
-              variant !== 'text' && 'left-2 px-1',
+              variant !== 'standard' && 'left-2 px-1',
               variant === 'outlined'
                 ? '-translate-y-1/2 group-has-placeholder-shown:not-group-has-[input:focus]:translate-y-1/2'
                 : variant === 'filled'
@@ -90,13 +90,13 @@ export const TextField = ({
             'transition-all',
 
             // border
-            variant !== 'text' ? 'rounded border' : 'border-y',
+            variant !== 'standard' ? 'rounded border' : 'border-y',
 
             // border color
             variant === 'filled'
               ? 'border-secondary-light dark:border-secondary-dark'
               : 'border-foreground-light/38 dark:border-foreground-dark/38',
-            variant === 'text' && 'border-t-transparent!',
+            variant === 'standard' && 'border-t-transparent!',
             hasError
               ? 'border-danger-light dark:border-danger-dark'
               : 'hover:not-has-[input:focus]:not-disabled:border-foreground-light peer-hover:not-has-[input:focus]:not-disabled:border-foreground-light has-[input:focus]:not-disabled:border-primary-light dark:hover:not-has-[input:focus]:not-disabled:border-foreground-dark dark:peer-hover:not-has-[input:focus]:not-disabled:border-foreground-dark dark:has-[input:focus]:not-disabled:border-primary-dark',
@@ -121,7 +121,7 @@ export const TextField = ({
               'text-body1 outline-none',
 
               // padding
-              variant !== 'text' && 'px-3',
+              variant !== 'standard' && 'px-3',
               variant === 'outlined' ? 'py-2.75' : 'pt-4.5 pb-1',
             )}
           />
@@ -139,7 +139,7 @@ export const TextField = ({
               : 'text-foreground-light/38 dark:text-foreground-dark/38',
 
             // spacing
-            variant !== 'text' && 'px-3.25',
+            variant !== 'standard' && 'px-3.25',
           )}
         >
           {description}

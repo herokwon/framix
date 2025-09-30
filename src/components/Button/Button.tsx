@@ -130,7 +130,7 @@ export const Button = <T extends ButtonHtmlTag = 'button'>({
                 'border-warning-light/38 hover:not-disabled:border-warning-light active:not-disabled:border-warning-light active:not-disabled:bg-warning-background-light dark:border-warning-dark/38 dark:hover:not-disabled:border-warning-dark dark:active:not-disabled:border-warning-dark dark:active:not-disabled:bg-warning-background-dark',
               info: 'border-info-light/38 hover:not-disabled:border-info-light active:not-disabled:border-info-light active:not-disabled:bg-info-background-light dark:border-info-dark/38 dark:hover:not-disabled:border-info-dark dark:active:not-disabled:border-info-dark dark:active:not-disabled:bg-info-background-dark',
             },
-            text: {
+            standard: {
               default:
                 'hover:not-disabled:bg-secondary-light active:not-disabled:bg-secondary-light-hover dark:hover:not-disabled:bg-secondary-dark dark:active:not-disabled:bg-secondary-dark-hover',
               primary:

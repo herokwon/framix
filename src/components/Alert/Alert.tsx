@@ -36,7 +36,7 @@ export type AlertProps = StrictOmit<
 
 export const Alert = ({
   children,
-  variant = 'text',
+  variant = 'standard',
   color = 'default',
   ...props
 }: AlertProps) => {

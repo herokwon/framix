@@ -47,7 +47,7 @@ describe('[Components] TextField', () => {
     });
 
     it('text variant uses border-y and transparent top border', () => {
-      render(base({ variant: 'text', label: 'Text' }));
+      render(base({ variant: 'standard', label: 'Text' }));
       const wrapper = screen.getByTestId('text-field-wrapper');
 
       expect(wrapper).toHaveClass('border-y border-t-transparent!');
