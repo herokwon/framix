@@ -8,7 +8,7 @@ import { Radio } from './Radio';
 import { RadioGroupProvider } from './RadioGroup.context';
 
 export type RadioGroupProps = EssentialProps<true> & {
-  children?: React.ReactElement<React.ComponentProps<typeof Radio>>[];
+  children: React.ReactElement<React.ComponentProps<typeof Radio>>[];
   value?: string;
   defaultValue?: string;
   name?: string;
