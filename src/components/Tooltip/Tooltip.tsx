@@ -9,6 +9,8 @@ import type {
 
 import { cn } from '@utils';
 
+import { Box } from '@layouts/Box';
+
 import { Text } from '../Text';
 
 type DescribableChild = {
@@ -30,6 +32,8 @@ export const Tooltip = ({
   position = 'bottom-center',
   content,
   isDisabled = false,
+  testId = 'tooltip',
+  label = 'Tooltip',
   ...props
 }: TooltipProps) => {
   const id = `tooltip-${React.useId()}`;
@@ -45,15 +49,20 @@ export const Tooltip = ({
   return isDisabled ? (
     trigger
   ) : (
-    <div
+    <Box
       {...props}
+      testId={`${testId}-wrapper`}
+      label={`${label} wrapper`}
       className={cn(
         props.className,
         'relative hover:*:last:pointer-events-auto hover:*:last:opacity-100',
       )}
     >
       {trigger}
-      <div
+      <Box
+        role="tooltip"
+        testId={testId}
+        label={label}
         className={cn(
           'pointer-events-none absolute z-10 grid w-max place-content-stretch opacity-0 transition-all',
 
@@ -95,7 +104,7 @@ export const Tooltip = ({
         >
           {content}
         </Text>
-      </div>
-    </div>
+      </Box>
+    </Box>
   );
 };
