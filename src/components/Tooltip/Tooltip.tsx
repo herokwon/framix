@@ -19,13 +19,11 @@ export type TooltipProps = StrictOmit<
   ComponentPropsWithoutRef<'div'>,
   'children'
 > &
-  Pick<ElementStatusProps, 'isDisabled'> &
-  NonNullable<
-    React.PropsWithChildren<{
-      position?: OverlayPosition;
-      content: string;
-    }>
-  >;
+  Pick<ElementStatusProps, 'isDisabled'> & {
+    children: NonNullable<React.ReactNode>;
+    content: string;
+    position?: OverlayPosition;
+  };
 
 export const Tooltip = ({
   children,
