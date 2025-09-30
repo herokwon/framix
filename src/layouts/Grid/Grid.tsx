@@ -124,13 +124,13 @@ export const Grid = <T extends React.ElementType = 'div'>(
         )[justifyContent],
         (
           {
-            start: 'justify-start',
-            center: 'justify-center',
-            end: 'justify-end',
-            'space-around': 'justify-around',
-            'space-between': 'justify-between',
-            'space-evenly': 'justify-evenly',
-            stretch: 'justify-stretch',
+            start: 'content-start',
+            center: 'content-center',
+            end: 'content-end',
+            'space-around': 'content-around',
+            'space-between': 'content-between',
+            'space-evenly': 'content-evenly',
+            stretch: 'content-stretch',
           } satisfies Record<ContentAlignment, string>
         )[alignContent],
         (
