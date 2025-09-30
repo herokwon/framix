@@ -26,13 +26,13 @@ type AlertColor = StrictExclude<ElementColor, 'primary'>;
 export type AlertProps = StrictOmit<
   ComponentPropsWithoutRef<'div'>,
   'children'
-> &
-  NonNullable<
-    React.PropsWithChildren<{
-      variant?: ElementVariant;
-      color?: AlertColor;
-    }>
-  >;
+> & {
+  children: NonNullable<React.ReactNode>;
+
+  variant?: ElementVariant;
+
+  color?: AlertColor;
+};
 
 export const Alert = ({
   children,
