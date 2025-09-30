@@ -11,17 +11,18 @@ import { cn } from '@utils';
 import { Box } from '@layouts/Box';
 
 import { type SelectIds, SelectProvider } from './Select.context';
-import { SelectContent } from './SelectContent';
-import { SelectTrigger } from './SelectTrigger';
+import type { SelectContent } from './SelectContent';
+import type { SelectTrigger } from './SelectTrigger';
 
 export type SelectProps = StrictOmit<
   ComponentPropsWithoutRef<'div', true>,
   'defaultValue' | 'onChange'
 > &
   Pick<ElementStatusProps, 'isDisabled'> & {
-    children?:
-      | React.ReactElement<typeof SelectTrigger>
-      | React.ReactElement<typeof SelectContent>[];
+    children?: [
+      React.ReactElement<React.ComponentProps<typeof SelectTrigger>>,
+      React.ReactElement<React.ComponentProps<typeof SelectContent>>,
+    ];
     value?: string;
     defaultValue?: string;
     getContent?: (value: string) => string;
