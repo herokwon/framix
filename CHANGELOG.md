@@ -1,5 +1,27 @@
 # framix
 
+## 0.4.1
+
+### Patch Changes
+
+- b389469: 📄 Release Note
+
+  ### ✨ New Features
+  - Restructured folder layout: moved components & layouts into per-component / per-layout directories (e.g. `components/Button/`, `layouts/Grid/`) (#52)
+  - Introduced explicit index.ts in each component/layout folder for named exports (component + props types)
+  - Centralized alignment logic and shared alignment types/constants for consistency across components (#54)
+  - Renamed variant "text" → "standard" in affected components (`Button`, `TextField`, etc.)
+  - Removed dependency on es-toolkit/camelCase for variant name mapping
+  - Simplified props and improved typing in various components (`IconButton`, `Select`, `RadioGroup`, `Tooltip`, layout components)
+  - Updated import paths, tsconfig aliases, Storybook metadata, documentation and dev instructions
+
+  <br />
+
+  ### 🛠 Fixes & Maintenance
+  - Adjusted test descriptions (e.g. added [Components] prefix) and updated test import paths
+  - Cleaned up docs, copilot instructions, and README references
+  - Removed unused overlay exports and deprecated paths
+
 ## 0.4.0
 
 ### Minor Changes
@@ -7,7 +29,6 @@
 - 705e8b7: 📄 Release Note
 
   ### ✨ New Features
-  
   - Added core **Form components**: `TextField`, `Checkbox`, `Radio` / `RadioGroup`, `Select`, `Switch` (#48)
   - All components support controlled/uncontrolled usage and accessibility compliance
   - Storybook stories and test coverage included
@@ -15,7 +36,6 @@
   <br />
 
   ### 🛠 Improvements
-
   - Compound API for `Select` (`Trigger`, `Content`, `Item`) (#48)
   - `Grid` layout: added `stretch` option for `justifyContent` (#48)
   - Unified exports via `form/index.ts` (#48)
@@ -25,20 +45,17 @@
   <br />
 
   ### 🐛 Fixes
-
   - Preserved `'use client'` directive in build output to prevent RSC breakage (#45)
 
   <br />
 
   ### 📦 Build
-
   - Migrated build system to **Vite lib mode** with dual entry points (#45)
   - Externalized React runtime and refined `package.json` exports (#45)
 
   <br />
 
   ### ⚠️ Notes
-
   - `Select` currently supports only single selection; multi-select and searchable options will come in future updates.
 
 ## 0.3.1
@@ -48,7 +65,6 @@
 - 1ec6bda: 📄 Release Note
 
   ### 🐛 Fixes & Improvements
-
   - Added 'use client' directive to all UI components (Button, LinkButton, etc.) to ensure compatibility when used in client-side rendering environments of external projects.
   - Removed injectStyle: true option in the build config (tsup) to fix issues with Tailwind CSS styles not applying correctly.
   - Updated package.json to include sideEffects configuration for CSS files to ensure global styles are preserved and bundled properly.
@@ -56,7 +72,6 @@
   <br />
 
   ### ⚠️ Breaking Changes / Notes
-
   - External projects no longer need to manually add 'use client' when importing Framix components.
   - Styles previously injected via build may not have loaded correctly; with this release, global CSS is now correctly bundled, resolving previous 404 errors for CSS files.
 
@@ -67,7 +82,6 @@
 - 3f2fcef: 📄 Release Note
 
   ### 🚀 New Components & Features
-
   - Introduced core UI components: `Button`, `IconButton`, `LinkButton`, `Text`, `Heading`, `Spinner`, `Alert`, `Tooltip`.
   - Integrated **Lucide React** for icon support across UI components.
   - Added new common type definitions: `ElementStatus`, `ElementVariant`, `ElementColor`.
@@ -75,7 +89,6 @@
   <br />
 
   ### 🔧 Enhancements & Refactors
-
   - `Button` component’s `filled` variant now uses **semibold (font-weight: 600)** for stronger emphasis.
   - Improved class-name utility (`cn`) to better merge Tailwind CSS class groups.
   - Updated design tokens & utility classes:
@@ -89,7 +102,6 @@
   <br />
 
   ### 🧪 Testing & Documentation
-
   - Added Storybook stories with controls for all variant/color/size combinations.
   - Extended test coverage to include new UI components (`Alert`, `Tooltip`, etc.) and existing ones.
   - Updated Storybook argTypes & controls for spacing, variant, color, size.
@@ -97,7 +109,6 @@
   <br />
 
   ### ⚙️ Dependencies & Build
-
   - Included `lucide-react` both as a runtime dependency and peer dependency.
   - Updated build configuration for externalization to avoid bundle duplication.
   - Added `isLocalURL` utility with tests.
@@ -105,7 +116,6 @@
   ***
 
   ### 🔎 Notes
-
   - Users upgrading to **v0.3.0** should verify that they have compatible versions of `lucide-react` installed to avoid peer dependency warnings or runtime missing icon issues.
   - Storybook’s visual baseline has shifted for many components; existing snapshots may need updating after this release.
 
@@ -116,7 +126,6 @@
 - f624760: 📄 Release Note
 
   ### 🔧 **Enhancements & Refactors**
-
   - **Box**
     - Corrected function return type
     - Added `JSDoc` comments
