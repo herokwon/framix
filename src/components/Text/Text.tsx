@@ -1,8 +1,8 @@
 import type {
   ElementColor,
   ElementSize,
+  HorizontalAlignment,
   PolymorphicPropsWithoutRef,
-  StrictExtract,
   TextHtmlTag,
 } from '@types';
 
@@ -10,23 +10,33 @@ import { cn } from '@utils';
 
 import { Box } from '@layouts/Box';
 
-type TextAlign = StrictExtract<
-  React.CSSProperties['textAlign'],
-  'left' | 'center' | 'right'
->;
 type FontWeight = 'normal' | 'medium' | 'semibold' | 'bold';
 export type TextProps<T extends TextHtmlTag> = PolymorphicPropsWithoutRef<
   T,
   true,
   {
+    /** The color of the text. */
     color?: ElementColor;
+    /** If true, the color will be inverted (light/dark). */
     isColorInverted?: boolean;
+    /** The size of the text. */
     size?: ElementSize;
-    align?: TextAlign;
+    /** The horizontal alignment of the text. */
+    align?: HorizontalAlignment;
+    /** The font weight of the text. */
     weight?: FontWeight;
   }
 >;
 
+/**
+ * A component for rendering text with various styles.
+ *
+ * @example
+ * ```tsx
+ * <Text>This is a standard text.</Text>
+ * <Text color="primary" size="lg" weight="bold">This is a large, bold, primary text.</Text>
+ * ```
+ */
 export const Text = <T extends TextHtmlTag = 'span'>({
   as,
   children,
@@ -82,7 +92,7 @@ export const Text = <T extends TextHtmlTag = 'span'>({
             left: '',
             center: 'text-center',
             right: 'text-right',
-          } satisfies Record<TextAlign, string>
+          } satisfies Record<HorizontalAlignment, string>
         )[align],
 
         // font weight

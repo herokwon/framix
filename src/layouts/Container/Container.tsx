@@ -19,10 +19,13 @@ export type ContainerProps<T extends ContainerTags> = PolymorphicPropsWithRef<
   T,
   false,
   | {
+      /** If true, the container will have a fixed width based on Tailwind's container class. */
       fixed: true;
     }
   | {
+      /** If false or undefined, the container will be responsive. */
       fixed?: false;
+      /** Sets the maximum width of the container. This is only applied when `fixed` is not true. */
       maxWidth?: MaxWidth;
     }
 >;

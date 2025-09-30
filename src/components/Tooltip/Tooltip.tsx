@@ -9,6 +9,8 @@ import type {
 
 import { cn } from '@utils';
 
+import { Box } from '@layouts/Box';
+
 import { Text } from '../Text';
 
 type DescribableChild = {
@@ -19,19 +21,19 @@ export type TooltipProps = StrictOmit<
   ComponentPropsWithoutRef<'div'>,
   'children'
 > &
-  Pick<ElementStatusProps, 'isDisabled'> &
-  NonNullable<
-    React.PropsWithChildren<{
-      position?: OverlayPosition;
-      content: string;
-    }>
-  >;
+  Pick<ElementStatusProps, 'isDisabled'> & {
+    children: NonNullable<React.ReactNode>;
+    content: string;
+    position?: OverlayPosition;
+  };
 
 export const Tooltip = ({
   children,
   position = 'bottom-center',
   content,
   isDisabled = false,
+  testId = 'tooltip',
+  label = 'Tooltip',
   ...props
 }: TooltipProps) => {
   const id = `tooltip-${React.useId()}`;
@@ -47,15 +49,21 @@ export const Tooltip = ({
   return isDisabled ? (
     trigger
   ) : (
-    <div
+    <Box
       {...props}
+      testId={`${testId}-wrapper`}
+      label={`${label} wrapper`}
       className={cn(
         props.className,
         'relative hover:*:last:pointer-events-auto hover:*:last:opacity-100',
       )}
     >
       {trigger}
-      <div
+      <Box
+        role="tooltip"
+        testId={testId}
+        label={label}
+        id={id}
         className={cn(
           'pointer-events-none absolute z-10 grid w-max place-content-stretch opacity-0 transition-all',
 
@@ -88,16 +96,14 @@ export const Tooltip = ({
       >
         <Text
           isColorInverted
-          id={id}
           size="sm"
-          role="tooltip"
           className={cn(
             'bg-secondary-dark dark:bg-secondary-light w-max rounded px-2 py-1',
           )}
         >
           {content}
         </Text>
-      </div>
-    </div>
+      </Box>
+    </Box>
   );
 };

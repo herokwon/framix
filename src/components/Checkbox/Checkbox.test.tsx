@@ -68,8 +68,9 @@ describe('[Components] Checkbox', () => {
       const wrapper = screen.getByTestId('checkbox-wrapper');
       const input = screen.getByTestId('checkbox');
 
+      expect(wrapper).toHaveClass('disabled');
+
       expect(input).toBeDisabled();
-      expect(wrapper.className).toEqual(expect.stringContaining('disabled'));
 
       await userEvent.click(wrapper);
       expect(onChange).not.toHaveBeenCalled();

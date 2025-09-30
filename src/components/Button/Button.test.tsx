@@ -84,7 +84,7 @@ describe('[Components] Button', () => {
 
     it('applies text + success styles', () => {
       render(
-        <Button variant="text" color="success">
+        <Button variant="standard" color="success">
           Text Success
         </Button>,
       );

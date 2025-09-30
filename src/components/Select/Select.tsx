@@ -11,25 +11,44 @@ import { cn } from '@utils';
 import { Box } from '@layouts/Box';
 
 import { type SelectIds, SelectProvider } from './Select.context';
-import { SelectContent } from './SelectContent';
-import { SelectTrigger } from './SelectTrigger';
+import type { SelectContent } from './SelectContent';
+import type { SelectTrigger } from './SelectTrigger';
 
 export type SelectProps = StrictOmit<
   ComponentPropsWithoutRef<'div', true>,
   'defaultValue' | 'onChange'
 > &
   Pick<ElementStatusProps, 'isDisabled'> & {
-    children?:
-      | React.ReactElement<typeof SelectTrigger>
-      | React.ReactElement<typeof SelectContent>[];
+    children: [
+      React.ReactElement<React.ComponentProps<typeof SelectTrigger>>,
+      React.ReactElement<React.ComponentProps<typeof SelectContent>>,
+    ];
+    /** The controlled value of the select. */
     value?: string;
+    /** The default value of the select. */
     defaultValue?: string;
+    /** A function to get the display content for a given value. */
     getContent?: (value: string) => string;
+    /** Callback function when the value changes. */
     onChange?: (value: string) => void;
   };
 
 const defaultGetContent = (value: string) => value;
 
+/**
+ * A component that allows users to select a value from a list.
+ *
+ * @example
+ * ```tsx
+ * <Select defaultValue="1">
+ *   <SelectTrigger placeholder="Select a number" />
+ *   <SelectContent>
+ *     <SelectItem value="1">One</SelectItem>
+ *     <SelectItem value="2">Two</SelectItem>
+ *   </SelectContent>
+ * </Select>
+ * ```
+ */
 export const Select = ({
   children,
   testId = 'select',

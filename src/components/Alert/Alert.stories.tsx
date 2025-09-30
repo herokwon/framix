@@ -12,7 +12,7 @@ const meta = {
   title: 'Components/Alert',
   component: Alert,
   args: {
-    variant: 'text',
+    variant: 'standard',
     color: 'default',
   },
   argTypes: {

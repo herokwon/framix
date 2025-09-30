@@ -4,6 +4,10 @@ import type { Meta, StoryObj } from '@storybook/react-vite';
 
 import { Eye, EyeOff } from 'lucide-react';
 
+import { ELEMENT_VARIANTS } from '@data';
+
+import { Grid } from '@layouts/Grid';
+
 import { IconButton } from '../Button';
 import { TextField, type TextFieldProps } from './TextField';
 
@@ -47,19 +51,15 @@ export const Default: Story = {
   },
 };
 
-export const Filled: Story = {
-  args: {
-    variant: 'filled',
-    label: 'Filled',
-    name: 'filled-text-field',
-  },
-};
-
-export const Text: Story = {
-  args: {
-    variant: 'text',
-    label: 'Text',
-    name: 'text-field',
+export const Variant: Story = {
+  render: args => {
+    return (
+      <Grid gap={{ row: 4 }}>
+        {ELEMENT_VARIANTS.map(variant => (
+          <TextField {...args} key={variant} variant={variant} />
+        ))}
+      </Grid>
+    );
   },
 };
 
@@ -119,7 +119,6 @@ export const RightInput: Story = {
         rightInput={
           <IconButton
             icon={isShowing ? Eye : EyeOff}
-            variant="icon"
             size="sm"
             onClick={toggleShowing}
           />

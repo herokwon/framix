@@ -8,13 +8,29 @@ import { Radio } from './Radio';
 import { RadioGroupProvider } from './RadioGroup.context';
 
 export type RadioGroupProps = EssentialProps<true> & {
-  children?: React.ReactElement<React.ComponentProps<typeof Radio>>[];
+  /** The radio buttons to be rendered in the group. */
+  children: React.ReactElement<React.ComponentProps<typeof Radio>>[];
+  /** The value of the currently selected radio button. */
   value?: string;
+  /** The default value of the radio group. */
   defaultValue?: string;
+  /** The name to be shared by all radio inputs in the group. */
   name?: string;
+  /** Callback function when the value changes. */
   onChange?: (value: string) => void;
 } & Pick<ElementStatusProps, 'isDisabled'>;
 
+/**
+ * A component that groups multiple Radio components.
+ *
+ * @example
+ * ```tsx
+ * <RadioGroup defaultValue="apple" onChange={console.log}>
+ *   <Radio value="apple" label="Apple" />
+ *   <Radio value="banana" label="Banana" />
+ * </RadioGroup>
+ * ```
+ */
 export const RadioGroup = ({
   children,
   testId = 'radio-group',
@@ -30,7 +46,9 @@ export const RadioGroup = ({
   const currentValue: string = isControlled ? value : selectedValue;
 
   const handleChange = (value: string) => {
-    if (!isControlled) setSelectedValue(value);
+    if (!isControlled) {
+      setSelectedValue(value);
+    }
     onChange?.(value);
   };
 

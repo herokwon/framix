@@ -1,9 +1,7 @@
-import { camelCase } from 'es-toolkit';
-
 import type {
-  CSSValueToClassMap,
+  ContentAlignment,
+  ItemsAlignment,
   PolymorphicPropsWithRef,
-  StrictExtract,
 } from '@types';
 
 import { cn } from '@utils';
@@ -16,7 +14,6 @@ type GridTemplateTypes =
       size?: string;
     }
   | [string, ...string[]];
-
 export type GridProps<T extends React.ElementType> = PolymorphicPropsWithRef<
   T,
   false,
@@ -26,32 +23,11 @@ export type GridProps<T extends React.ElementType> = PolymorphicPropsWithRef<
     /** Grid template rows definition */
     templateRows?: GridTemplateTypes;
     /** Aligns grid along the inline (row) axis */
-    justifyContent?: StrictExtract<
-      React.CSSProperties['justifyContent'],
-      | 'start'
-      | 'center'
-      | 'end'
-      | 'space-around'
-      | 'space-between'
-      | 'space-evenly'
-      | 'stretch'
-    >;
+    justifyContent?: ContentAlignment;
     /** Aligns grid along the block (column) axis */
-    alignContent?: StrictExtract<
-      React.CSSProperties['alignContent'],
-      | 'start'
-      | 'center'
-      | 'end'
-      | 'stretch'
-      | 'space-around'
-      | 'space-between'
-      | 'space-evenly'
-    >;
+    alignContent?: ContentAlignment;
     /** Shorthand for align-items and justify-items */
-    placeItems?: StrictExtract<
-      React.CSSProperties['placeItems'],
-      'start' | 'center' | 'end' | 'stretch' | 'baseline'
-    >;
+    placeItems?: ItemsAlignment;
     /** Gap between grid items */
     gap?:
       | number
@@ -140,23 +116,23 @@ export const Grid = <T extends React.ElementType = 'div'>(
             start: 'justify-start',
             center: 'justify-center',
             end: 'justify-end',
-            spaceAround: 'justify-around',
-            spaceBetween: 'justify-between',
-            spaceEvenly: 'justify-evenly',
+            'space-around': 'justify-around',
+            'space-between': 'justify-between',
+            'space-evenly': 'justify-evenly',
             stretch: 'justify-stretch',
-          } satisfies CSSValueToClassMap<typeof justifyContent>
-        )[camelCase(justifyContent)],
+          } satisfies Record<ContentAlignment, string>
+        )[justifyContent],
         (
           {
             start: 'content-start',
             center: 'content-center',
             end: 'content-end',
+            'space-around': 'content-around',
+            'space-between': 'content-between',
+            'space-evenly': 'content-evenly',
             stretch: 'content-stretch',
-            spaceAround: 'content-around',
-            spaceBetween: 'content-between',
-            spaceEvenly: 'content-evenly',
-          } satisfies CSSValueToClassMap<typeof alignContent>
-        )[camelCase(alignContent)],
+          } satisfies Record<ContentAlignment, string>
+        )[alignContent],
         (
           {
             start: 'place-items-start',
@@ -164,8 +140,8 @@ export const Grid = <T extends React.ElementType = 'div'>(
             end: 'place-items-end',
             stretch: 'place-items-stretch',
             baseline: 'place-items-baseline',
-          } satisfies CSSValueToClassMap<typeof placeItems>
-        )[camelCase(placeItems)],
+          } satisfies Record<ItemsAlignment, string>
+        )[placeItems],
       )}
     />
   );

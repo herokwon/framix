@@ -7,9 +7,24 @@ import { TextField } from '../TextField';
 import { useSelect } from './Select.context';
 
 export type SelectTriggerProps = {
+  /** The placeholder text to display when no value is selected. */
   placeholder?: string;
 };
 
+/**
+ * The trigger that opens the select menu.
+ *
+ * @example
+ * ```tsx
+ * <Select defaultValue="1">
+ *   <SelectTrigger placeholder="Select a number" />
+ *   <SelectContent>
+ *     <SelectItem value="1">One</SelectItem>
+ *     <SelectItem value="2">Two</SelectItem>
+ *   </SelectContent>
+ * </Select>
+ * ```
+ */
 export const SelectTrigger = ({
   placeholder = 'Select an option',
 }: SelectTriggerProps) => {
@@ -40,7 +55,6 @@ export const SelectTrigger = ({
         <IconButton
           tabIndex={-1}
           icon={ChevronDown}
-          variant="icon"
           size="sm"
           className={cn('transition-transform', open && 'rotate-180')}
           onClick={updateOpenState}

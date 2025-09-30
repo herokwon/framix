@@ -1,6 +1,7 @@
 import type {
   ElementColor,
   HeadingHtmlTag,
+  HorizontalAlignment,
   PolymorphicPropsWithoutRef,
 } from '@types';
 
@@ -8,18 +9,26 @@ import { cn } from '@utils';
 
 import { Box } from '@layouts/Box';
 
-import type { Text } from '../Text';
-
-type TextAlign = NonNullable<Parameters<typeof Text>[0]['align']>;
 export type HeadingProps<T extends HeadingHtmlTag> = PolymorphicPropsWithoutRef<
   T,
   true,
   {
+    /** The color of the heading. */
     color?: ElementColor;
-    align?: TextAlign;
+    /** The text alignment of the heading. */
+    align?: HorizontalAlignment;
   }
 >;
 
+/**
+ * A component for rendering semantic heading elements.
+ *
+ * @example
+ * ```tsx
+ * <Heading as="h1">This is a main heading</Heading>
+ * <Heading as="h2" color="primary">This is a subheading</Heading>
+ * ```
+ */
 export const Heading = <T extends HeadingHtmlTag = 'h1'>({
   as,
   children,
@@ -55,7 +64,7 @@ export const Heading = <T extends HeadingHtmlTag = 'h1'>({
             left: '',
             center: 'text-center',
             right: 'text-right',
-          } satisfies Record<TextAlign, string>
+          } satisfies Record<HorizontalAlignment, string>
         )[align],
 
         // font style

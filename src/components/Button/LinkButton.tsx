@@ -1,8 +1,4 @@
-import type {
-  ComponentPropsWithRef,
-  ElementStatusProps,
-  StrictOmit,
-} from '@types';
+import type { ElementStatusProps, StrictOmit } from '@types';
 
 import { isLocalURL } from '@utils';
 
@@ -14,17 +10,23 @@ type UrlObject = {
 };
 
 export type LinkButtonProps = StrictOmit<
-  ComponentPropsWithRef<'a'>,
-  'children' | 'href'
+  React.ComponentProps<typeof Button<'a'>>,
+  'href'
 > &
-  Pick<
-    Parameters<typeof Button>[0],
-    'children' | 'variant' | 'size' | 'shape' | 'leftIcon' | 'rightIcon'
-  > &
   ElementStatusProps & {
+    /** The URL to link to. Can be a string or a URL object. */
     href?: string | UrlObject;
   };
 
+/**
+ * A button that functions as a link.
+ *
+ * @example
+ * ```tsx
+ * <LinkButton href="/about">About Us</LinkButton>
+ * <LinkButton href="https://example.com" target="_blank">External Link</LinkButton>
+ * ```
+ */
 export const LinkButton = ({
   children,
   href = '',

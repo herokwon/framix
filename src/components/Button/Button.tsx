@@ -29,20 +29,36 @@ export type ButtonProps<T extends ButtonHtmlTag> = PolymorphicPropsWithRef<
     StrictOmit<ComponentPropsWithRef<'a'>, 'children'>,
     StrictOmit<ComponentPropsWithRef<'button'>, 'children' | 'disabled'>
   > &
-    ElementStatusProps &
-    NonNullable<
-      React.PropsWithChildren<{
-        isFullWidth?: boolean;
-        variant?: ElementVariant;
-        color?: ElementColor;
-        size?: ElementSize;
-        shape?: 'circle' | 'square';
-        leftIcon?: LucideIcon;
-        rightIcon?: LucideIcon;
-      }>
-    >
+    ElementStatusProps & {
+      /** The content of the button. */
+      children: NonNullable<React.ReactNode>;
+      /** If true, the button will take up the full width of its container. */
+      isFullWidth?: boolean;
+      /** The visual style of the button. */
+      variant?: ElementVariant;
+      /** The color of the button. */
+      color?: ElementColor;
+      /** The size of the button. */
+      size?: ElementSize;
+      /** The shape of the button. */
+      shape?: 'circle' | 'square';
+      /** Icon to display on the left side of the button. */
+      leftIcon?: LucideIcon;
+      /** Icon to display on the right side of the button. */
+      rightIcon?: LucideIcon;
+    }
 >;
 
+/**
+ * A clickable element used to trigger an action.
+ *
+ * @example
+ * ```tsx
+ * <Button>Click me</Button>
+ * <Button color="primary" variant="outlined">Primary Button</Button>
+ * <Button size="lg" leftIcon={Plus}>Add Item</Button>
+ * ```
+ */
 export const Button = <T extends ButtonHtmlTag = 'button'>({
   children,
   as,
@@ -130,7 +146,7 @@ export const Button = <T extends ButtonHtmlTag = 'button'>({
                 'border-warning-light/38 hover:not-disabled:border-warning-light active:not-disabled:border-warning-light active:not-disabled:bg-warning-background-light dark:border-warning-dark/38 dark:hover:not-disabled:border-warning-dark dark:active:not-disabled:border-warning-dark dark:active:not-disabled:bg-warning-background-dark',
               info: 'border-info-light/38 hover:not-disabled:border-info-light active:not-disabled:border-info-light active:not-disabled:bg-info-background-light dark:border-info-dark/38 dark:hover:not-disabled:border-info-dark dark:active:not-disabled:border-info-dark dark:active:not-disabled:bg-info-background-dark',
             },
-            text: {
+            standard: {
               default:
                 'hover:not-disabled:bg-secondary-light active:not-disabled:bg-secondary-light-hover dark:hover:not-disabled:bg-secondary-dark dark:active:not-disabled:bg-secondary-dark-hover',
               primary:

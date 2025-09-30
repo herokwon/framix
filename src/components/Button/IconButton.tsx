@@ -1,13 +1,6 @@
 import type { LucideIcon } from 'lucide-react';
 
-import type {
-  ComponentPropsWithRef,
-  ElementSize,
-  ElementStatusProps,
-  ElementVariant,
-  StrictExclude,
-  StrictOmit,
-} from '@types';
+import type { ElementSize, StrictOmit } from '@types';
 
 import { cn } from '@utils';
 
@@ -16,32 +9,33 @@ import { ICON_SIZES } from '@data';
 import { Button } from './Button';
 
 export type IconButtonProps = StrictOmit<
-  ComponentPropsWithRef<'button'>,
-  'children' | 'disabled'
-> &
-  Pick<Parameters<typeof Button>[0], 'color' | 'size' | 'shape'> &
-  ElementStatusProps & {
-    icon: LucideIcon;
-    variant?: StrictExclude<ElementVariant, 'text'> | 'icon';
-  };
+  React.ComponentProps<typeof Button<'button'>>,
+  'as' | 'children'
+> & {
+  /** The icon to be displayed in the button. */
+  icon: LucideIcon;
+};
 
+/**
+ * A button that contains only an icon.
+ *
+ * @example
+ * ```tsx
+ * <IconButton icon={Search} />
+ * <IconButton icon={X} size="sm" />
+ * ```
+ */
 export const IconButton = ({
-  icon,
-  variant = 'filled',
-  color = 'default',
+  icon: Icon,
   size = 'md',
   shape = 'circle',
   testId = 'icon-button',
   label = 'Icon Button',
   ...props
 }: IconButtonProps) => {
-  const Icon = icon;
-
   return (
     <Button
       {...props}
-      variant={variant === 'icon' ? 'text' : variant}
-      color={color}
       size={size}
       shape={shape}
       testId={testId}

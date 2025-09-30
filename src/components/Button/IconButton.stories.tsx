@@ -10,10 +10,6 @@ import { Grid } from '@layouts/Grid';
 
 import { IconButton } from './IconButton';
 
-const ICON_BUTTON_VARIANTS = ELEMENT_VARIANTS.map(variant =>
-  variant === 'text' ? 'icon' : variant,
-);
-
 const meta = {
   title: 'Components/IconButton',
   component: IconButton,
@@ -29,10 +25,6 @@ const meta = {
     onClick: fn(),
   },
   argTypes: {
-    variant: {
-      control: 'radio',
-      options: ICON_BUTTON_VARIANTS,
-    },
     shape: {
       control: 'radio',
       options: ['circle', 'square'],
@@ -49,7 +41,7 @@ export const Variant: Story = {
   render: args => {
     return (
       <Grid gap={4}>
-        {ICON_BUTTON_VARIANTS.map(variant => (
+        {ELEMENT_VARIANTS.map(variant => (
           <IconButton {...args} key={variant} variant={variant} />
         ))}
       </Grid>

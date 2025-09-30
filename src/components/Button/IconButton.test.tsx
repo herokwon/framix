@@ -42,7 +42,7 @@ describe('[Components] IconButton', () => {
 
   describe('variant & color', () => {
     it('maps variant="icon" to text styles', () => {
-      render(<IconButton icon={Circle} variant="icon" />);
+      render(<IconButton icon={Circle} variant="standard" />);
       const button = screen.getByRole('button');
 
       expect(button).toHaveClass('hover:not-disabled:bg-secondary-light');

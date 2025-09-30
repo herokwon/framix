@@ -19,9 +19,20 @@ export type CheckboxProps = StrictOmit<
   'children' | 'type' | 'size' | 'checked'
 > &
   StrictOmit<CheckableStatusProps, 'isLoading'> & {
+    /** If true, the checkbox will be in an indeterminate state. */
     isIndeterminate?: boolean;
   };
 
+/**
+ * A control that allows the user to select one or more options.
+ *
+ * @example
+ * ```tsx
+ * <Checkbox label="Accept terms" />
+ * <Checkbox isIndeterminate />
+ * <Checkbox isDisabled defaultChecked />
+ * ```
+ */
 export const Checkbox = ({
   testId = 'checkbox',
   label = '',

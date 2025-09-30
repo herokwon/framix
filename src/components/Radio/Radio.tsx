@@ -22,9 +22,21 @@ export type RadioProps = StrictOmit<
   | 'onChange'
 > &
   Pick<CheckableStatusProps, 'isDisabled'> & {
+    /** The value of the radio button. */
     value?: string;
   };
 
+/**
+ * A component that allows a user to select a single option from a set.
+ *
+ * @example
+ * ```tsx
+ * <RadioGroup defaultValue="1">
+ *   <Radio value="1" label="Option 1" />
+ *   <Radio value="2" label="Option 2" />
+ * </RadioGroup>
+ * ```
+ */
 export const Radio = ({
   testId = 'radio',
   value = '',
