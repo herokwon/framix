@@ -16,15 +16,13 @@ export type IconButtonProps = StrictOmit<
 };
 
 export const IconButton = ({
-  icon,
+  icon: Icon,
   size = 'md',
   shape = 'circle',
   testId = 'icon-button',
   label = 'Icon Button',
   ...props
 }: IconButtonProps) => {
-  const Icon = icon;
-
   return (
     <Button
       {...props}
