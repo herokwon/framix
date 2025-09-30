@@ -1,8 +1,8 @@
 import type {
   ElementColor,
   ElementSize,
+  HorizontalAlignment,
   PolymorphicPropsWithoutRef,
-  StrictExtract,
   TextHtmlTag,
 } from '@types';
 
@@ -10,10 +10,6 @@ import { cn } from '@utils';
 
 import { Box } from '@layouts/Box';
 
-type TextAlign = StrictExtract<
-  React.CSSProperties['textAlign'],
-  'left' | 'center' | 'right'
->;
 type FontWeight = 'normal' | 'medium' | 'semibold' | 'bold';
 export type TextProps<T extends TextHtmlTag> = PolymorphicPropsWithoutRef<
   T,
@@ -22,7 +18,7 @@ export type TextProps<T extends TextHtmlTag> = PolymorphicPropsWithoutRef<
     color?: ElementColor;
     isColorInverted?: boolean;
     size?: ElementSize;
-    align?: TextAlign;
+    align?: HorizontalAlignment;
     weight?: FontWeight;
   }
 >;
@@ -82,7 +78,7 @@ export const Text = <T extends TextHtmlTag = 'span'>({
             left: '',
             center: 'text-center',
             right: 'text-right',
-          } satisfies Record<TextAlign, string>
+          } satisfies Record<HorizontalAlignment, string>
         )[align],
 
         // font weight
