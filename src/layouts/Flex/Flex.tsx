@@ -26,6 +26,7 @@ export type FlexProps<T extends React.ElementType> = PolymorphicPropsWithRef<
       | 'space-around'
       | 'space-between'
       | 'space-evenly'
+      | 'stretch'
     >;
     alignItems?: StrictExtract<
       React.CSSProperties['alignItems'],
@@ -117,6 +118,7 @@ export const Flex = <T extends React.ElementType = 'div'>(
             spaceAround: 'justify-around',
             spaceBetween: 'justify-between',
             spaceEvenly: 'justify-evenly',
+            stretch: 'justify-stretch',
           } satisfies CSSValueToClassMap<typeof justifyContent>
         )[camelCase(justifyContent)],
         (
