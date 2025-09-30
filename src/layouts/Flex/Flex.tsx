@@ -21,16 +21,22 @@ export type FlexProps<T extends React.ElementType> = PolymorphicPropsWithRef<
   T,
   false,
   {
+    /** The direction of the flex items */
     direction?: FlexDirection;
+    /** Aligns flex items along the main axis */
     justifyContent?: ContentAlignment;
+    /** Aligns flex items along the cross axis */
     alignItems?: ItemsAlignment;
+    /** Whether flex items should wrap */
     wrap?: FlexWrap;
+    /** The gap between flex items */
     gap?:
       | number
       | {
           row?: number;
           column?: number;
         };
+    /** If true, the component will be an inline-flex container */
     inline?: boolean;
   }
 >;

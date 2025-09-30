@@ -25,15 +25,32 @@ export type TextFieldProps = StrictOmit<
   | 'checked'
 > &
   Pick<ElementStatusProps, 'isDisabled'> & {
+    /** The visual style of the text field. */
     variant?: ElementVariant;
+    /** The type of the input element. */
     type?: TextFieldType;
+    /** If true, the field will be required. */
     isRequired?: boolean;
+    /** If true, the field will be in an error state. */
     hasError?: boolean;
+    /** A description or helper text for the field. */
     description?: string;
+    /** An element to display on the left side of the input. */
     leftInput?: NonNullable<React.ReactNode>;
+    /** An element to display on the right side of the input. */
     rightInput?: NonNullable<React.ReactNode>;
   };
 
+/**
+ * A component for user text input.
+ *
+ * @example
+ * ```tsx
+ * <TextField label="Name" />
+ * <TextField type="password" label="Password" />
+ * <TextField variant="filled" label="Email" description="We'll never share your email." />
+ * ```
+ */
 export const TextField = ({
   variant = 'outlined',
   type = 'text',

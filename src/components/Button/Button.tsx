@@ -30,17 +30,35 @@ export type ButtonProps<T extends ButtonHtmlTag> = PolymorphicPropsWithRef<
     StrictOmit<ComponentPropsWithRef<'button'>, 'children' | 'disabled'>
   > &
     ElementStatusProps & {
+      /** The content of the button. */
       children: NonNullable<React.ReactNode>;
+      /** If true, the button will take up the full width of its container. */
       isFullWidth?: boolean;
+      /** The visual style of the button. */
       variant?: ElementVariant;
+      /** The color of the button. */
       color?: ElementColor;
+      /** The size of the button. */
       size?: ElementSize;
+      /** The shape of the button. */
       shape?: 'circle' | 'square';
+      /** Icon to display on the left side of the button. */
       leftIcon?: LucideIcon;
+      /** Icon to display on the right side of the button. */
       rightIcon?: LucideIcon;
     }
 >;
 
+/**
+ * A clickable element used to trigger an action.
+ *
+ * @example
+ * ```tsx
+ * <Button>Click me</Button>
+ * <Button color="primary" variant="outlined">Primary Button</Button>
+ * <Button size="lg" leftIcon={Plus}>Add Item</Button>
+ * ```
+ */
 export const Button = <T extends ButtonHtmlTag = 'button'>({
   children,
   as,

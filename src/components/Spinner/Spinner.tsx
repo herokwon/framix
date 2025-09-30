@@ -5,10 +5,22 @@ import { cn } from '@utils';
 import { ICON_SIZES } from '@data';
 
 export type SpinnerProps = ComponentPropsWithoutRef<'span'> & {
+  /** The positioning of the spinner. */
   position?: 'global' | 'local' | 'inline';
+  /** The size of the spinner. */
   size?: ElementSize;
 };
 
+/**
+ * A component to indicate a loading state.
+ *
+ * @example
+ * ```tsx
+ * <Spinner />
+ * <Spinner position="global" />
+ * <Spinner size="lg" />
+ * ```
+ */
 export const Spinner = ({
   position = 'local',
   size = 'md',

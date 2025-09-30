@@ -6,9 +6,24 @@ import { useSelect } from './Select.context';
 import type { SelectItem } from './SelectItem';
 
 export type SelectContentProps = {
+  /** The items to be displayed in the select content. */
   children: React.ReactElement<React.ComponentProps<typeof SelectItem>>[];
 };
 
+/**
+ * The container for the options of a Select component.
+ *
+ * @example
+ * ```tsx
+ * <Select defaultValue="1">
+ *   <SelectTrigger placeholder="Select a number" />
+ *   <SelectContent>
+ *     <SelectItem value="1">One</SelectItem>
+ *     <SelectItem value="2">Two</SelectItem>
+ *   </SelectContent>
+ * </Select>
+ * ```
+ */
 export const SelectContent = ({ children }: SelectContentProps) => {
   const { ids, open } = useSelect('SelectContent');
 

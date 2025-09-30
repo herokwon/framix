@@ -14,9 +14,19 @@ export type LinkButtonProps = StrictOmit<
   'href'
 > &
   ElementStatusProps & {
+    /** The URL to link to. Can be a string or a URL object. */
     href?: string | UrlObject;
   };
 
+/**
+ * A button that functions as a link.
+ *
+ * @example
+ * ```tsx
+ * <LinkButton href="/about">About Us</LinkButton>
+ * <LinkButton href="https://example.com" target="_blank">External Link</LinkButton>
+ * ```
+ */
 export const LinkButton = ({
   children,
   href = '',

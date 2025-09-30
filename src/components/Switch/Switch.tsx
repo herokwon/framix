@@ -15,11 +15,24 @@ export type SwitchProps = StrictOmit<
   'children' | 'onChange'
 > &
   StrictOmit<CheckableStatusProps, 'isLoading'> & {
+    /** The default checked state of the switch. */
     defaultChecked?: boolean;
+    /** If true, the switch will have an inner shadow. */
     hasShadow?: boolean;
+    /** Callback function when the state changes. */
     onChange?: (checked: boolean) => void;
   };
 
+/**
+ * A control that allows the user to toggle between two states.
+ *
+ * @example
+ * ```tsx
+ * <Switch />
+ * <Switch defaultChecked />
+ * <Switch isDisabled />
+ * ```
+ */
 export const Switch = ({
   testId = 'switch',
   label = 'Switch',

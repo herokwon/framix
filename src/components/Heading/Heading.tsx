@@ -13,11 +13,22 @@ export type HeadingProps<T extends HeadingHtmlTag> = PolymorphicPropsWithoutRef<
   T,
   true,
   {
+    /** The color of the heading. */
     color?: ElementColor;
+    /** The text alignment of the heading. */
     align?: HorizontalAlignment;
   }
 >;
 
+/**
+ * A component for rendering semantic heading elements.
+ *
+ * @example
+ * ```tsx
+ * <Heading as="h1">This is a main heading</Heading>
+ * <Heading as="h2" color="primary">This is a subheading</Heading>
+ * ```
+ */
 export const Heading = <T extends HeadingHtmlTag = 'h1'>({
   as,
   children,

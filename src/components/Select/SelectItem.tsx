@@ -6,10 +6,26 @@ import { Text } from '../Text';
 import { useSelect } from './Select.context';
 
 export type SelectItemProps = Pick<ElementStatusProps, 'isDisabled'> & {
+  /** The content to be displayed in the item. */
   children: NonNullable<React.ReactNode>;
+  /** The unique value of the item. */
   value: string;
 };
 
+/**
+ * An item within a Select component.
+ *
+ * @example
+ * ```tsx
+ * <Select defaultValue="1">
+ *   <SelectTrigger placeholder="Select a number" />
+ *   <SelectContent>
+ *     <SelectItem value="1">One</SelectItem>
+ *     <SelectItem value="2">Two</SelectItem>
+ *   </SelectContent>
+ * </Select>
+ * ```
+ */
 export const SelectItem = ({
   children,
   value,

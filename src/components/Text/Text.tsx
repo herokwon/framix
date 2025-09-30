@@ -15,14 +15,28 @@ export type TextProps<T extends TextHtmlTag> = PolymorphicPropsWithoutRef<
   T,
   true,
   {
+    /** The color of the text. */
     color?: ElementColor;
+    /** If true, the color will be inverted (light/dark). */
     isColorInverted?: boolean;
+    /** The size of the text. */
     size?: ElementSize;
+    /** The horizontal alignment of the text. */
     align?: HorizontalAlignment;
+    /** The font weight of the text. */
     weight?: FontWeight;
   }
 >;
 
+/**
+ * A component for rendering text with various styles.
+ *
+ * @example
+ * ```tsx
+ * <Text>This is a standard text.</Text>
+ * <Text color="primary" size="lg" weight="bold">This is a large, bold, primary text.</Text>
+ * ```
+ */
 export const Text = <T extends TextHtmlTag = 'span'>({
   as,
   children,

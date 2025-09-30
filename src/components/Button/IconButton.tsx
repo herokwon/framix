@@ -12,9 +12,19 @@ export type IconButtonProps = StrictOmit<
   React.ComponentProps<typeof Button<'button'>>,
   'as' | 'children'
 > & {
+  /** The icon to be displayed in the button. */
   icon: LucideIcon;
 };
 
+/**
+ * A button that contains only an icon.
+ *
+ * @example
+ * ```tsx
+ * <IconButton icon={Search} />
+ * <IconButton icon={X} size="sm" />
+ * ```
+ */
 export const IconButton = ({
   icon: Icon,
   size = 'md',

@@ -27,13 +27,23 @@ export type AlertProps = StrictOmit<
   ComponentPropsWithoutRef<'div'>,
   'children'
 > & {
+  /** The content of the alert. */
   children: NonNullable<React.ReactNode>;
-
+  /** The variant of the alert. */
   variant?: ElementVariant;
-
+  /** The color of the alert. */
   color?: AlertColor;
 };
 
+/**
+ * A component to display important messages to the user.
+ *
+ * @example
+ * ```tsx
+ * <Alert color="success">This is a success message.</Alert>
+ * <Alert color="danger" variant="outlined">This is a danger message.</Alert>
+ * ```
+ */
 export const Alert = ({
   children,
   variant = 'standard',
