@@ -39,9 +39,9 @@ import type { HORIZONTAL_ALIGNMENTS, VERTICAL_ALIGNMENTS } from '@data';
 import type { StrictExclude } from './common';
 
 /** All allowed horizontal alignment tokens derived from data constants. */
-type HorizontalAlignment = (typeof HORIZONTAL_ALIGNMENTS)[number];
+export type HorizontalAlignment = (typeof HORIZONTAL_ALIGNMENTS)[number];
 /** All allowed vertical alignment tokens derived from data constants. */
-type VerticalAlignment = (typeof VERTICAL_ALIGNMENTS)[number];
+export type VerticalAlignment = (typeof VERTICAL_ALIGNMENTS)[number];
 
 /**
  * A string literal describing an overlay placement.
