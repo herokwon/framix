@@ -29,18 +29,16 @@ export type ButtonProps<T extends ButtonHtmlTag> = PolymorphicPropsWithRef<
     StrictOmit<ComponentPropsWithRef<'a'>, 'children'>,
     StrictOmit<ComponentPropsWithRef<'button'>, 'children' | 'disabled'>
   > &
-    ElementStatusProps &
-    NonNullable<
-      React.PropsWithChildren<{
-        isFullWidth?: boolean;
-        variant?: ElementVariant;
-        color?: ElementColor;
-        size?: ElementSize;
-        shape?: 'circle' | 'square';
-        leftIcon?: LucideIcon;
-        rightIcon?: LucideIcon;
-      }>
-    >
+    ElementStatusProps & {
+      children: NonNullable<React.ReactNode>;
+      isFullWidth?: boolean;
+      variant?: ElementVariant;
+      color?: ElementColor;
+      size?: ElementSize;
+      shape?: 'circle' | 'square';
+      leftIcon?: LucideIcon;
+      rightIcon?: LucideIcon;
+    }
 >;
 
 export const Button = <T extends ButtonHtmlTag = 'button'>({
