@@ -30,7 +30,9 @@ export const RadioGroup = ({
   const currentValue: string = isControlled ? value : selectedValue;
 
   const handleChange = (value: string) => {
-    if (!isControlled) setSelectedValue(value);
+    if (!isControlled) {
+      setSelectedValue(value);
+    }
     onChange?.(value);
   };
 
