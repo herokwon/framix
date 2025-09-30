@@ -20,7 +20,7 @@
     "paths": {
       "@components/*": ["components/*"],
       "@data": ["data"],
-      "@layouts": ["layouts"],
+      "@layouts/*": ["layouts/*"],
       "@styles/*": ["styles/*"],
       "@types": ["types"],
       "@utils": ["utils"]

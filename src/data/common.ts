@@ -13,7 +13,7 @@ export const ELEMENT_STATUS = [
   'isSelected',
   'isLoading',
 ] as const;
-export const ELEMENT_VARIANTS = ['filled', 'outlined', 'text'] as const;
+export const ELEMENT_VARIANTS = ['filled', 'outlined', 'standard'] as const;
 
 export const ICON_SIZES = {
   sm: 20,
