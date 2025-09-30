@@ -34,9 +34,17 @@
 //   const OVERLAY_REGEX = /^(?:((top|bottom)-(left|center|right))|((left|right)-(top|middle|bottom)))$/;
 //   export const isOverlayPosition = (v: string): v is OverlayPosition => OVERLAY_REGEX.test(v);
 // =============================================================================
-import type { HORIZONTAL_ALIGNMENTS, VERTICAL_ALIGNMENTS } from '@data';
+import type {
+  CONTENT_ALIGNMENTS,
+  HORIZONTAL_ALIGNMENTS,
+  ITEMS_ALIGNMENTS,
+  VERTICAL_ALIGNMENTS,
+} from '@data';
 
 import type { StrictExclude } from './common';
+
+export type ContentAlignment = (typeof CONTENT_ALIGNMENTS)[number];
+export type ItemsAlignment = (typeof ITEMS_ALIGNMENTS)[number];
 
 /** All allowed horizontal alignment tokens derived from data constants. */
 export type HorizontalAlignment = (typeof HORIZONTAL_ALIGNMENTS)[number];
