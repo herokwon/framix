@@ -19,7 +19,7 @@ export type SelectProps = StrictOmit<
   'defaultValue' | 'onChange'
 > &
   Pick<ElementStatusProps, 'isDisabled'> & {
-    children?: [
+    children: [
       React.ReactElement<React.ComponentProps<typeof SelectTrigger>>,
       React.ReactElement<React.ComponentProps<typeof SelectContent>>,
     ];
