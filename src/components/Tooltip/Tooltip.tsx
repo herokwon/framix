@@ -63,6 +63,7 @@ export const Tooltip = ({
         role="tooltip"
         testId={testId}
         label={label}
+        id={id}
         className={cn(
           'pointer-events-none absolute z-10 grid w-max place-content-stretch opacity-0 transition-all',
 
@@ -95,9 +96,7 @@ export const Tooltip = ({
       >
         <Text
           isColorInverted
-          id={id}
           size="sm"
-          role="tooltip"
           className={cn(
             'bg-secondary-dark dark:bg-secondary-light w-max rounded px-2 py-1',
           )}
