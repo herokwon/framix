@@ -5,12 +5,10 @@ import { cn } from '@utils';
 import { Text } from '../Text';
 import { useSelect } from './Select.context';
 
-export type SelectItemProps = Pick<ElementStatusProps, 'isDisabled'> &
-  Required<
-    React.PropsWithChildren<{
-      value: string;
-    }>
-  >;
+export type SelectItemProps = Pick<ElementStatusProps, 'isDisabled'> & {
+  children: NonNullable<React.ReactNode>;
+  value: string;
+};
 
 export const SelectItem = ({
   children,
