@@ -1,4 +1,4 @@
-import { useEffect, useState } from 'react';
+import { useState } from 'react';
 
 import { SquareCheck } from 'lucide-react';
 
@@ -45,13 +45,10 @@ export const Checkbox = ({
 }: CheckboxProps) => {
   const isControlled = typeof checked === 'boolean';
 
-  const [isChecked, setIsChecked] = useState<boolean>(
-    isControlled ? checked : defaultChecked,
-  );
+  const [internalChecked, setInternalChecked] =
+    useState<boolean>(defaultChecked);
 
-  useEffect(() => {
-    if (isControlled) setIsChecked(checked);
-  }, [isControlled, checked]);
+  const isChecked = isControlled ? !!checked : internalChecked;
 
   return (
     <Grid
@@ -75,7 +72,7 @@ export const Checkbox = ({
         checked={isChecked}
         disabled={isDisabled}
         onChange={e => {
-          if (!isControlled) setIsChecked(e.target.checked);
+          if (!isControlled) setInternalChecked(e.target.checked);
           onChange?.(e);
         }}
         className={cn(
