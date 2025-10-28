@@ -1,4 +1,6 @@
 /// <reference types="vitest/config" />
+import { playwright } from '@vitest/browser-playwright';
+
 import { defineConfig } from 'vite';
 import dts from 'vite-plugin-dts';
 import tsconfigPaths from 'vite-tsconfig-paths';
@@ -88,6 +90,7 @@ export default defineConfig({
         'coverage/**',
         '.storybook/**',
         'src/types/**',
+        'src/**/index.ts',
         'src/**/*.stories.{ts,tsx}',
         'src/**/*.test.{ts,tsx}',
         '*.config.{js,ts}',
@@ -119,7 +122,7 @@ export default defineConfig({
           browser: {
             enabled: true,
             headless: true,
-            provider: 'playwright',
+            provider: playwright(),
             instances: [{ browser: 'chromium' }],
           },
           exclude: ['src/**/*.{test,spec}.{ts,tsx}'],

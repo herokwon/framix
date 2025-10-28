@@ -68,7 +68,7 @@ export const Container = <T extends ContainerTags = 'section'>(
             ? 'w-full'
             : (
                 {
-                  sm: 'sm:max-w-[40rem]',
+                  sm: 'sm:max-w-160',
                   md: 'md:max-w-3xl',
                   lg: 'lg:max-w-5xl',
                   xl: 'xl:max-w-7xl',
