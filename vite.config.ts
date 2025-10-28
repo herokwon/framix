@@ -90,6 +90,7 @@ export default defineConfig({
         'coverage/**',
         '.storybook/**',
         'src/types/**',
+        'src/**/index.ts',
         'src/**/*.stories.{ts,tsx}',
         'src/**/*.test.{ts,tsx}',
         '*.config.{js,ts}',
