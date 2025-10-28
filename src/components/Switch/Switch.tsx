@@ -71,7 +71,7 @@ export const Switch = ({
       onClick={handleClick}
       className={cn(
         props.className,
-        'relative aspect-[3/1] w-9 rounded-full p-0.5 transition-colors not-disabled:cursor-pointer',
+        'relative aspect-3/1 w-9 rounded-full p-0.5 transition-colors not-disabled:cursor-pointer',
 
         // status
         isDisabled && 'disabled',

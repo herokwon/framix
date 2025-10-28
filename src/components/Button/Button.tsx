@@ -180,7 +180,7 @@ export const Button = <T extends ButtonHtmlTag = 'button'>({
           variant === 'outlined' &&
             'border-foreground-light/38 dark:border-foreground-dark/38',
           !hasOnlyOneIcon &&
-            'relative *:not-[[data-testid="spinner-wrapper"]]:opacity-0',
+            'relative *:not-data-[testid="spinner-wrapper"]:opacity-0',
         ],
       )}
     >
