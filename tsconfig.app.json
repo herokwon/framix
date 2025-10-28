@@ -16,14 +16,13 @@
     "jsx": "react-jsx",
 
     /* Path aliases */
-    "baseUrl": "./src",
     "paths": {
-      "@components/*": ["components/*"],
-      "@data": ["data"],
-      "@layouts/*": ["layouts/*"],
-      "@styles/*": ["styles/*"],
-      "@types": ["types"],
-      "@utils": ["utils"]
+      "@components/*": ["./src/components/*"],
+      "@data": ["./src/data"],
+      "@layouts/*": ["./src/layouts/*"],
+      "@styles/*": ["./src/styles/*"],
+      "@types": ["./src/types"],
+      "@utils": ["./src/utils"]
     },
 
     /* Linting */
