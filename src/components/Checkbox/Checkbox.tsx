@@ -45,7 +45,7 @@ export const Checkbox = ({
 }: CheckboxProps) => {
   const isControlled = typeof checked === 'boolean';
 
-  const [internalChecked, setInternalChecked] = 
+  const [internalChecked, setInternalChecked] =
     useState<boolean>(defaultChecked);
 
   const isChecked = isControlled ? !!checked : internalChecked;
