@@ -209,7 +209,7 @@ describe('[Components] Button', () => {
       const progress = screen.getByRole('progressbar', { name: 'Loading' });
 
       expect(button).toHaveClass(
-        'pointer-events-none opacity-text-disabled *:not-[[data-testid="spinner-wrapper"]]:opacity-0',
+        'pointer-events-none opacity-text-disabled *:not-data-[testid="spinner-wrapper"]:opacity-0',
       );
 
       expect(spinnerWrapper).toBeInTheDocument();
@@ -227,7 +227,7 @@ describe('[Components] Button', () => {
       const spinnerWrapper = screen.getByTestId('spinner-wrapper');
 
       expect(button).not.toHaveClass(
-        '*:not-[[data-testid="spinner-wrapper"]]:opacity-0',
+        '*:not-data-[testid="spinner-wrapper"]:opacity-0',
       );
 
       expect(svgs.length).toBe(1);
@@ -247,7 +247,7 @@ describe('[Components] Button', () => {
       const spinnerWrapper = screen.getByTestId('spinner-wrapper');
 
       expect(button).not.toHaveClass(
-        '*:not-[[data-testid="spinner-wrapper"]]:opacity-0',
+        '*:not-data-[testid="spinner-wrapper"]:opacity-0',
       );
 
       expect(svgs.length).toBe(1);
@@ -267,7 +267,7 @@ describe('[Components] Button', () => {
       const progress = screen.getByRole('progressbar', { name: 'Loading' });
 
       expect(button).toHaveClass(
-        '*:not-[[data-testid="spinner-wrapper"]]:opacity-0',
+        '*:not-data-[testid="spinner-wrapper"]:opacity-0',
       );
 
       expect(svgs.length).toBe(3);

@@ -117,7 +117,7 @@ describe('[Components] IconButton', () => {
       const svgs = button.querySelectorAll('svg');
 
       expect(button).toHaveClass(
-        '*:not-[[data-testid="spinner-wrapper"]]:opacity-0',
+        '*:not-data-[testid="spinner-wrapper"]:opacity-0',
       );
 
       expect(spinnerWrapper).toBeInTheDocument();
