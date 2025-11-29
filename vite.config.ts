@@ -93,6 +93,7 @@ export default defineConfig({
         'src/**/index.ts',
         'src/**/*.stories.{ts,tsx}',
         'src/**/*.test.{ts,tsx}',
+        'src/main.tsx',
         '*.config.{js,ts}',
         '**/*.d.ts',
         'vitest.setup.ts',
