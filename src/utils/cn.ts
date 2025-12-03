@@ -44,6 +44,6 @@ const twMergeCustom = extendTailwindMerge({
  * cn('text-red-500', 'text-blue-500') // Returns 'text-blue-500'
  * cn('px-4', { 'py-2': true, 'hidden': false }) // Returns 'px-4 py-2'
  */
-export default function cn(...inputs: ClassValue[]) {
+export default function cn(...inputs: ClassValue[]): string {
   return twMergeCustom(clsx(...inputs));
 }

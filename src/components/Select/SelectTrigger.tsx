@@ -6,10 +6,10 @@ import { IconButton } from '../Button';
 import { TextField } from '../TextField';
 import { useSelect } from './Select.context';
 
-export type SelectTriggerProps = {
+export interface SelectTriggerProps {
   /** The placeholder text to display when no value is selected. */
   placeholder?: string;
-};
+}
 
 /**
  * The trigger that opens the select menu.
@@ -27,7 +27,7 @@ export type SelectTriggerProps = {
  */
 export const SelectTrigger = ({
   placeholder = 'Select an option',
-}: SelectTriggerProps) => {
+}: SelectTriggerProps): React.JSX.Element => {
   const { value, ids, open, setOpen, getContent } = useSelect('SelectTrigger');
 
   const updateOpenState = () => setOpen(prev => !prev);

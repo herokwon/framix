@@ -17,9 +17,9 @@
 const ABSOLUTE_URL_REGEX = /^(\/\/|[a-zA-Z][a-zA-Z\d+\-.]*?:\/\/)/;
 const DANGEROUS_SCHEME_REGEX = /^\s*(javascript:|vbscript:)/i;
 
-export type IsLocalOptions = {
+export interface IsLocalOptions {
   baseOrigin?: string;
-};
+}
 
 export default function isLocalURL({
   url,

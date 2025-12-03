@@ -1,8 +1,8 @@
-import type { MaxWidth, PolymorphicPropsWithRef, StrictExtract } from '@types';
+import type { MaxWidth, StrictExtract } from '@types';
 
 import { cn } from '@utils';
 
-import { Box } from '../Box';
+import { Box, type BoxProps } from '../Box';
 
 type ContainerTags = StrictExtract<
   React.ElementType,
@@ -15,20 +15,19 @@ type ContainerTags = StrictExtract<
   | 'footer'
   | 'dialog'
 >;
-export type ContainerProps<T extends ContainerTags> = PolymorphicPropsWithRef<
-  T,
-  false,
-  | {
-      /** If true, the container will have a fixed width based on Tailwind's container class. */
-      fixed: true;
-    }
-  | {
-      /** If false or undefined, the container will be responsive. */
-      fixed?: false;
-      /** Sets the maximum width of the container. This is only applied when `fixed` is not true. */
-      maxWidth?: MaxWidth;
-    }
->;
+export type ContainerProps<T extends ContainerTags> = BoxProps<T> &
+  (
+    | {
+        /** If true, the container will have a fixed width based on Tailwind's container class. */
+        fixed: true;
+      }
+    | {
+        /** If false or undefined, the container will be responsive. */
+        fixed?: false;
+        /** Sets the maximum width of the container. This is only applied when `fixed` is not true. */
+        maxWidth?: MaxWidth;
+      }
+  );
 
 /**
  * A semantic container component with responsive width controls
@@ -50,7 +49,7 @@ export type ContainerProps<T extends ContainerTags> = PolymorphicPropsWithRef<
  */
 export const Container = <T extends ContainerTags = 'section'>(
   props: ContainerProps<T>,
-): React.ReactElement => {
+): React.JSX.Element => {
   const { as: Component = 'section', className, ...rest } = props;
   return (
     <Box
@@ -72,7 +71,7 @@ export const Container = <T extends ContainerTags = 'section'>(
                   md: 'md:max-w-3xl',
                   lg: 'lg:max-w-5xl',
                   xl: 'xl:max-w-7xl',
-                } satisfies { [width in typeof props.maxWidth]: string }
+                } satisfies Record<typeof props.maxWidth, string>
               )[props.maxWidth],
       )}
     />

@@ -138,64 +138,53 @@ export type CheckableStatusProps = Partial<Record<CheckableStatus, boolean>>;
 
 export type MaxWidth = ElementSize | 'xl';
 
-type TestIdProps = {
+export interface TestIdProps {
   testId?: string;
-};
-type LabelProps = {
+}
+export interface LabelProps {
   label?: string;
-};
+}
+
 /**
- * Shared optional prop set applied to all components, branching by the BlockLabel flag.
- *
- * @template BlockLabel - If true, suppresses the label prop and only allows `testId` (useful when enforcing internal-only label generation for semantic/a11y policy).
- * @example
- * type A = EssentialProps<false>; // { testId?: string; label?: string }
- * type B = EssentialProps<true>;  // { testId?: string }
- */
-export type EssentialProps<BlockLabel extends boolean> = BlockLabel extends true
-  ? TestIdProps
-  : TestIdProps & LabelProps;
-/**
- * Merges the base props of HTMLElement or custom component T (with `aria-label` removed)
- * and the library's shared props (EssentialProps).
+ * Base props for an HTMLElement or custom component T,
+ * with the native `aria-label` removed and a Framix-level `testId` added.
  *
  * @template T - React.ElementType (e.g. 'button', 'div', custom component)
- * @template BlockLabel - If true, blocks the label prop (see EssentialProps docs)
- * @remarks `aria-label` is omitted to enforce a unified `label` prop / accessibility pattern.
- * If a component genuinely needs `aria-label`, provide a separate escape hatch type.
- *
- * @see {@link EssentialProps}
+ * @remarks `aria-label` is omitted to avoid clashes with higher-level a11y APIs.
+ * Components should use a consistent label strategy instead of mixing native aria-labels.
  */
-export type ComponentProps<
-  T extends React.ElementType,
-  BlockLabel extends boolean = false,
-> = Omit<React.ComponentProps<T>, 'aria-label'> & EssentialProps<BlockLabel>;
+export type ComponentProps<T extends React.ElementType> = Omit<
+  React.ComponentProps<T>,
+  'aria-label'
+> &
+  TestIdProps;
+
 /**
- * Ref-inclusive version based on React.ComponentPropsWithRef<T>.
+ * Ref-aware variant of ComponentProps based on React.ComponentPropsWithRef<T>.
  *
  * @template T - React.ElementType
- * @template BlockLabel - Whether to block the label prop
- *
- * @see {@link EssentialProps}
+ * @remarks Keeps the original ref signature while removing `aria-label`
+ * and attaching the shared `testId` prop for testing and diagnostics.
  */
-export type ComponentPropsWithRef<
-  T extends React.ElementType,
-  BlockLabel extends boolean = false,
-> = Omit<React.ComponentPropsWithRef<T>, 'aria-label'> &
-  EssentialProps<BlockLabel>;
+export type ComponentPropsWithRef<T extends React.ElementType> = Omit<
+  React.ComponentPropsWithRef<T>,
+  'aria-label'
+> &
+  TestIdProps;
+
 /**
- * Ref-excluding version based on React.ComponentPropsWithoutRef<T>.
+ * Non-ref variant of ComponentProps based on React.ComponentPropsWithoutRef<T>.
  *
  * @template T - React.ElementType
- * @template BlockLabel - Whether to block the label prop
- *
- * @see {@link EssentialProps}
+ * @remarks Intended for components that do not expose a ref.
+ * `aria-label` is stripped to align with the same accessibility contract
+ * as other Framix primitives, and `testId` is added for test targeting.
  */
-export type ComponentPropsWithoutRef<
-  T extends React.ElementType,
-  BlockLabel extends boolean = false,
-> = Omit<React.ComponentPropsWithoutRef<T>, 'aria-label'> &
-  EssentialProps<BlockLabel>;
+export type ComponentPropsWithoutRef<T extends React.ElementType> = Omit<
+  React.ComponentPropsWithoutRef<T>,
+  'aria-label'
+> &
+  TestIdProps;
 
 type CamelCaseRest<S extends string> = S extends `${infer Head}${infer Tail}`
   ? Head extends ' ' | '_' | '-'

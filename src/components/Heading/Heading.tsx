@@ -11,7 +11,6 @@ import { Box } from '@layouts/Box';
 
 export type HeadingProps<T extends HeadingHtmlTag> = PolymorphicPropsWithoutRef<
   T,
-  true,
   {
     /** The color of the heading. */
     color?: ElementColor;
@@ -36,7 +35,7 @@ export const Heading = <T extends HeadingHtmlTag = 'h1'>({
   align = 'left',
   testId = 'heading',
   ...props
-}: HeadingProps<T>) => {
+}: HeadingProps<T>): React.JSX.Element => {
   const headingTag = (as ?? 'h1') satisfies HeadingHtmlTag;
   return (
     <Box

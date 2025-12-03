@@ -30,7 +30,7 @@ export const SelectItem = ({
   children,
   value,
   isDisabled: itemDisabled = false,
-}: SelectItemProps) => {
+}: SelectItemProps): React.JSX.Element => {
   const {
     isDisabled: selectDisabled,
     value: selected,

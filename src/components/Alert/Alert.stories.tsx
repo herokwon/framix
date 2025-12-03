@@ -14,6 +14,7 @@ const meta = {
   args: {
     variant: 'standard',
     color: 'default',
+    children: 'This is an alert message.',
   },
   argTypes: {
     color: {
@@ -26,11 +27,7 @@ export default meta;
 
 type Story = StoryObj<typeof meta>;
 
-export const Default: Story = {
-  args: {
-    children: 'This is an alert message.',
-  },
-};
+export const Default: Story = {};
 
 export const Variant: Story = {
   args: {

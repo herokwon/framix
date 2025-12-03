@@ -2,6 +2,7 @@ import type {
   ComponentPropsWithRef,
   ElementStatusProps,
   ElementVariant,
+  LabelProps,
   StrictExtract,
   StrictOmit,
 } from '@types';
@@ -24,6 +25,7 @@ export type TextFieldProps = StrictOmit<
   | 'defaultChecked'
   | 'checked'
 > &
+  LabelProps &
   Pick<ElementStatusProps, 'isDisabled'> & {
     /** The visual style of the text field. */
     variant?: ElementVariant;
@@ -62,7 +64,7 @@ export const TextField = ({
   description = '',
   rightInput,
   ...props
-}: TextFieldProps) => {
+}: TextFieldProps): React.JSX.Element => {
   return (
     <Flex direction="column" gap={{ row: 1 }} className="has-disabled:disabled">
       <fieldset className="group relative">

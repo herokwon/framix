@@ -13,7 +13,6 @@ import { Box } from '@layouts/Box';
 type FontWeight = 'normal' | 'medium' | 'semibold' | 'bold';
 export type TextProps<T extends TextHtmlTag> = PolymorphicPropsWithoutRef<
   T,
-  true,
   {
     /** The color of the text. */
     color?: ElementColor;
@@ -47,7 +46,7 @@ export const Text = <T extends TextHtmlTag = 'span'>({
   weight = 'normal',
   testId = 'text',
   ...props
-}: TextProps<T>) => {
+}: TextProps<T>): React.JSX.Element => {
   return (
     <Box
       {...props}

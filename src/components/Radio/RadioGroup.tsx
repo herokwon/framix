@@ -1,13 +1,13 @@
 import { useState } from 'react';
 
-import type { ElementStatusProps, EssentialProps } from '@types';
+import type { ElementStatusProps, TestIdProps } from '@types';
 
 import { Box } from '@layouts/Box';
 
-import { Radio } from './Radio';
+import type { Radio } from './Radio';
 import { RadioGroupProvider } from './RadioGroup.context';
 
-export type RadioGroupProps = EssentialProps<true> & {
+export type RadioGroupProps = {
   /** The radio buttons to be rendered in the group. */
   children: React.ReactElement<React.ComponentProps<typeof Radio>>[];
   /** The value of the currently selected radio button. */
@@ -18,7 +18,8 @@ export type RadioGroupProps = EssentialProps<true> & {
   name?: string;
   /** Callback function when the value changes. */
   onChange?: (value: string) => void;
-} & Pick<ElementStatusProps, 'isDisabled'>;
+} & TestIdProps &
+  Pick<ElementStatusProps, 'isDisabled'>;
 
 /**
  * A component that groups multiple Radio components.
@@ -39,7 +40,7 @@ export const RadioGroup = ({
   name = 'radio-group',
   onChange,
   isDisabled = false,
-}: RadioGroupProps) => {
+}: RadioGroupProps): React.JSX.Element => {
   const [selectedValue, setSelectedValue] = useState<string>(defaultValue);
 
   const isControlled = typeof value !== 'undefined';

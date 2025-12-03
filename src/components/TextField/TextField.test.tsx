@@ -107,13 +107,13 @@ describe('[Components] TextField', () => {
   describe('typing interaction', () => {
     it('accepts user input (uncontrolled) and retains value', async () => {
       render(<TextField id="t1" name="t1" label="Type" />);
-      const input = screen.getByRole('textbox') as HTMLInputElement;
+      const input = screen.getByRole('textbox');
 
       await userEvent.type(input, 'hello');
-      expect(input.value).toBe('hello');
+      expect(input).toHaveValue('hello');
     });
 
-    it('respects provided type attribute', async () => {
+    it('respects provided type attribute', () => {
       render(<TextField id="em" name="em" label="Email" type="email" />);
       const input = screen.getByRole('textbox');
 

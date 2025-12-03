@@ -36,9 +36,11 @@ describe('main.tsx', () => {
   });
 
   it('should call createRoot with root element', async () => {
+    const getElementByIdSpy = vi.spyOn(document, 'getElementById');
+
     await import('../main');
 
-    expect(document.getElementById).toHaveBeenCalledWith('root');
+    expect(getElementByIdSpy).toHaveBeenCalledWith('root');
 
     expect(mockCreateRoot).toHaveBeenCalledTimes(1);
     expect(mockCreateRoot).toHaveBeenCalledWith(mockRootElement);

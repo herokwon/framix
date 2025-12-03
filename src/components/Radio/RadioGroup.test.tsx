@@ -32,15 +32,15 @@ describe('[Components] RadioGroup (comprehensive)', () => {
         </RadioGroup>,
       );
       const wrappers = screen.getAllByTestId('radio-wrapper');
-      const inputs = screen.getAllByRole('radio') as HTMLInputElement[];
+      const inputs = screen.getAllByRole('radio');
 
-      expect(inputs[0].checked).toBe(true);
-      expect(inputs[1].checked).toBe(false);
+      expect(inputs[0]).toBeChecked();
+      expect(inputs[1]).not.toBeChecked();
 
       await userEvent.click(wrappers[1]);
 
-      expect(inputs[0].checked).toBe(false);
-      expect(inputs[1].checked).toBe(true);
+      expect(inputs[0]).not.toBeChecked();
+      expect(inputs[1]).toBeChecked();
     });
 
     it('Space selects the focused radio', async () => {
@@ -50,13 +50,13 @@ describe('[Components] RadioGroup (comprehensive)', () => {
           <Radio value="blue" label="Blue" />
         </RadioGroup>,
       );
-      const inputs = screen.getAllByRole('radio') as HTMLInputElement[];
+      const inputs = screen.getAllByRole('radio');
 
       inputs[1].focus();
       await userEvent.keyboard('[Space]');
 
-      expect(inputs[0].checked).toBe(false);
-      expect(inputs[1].checked).toBe(true);
+      expect(inputs[0]).not.toBeChecked();
+      expect(inputs[1]).toBeChecked();
     });
   });
 
@@ -70,16 +70,16 @@ describe('[Components] RadioGroup (comprehensive)', () => {
         </RadioGroup>,
       );
       const wrappers = screen.getAllByTestId('radio-wrapper');
-      const inputs = screen.getAllByRole('radio') as HTMLInputElement[];
+      const inputs = screen.getAllByRole('radio');
 
-      expect(inputs[0].checked).toBe(true);
-      expect(inputs[1].checked).toBe(false);
+      expect(inputs[0]).toBeChecked();
+      expect(inputs[1]).not.toBeChecked();
 
       await userEvent.click(wrappers[1]);
 
       expect(onChange).toHaveBeenCalledWith('blue');
-      expect(inputs[0].checked).toBe(true);
-      expect(inputs[1].checked).toBe(false);
+      expect(inputs[0]).toBeChecked();
+      expect(inputs[1]).not.toBeChecked();
 
       rerender(
         <RadioGroup name="color" value="blue" onChange={onChange}>
@@ -88,8 +88,8 @@ describe('[Components] RadioGroup (comprehensive)', () => {
         </RadioGroup>,
       );
 
-      expect(inputs[0].checked).toBe(false);
-      expect(inputs[1].checked).toBe(true);
+      expect(inputs[0]).not.toBeChecked();
+      expect(inputs[1]).toBeChecked();
     });
   });
 
@@ -145,15 +145,15 @@ describe('[Components] RadioGroup (comprehensive)', () => {
         </RadioGroup>,
       );
       const wrappers = screen.getAllByTestId('radio-wrapper');
-      const inputs = screen.getAllByRole('radio') as HTMLInputElement[];
+      const inputs = screen.getAllByRole('radio');
 
       expect(inputs[2]).toBeDisabled();
 
       await userEvent.click(wrappers[2]);
-      expect(inputs[2].checked).toBe(false);
+      expect(inputs[2]).not.toBeChecked();
 
       await userEvent.click(wrappers[0]);
-      expect(inputs[0].checked).toBe(true);
+      expect(inputs[0]).toBeChecked();
     });
   });
 

@@ -4,107 +4,80 @@
 import type { ComponentPropsWithoutRef } from './common';
 
 /**
- * Internal type for 'as' prop used in polymorphic components
- * Allows components to be rendered as different HTML elements
+ * Allows the component to render as a different host element or custom component.
+ *
+ * @template T - React.ElementType to render (e.g. 'div', 'button', custom component)
+ *
+ * @example
+ * <Box as="button">Button-like box</Box>
  */
-/**
- * Allows the component to render a different element/component via the `as` prop.
- * @template T - React.ElementType to render
- */
-type AsProp<T extends React.ElementType> = { as?: T };
+interface AsProp<T extends React.ElementType> {
+  as?: T;
+}
 
 /**
- * Extracts the correct ref type for a given React element type
- * Ensures type safety when using refs with polymorphic components
+ * Extracts the ref type exposed by a given ElementType.
+ *
+ * Works with both intrinsic JSX elements (e.g. 'button') and custom components,
+ * and stays compatible with React 19’s ref model as well as forwardRef.
+ *
+ * @template T - React.ElementType whose ref type should be inferred
  *
  * @example
  * type ButtonRef = PolymorphicRef<'button'>;    // React.Ref<HTMLButtonElement>
  * type DivRef = PolymorphicRef<'div'>;          // React.Ref<HTMLDivElement>
  * type CustomRef = PolymorphicRef<MyComponent>; // React.Ref<MyComponent>
  */
-/**
- * Extracts the ref type exposed by ElementType T.
- * Compatible with both forwardRef and React 19 ref patterns.
- * @template T - React.ElementType
- */
 export type PolymorphicRef<T extends React.ElementType> =
   React.ComponentPropsWithRef<T>['ref'];
 
 /**
- * Polymorphic component props without ref
- * Combines 'as' prop, custom props, and element-specific props while avoiding conflicts
+ * Base props for a polymorphic component **without** ref support.
  *
- * @template T - The React element type (e.g., 'div', 'button', or custom component)
- * @template P - Additional custom props specific to the component
+ * Merges:
+ * - the props of the `as` ElementType T (with library-level normalization from ComponentPropsWithoutRef)
+ * - the component’s own custom props P
+ * - the `as` override itself
  *
- * @example
- * interface ButtonProps {
- *   variant: 'primary' | 'secondary';
- *   size: 'sm' | 'md' | 'lg';
- * }
+ * On key collisions, custom props P and the `as` prop take precedence over
+ * the underlying element props, which keeps the external API consistent.
  *
- * type MyButtonProps = PolymorphicPropsWithoutRef<'button', ButtonProps>;
- * // Result: { as?: 'button'; variant: 'primary' | 'secondary'; size: 'sm' | 'md' | 'lg'; } & button props
- */
-/**
- * Base props for a polymorphic component (without ref).
- * Merges: props of the `as` ElementType + library shared props + custom P.
- * On key collisions, custom P / `as` overrides take precedence.
- *
- * @template T - ElementType being rendered
- * @template BlockLabel - Whether shared label prop is blocked (see common.ts)
- * @template P - Additional custom prop bag
+ * @template T - ElementType being rendered (e.g. 'div', 'button', custom component)
+ * @template P - Additional custom prop bag specific to the polymorphic component
  *
  * @see {@link AsProp}
  * @see {@link ComponentPropsWithoutRef}
  */
 export type PolymorphicPropsWithoutRef<
   T extends React.ElementType,
-  BlockLabel extends boolean = false,
   P = unknown,
-> = AsProp<T> &
-  P &
-  Omit<ComponentPropsWithoutRef<T, BlockLabel>, keyof (AsProp<T> & P)>;
+> = AsProp<T> & P & Omit<ComponentPropsWithoutRef<T>, keyof (AsProp<T> & P)>;
 
 /**
- * Polymorphic component props with ref support
- * Extends PolymorphicPropsWithoutRef with properly typed ref prop
+ * Ref-enabled variant of PolymorphicPropsWithoutRef.
  *
- * @template T - The React element type (e.g., 'div', 'button', or custom component)
- * @template P - Additional custom props specific to the component
+ * Adds an optional `ref` prop that is correctly typed for the resolved ElementType T,
+ * so consumers can attach refs without having to manually annotate them.
+ *
+ * @template T - ElementType being rendered
+ * @template P - Additional custom prop bag
  *
  * @example
- * // React 19+ - No forwardRef needed
+ * type ButtonProps = { variant: 'primary' | 'secondary' };
+ *
  * const Button = <T extends React.ElementType = 'button'>(
- *   props: PolymorphicPropsWithRef<T, ButtonProps>
+ *   props: PolymorphicPropsWithRef<T, ButtonProps>,
  * ) => {
  *   const { as: Component = 'button', ref, ...rest } = props;
  *   return <Component ref={ref} {...rest} />;
  * };
  *
- * // React 18 and below - forwardRef required
- * const Button = React.forwardRef<
- *   PolymorphicRef<'button'>,
- *   PolymorphicPropsWithRef<'button', ButtonProps>
- * >((props, ref) => {
- *   const { as: Component = 'button', ...rest } = props;
- *   return <Component ref={ref} {...rest} />;
- * });
- *
- * // Usage (same for both versions)
- * <Button as="a" href="/link">Link Button</Button>
- * <Button as="button" onClick={() => {}}>Regular Button</Button>
- */
-/**
- * Ref-supporting version.
- * @template T - ElementType rendered
- * @template BlockLabel - Flag controlling label prop blocking
- * @template P - Custom props
- *
+ * @see {@link PolymorphicPropsWithoutRef}
  * @see {@link PolymorphicRef}
  */
 export type PolymorphicPropsWithRef<
   T extends React.ElementType,
-  BlockLabel extends boolean = false,
   P = unknown,
-> = PolymorphicPropsWithoutRef<T, BlockLabel, P> & { ref?: PolymorphicRef<T> };
+> = PolymorphicPropsWithoutRef<T, P> & {
+  ref?: PolymorphicRef<T>;
+};

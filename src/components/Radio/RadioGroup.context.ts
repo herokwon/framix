@@ -14,7 +14,7 @@ const RadioGroupContext = createContext<RadioGroupContextProps | null>(null);
 
 export const RadioGroupProvider = RadioGroupContext.Provider;
 
-export const useRadioGroup = () => {
+export const useRadioGroup = (): RadioGroupContextProps => {
   const context = useContext(RadioGroupContext);
 
   if (!context) throw new Error('Radio must be used within a RadioGroup');

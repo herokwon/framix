@@ -49,7 +49,7 @@ export const Alert = ({
   variant = 'standard',
   color = 'default',
   ...props
-}: AlertProps) => {
+}: AlertProps): React.JSX.Element => {
   const AlertIcon = (
     {
       default: Info,

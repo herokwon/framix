@@ -1,6 +1,7 @@
 import type {
   CheckableStatusProps,
   ComponentPropsWithRef,
+  LabelProps,
   StrictOmit,
 } from '@types';
 
@@ -21,6 +22,7 @@ export type RadioProps = StrictOmit<
   | 'value'
   | 'onChange'
 > &
+  LabelProps &
   Pick<CheckableStatusProps, 'isDisabled'> & {
     /** The value of the radio button. */
     value?: string;
@@ -43,7 +45,7 @@ export const Radio = ({
   label = value,
   isDisabled: disabled = false,
   ...props
-}: RadioProps) => {
+}: RadioProps): React.JSX.Element => {
   const group = useRadioGroup();
 
   const isChecked = group.value === value;

@@ -1,13 +1,8 @@
-import type {
-  ContentAlignment,
-  ItemsAlignment,
-  PolymorphicPropsWithRef,
-  StrictExtract,
-} from '@types';
+import type { ContentAlignment, ItemsAlignment, StrictExtract } from '@types';
 
 import { cn } from '@utils';
 
-import { Box } from '../Box';
+import { Box, type BoxProps } from '../Box';
 
 type FlexDirection = StrictExtract<
   React.CSSProperties['flexDirection'],
@@ -17,29 +12,25 @@ type FlexWrap = StrictExtract<
   React.CSSProperties['flexWrap'],
   'nowrap' | 'wrap' | 'wrap-reverse'
 >;
-export type FlexProps<T extends React.ElementType> = PolymorphicPropsWithRef<
-  T,
-  false,
-  {
-    /** The direction of the flex items */
-    direction?: FlexDirection;
-    /** Aligns flex items along the main axis */
-    justifyContent?: ContentAlignment;
-    /** Aligns flex items along the cross axis */
-    alignItems?: ItemsAlignment;
-    /** Whether flex items should wrap */
-    wrap?: FlexWrap;
-    /** The gap between flex items */
-    gap?:
-      | number
-      | {
-          row?: number;
-          column?: number;
-        };
-    /** If true, the component will be an inline-flex container */
-    inline?: boolean;
-  }
->;
+export type FlexProps<T extends React.ElementType> = BoxProps<T> & {
+  /** The direction of the flex items */
+  direction?: FlexDirection;
+  /** Aligns flex items along the main axis */
+  justifyContent?: ContentAlignment;
+  /** Aligns flex items along the cross axis */
+  alignItems?: ItemsAlignment;
+  /** Whether flex items should wrap */
+  wrap?: FlexWrap;
+  /** The gap between flex items */
+  gap?:
+    | number
+    | {
+        row?: number;
+        column?: number;
+      };
+  /** If true, the component will be an inline-flex container */
+  inline?: boolean;
+};
 
 /**
  * A flexible layout component that uses CSS Flexbox
@@ -72,7 +63,7 @@ export type FlexProps<T extends React.ElementType> = PolymorphicPropsWithRef<
  */
 export const Flex = <T extends React.ElementType = 'div'>(
   props: FlexProps<T>,
-): React.ReactElement => {
+): React.JSX.Element => {
   const {
     as: Component = 'div',
     direction = 'row',

@@ -15,7 +15,7 @@ import type { SelectContent } from './SelectContent';
 import type { SelectTrigger } from './SelectTrigger';
 
 export type SelectProps = StrictOmit<
-  ComponentPropsWithoutRef<'div', true>,
+  ComponentPropsWithoutRef<'div'>,
   'defaultValue' | 'onChange'
 > &
   Pick<ElementStatusProps, 'isDisabled'> & {
@@ -58,7 +58,7 @@ export const Select = ({
   onChange,
   isDisabled = false,
   ...props
-}: SelectProps) => {
+}: SelectProps): React.JSX.Element => {
   const [internalValue, setInternalValue] = useState<string>(defaultValue);
   const [open, setOpen] = useState<boolean>(false);
   const selectRef = useRef<HTMLDivElement>(null);

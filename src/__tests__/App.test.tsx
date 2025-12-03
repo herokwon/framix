@@ -1,4 +1,4 @@
-import { render } from '@testing-library/react';
+import { render, screen } from '@testing-library/react';
 
 import App from '../App';
 
@@ -11,9 +11,10 @@ describe('App', () => {
   });
 
   it('should render empty fragment', () => {
-    const { container } = render(<App />);
+    render(<App />);
+    const main = screen.getByRole('main');
 
-    expect(container).toBeEmptyDOMElement();
-    expect(container.firstChild).toBeNull();
+    expect(main).toBeInTheDocument();
+    expect(main).toBeEmptyDOMElement();
   });
 });
