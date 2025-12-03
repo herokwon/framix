@@ -1,21 +1,10 @@
-import type { MaxWidth, StrictExtract } from '@types';
+import type { ContainerHtmlTag, MaxWidth } from '@types';
 
 import { cn } from '@utils';
 
 import { Box, type BoxProps } from '../Box';
 
-type ContainerTags = StrictExtract<
-  React.ElementType,
-  | 'main'
-  | 'section'
-  | 'div'
-  | 'article'
-  | 'aside'
-  | 'header'
-  | 'footer'
-  | 'dialog'
->;
-export type ContainerProps<T extends ContainerTags> = BoxProps<T> &
+export type ContainerProps<T extends ContainerHtmlTag> = BoxProps<T> &
   (
     | {
         /** If true, the container will have a fixed width based on Tailwind's container class. */
@@ -47,7 +36,7 @@ export type ContainerProps<T extends ContainerTags> = BoxProps<T> &
  * <Container as="main" maxWidth="xl">Main content</Container>
  * ```
  */
-export const Container = <T extends ContainerTags = 'section'>(
+export const Container = <T extends ContainerHtmlTag = 'section'>(
   props: ContainerProps<T>,
 ): React.JSX.Element => {
   const { as: Component = 'section', className, ...rest } = props;
@@ -58,7 +47,7 @@ export const Container = <T extends ContainerTags = 'section'>(
           ([key]) => key !== 'fixed' && key !== 'maxWidth',
         ),
       )}
-      as={Component satisfies ContainerTags}
+      as={Component satisfies ContainerHtmlTag}
       className={cn(
         className,
         props.fixed
