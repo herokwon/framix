@@ -11,7 +11,7 @@ describe('[Components] Checkbox', () => {
       render(<Checkbox />);
 
       const wrapper = screen.getByTestId('checkbox-wrapper');
-      const input = screen.getByTestId('checkbox') as HTMLInputElement;
+      const input = screen.getByTestId('checkbox');
       const svg = wrapper.querySelector('svg');
 
       expect(wrapper).toBeInTheDocument();
@@ -19,7 +19,7 @@ describe('[Components] Checkbox', () => {
       expect(input).toBeInTheDocument();
       expect(input).toHaveAttribute('type', 'checkbox');
       expect(input).not.toBeDisabled();
-      expect(input.checked).toBe(false);
+      expect(input).not.toBeChecked();
 
       expect(svg).toBeInTheDocument();
       expect(svg).toHaveAttribute('aria-hidden', 'true');
@@ -37,27 +37,27 @@ describe('[Components] Checkbox', () => {
     it('controlled: respects isChecked and does not toggle without prop change', async () => {
       const onChange = vi.fn();
       render(<Checkbox isChecked label="c" onChange={onChange} />);
-      const input = screen.getByTestId('checkbox') as HTMLInputElement;
+      const input = screen.getByTestId('checkbox');
 
-      expect(input.checked).toBe(true);
+      expect(input).toBeChecked();
 
       await userEvent.click(input);
 
       expect(onChange).toHaveBeenCalledTimes(1);
-      expect(input.checked).toBe(true);
+      expect(input).toBeChecked();
     });
 
     it('uncontrolled: uses defaultChecked and toggles on click', async () => {
       const onChange = vi.fn();
       render(<Checkbox defaultChecked label="u" onChange={onChange} />);
-      const input = screen.getByTestId('checkbox') as HTMLInputElement;
+      const input = screen.getByTestId('checkbox');
 
-      expect(input.checked).toBe(true);
+      expect(input).toBeChecked();
 
       await userEvent.click(input);
 
       expect(onChange).toHaveBeenCalledTimes(1);
-      expect(input.checked).toBe(false);
+      expect(input).not.toBeChecked();
     });
   });
 
@@ -97,12 +97,12 @@ describe('[Components] Checkbox', () => {
     it('label click toggles checkbox in uncontrolled mode', async () => {
       render(<Checkbox defaultChecked={false} label="Toggle" />);
       const wrapper = screen.getByTestId('checkbox-wrapper');
-      const input = screen.getByTestId('checkbox') as HTMLInputElement;
+      const input = screen.getByTestId('checkbox');
 
-      expect(input.checked).toBe(false);
+      expect(input).not.toBeChecked();
 
       await userEvent.click(wrapper);
-      expect(input.checked).toBe(true);
+      expect(input).toBeChecked();
     });
   });
 

@@ -1,12 +1,8 @@
-import type {
-  ContentAlignment,
-  ItemsAlignment,
-  PolymorphicPropsWithRef,
-} from '@types';
+import type { ContentAlignment, ItemsAlignment } from '@types';
 
 import { cn } from '@utils';
 
-import { Box } from '../Box';
+import { Box, type BoxProps } from '../Box';
 
 type GridTemplateTypes =
   | {
@@ -14,29 +10,25 @@ type GridTemplateTypes =
       size?: string;
     }
   | [string, ...string[]];
-export type GridProps<T extends React.ElementType> = PolymorphicPropsWithRef<
-  T,
-  false,
-  {
-    /** Grid template columns definition */
-    templateColumns?: GridTemplateTypes;
-    /** Grid template rows definition */
-    templateRows?: GridTemplateTypes;
-    /** Aligns grid along the inline (row) axis */
-    justifyContent?: ContentAlignment;
-    /** Aligns grid along the block (column) axis */
-    alignContent?: ContentAlignment;
-    /** Shorthand for align-items and justify-items */
-    placeItems?: ItemsAlignment;
-    /** Gap between grid items */
-    gap?:
-      | number
-      | {
-          row?: number;
-          column?: number;
-        };
-  }
->;
+export type GridProps<T extends React.ElementType> = BoxProps<T> & {
+  /** Grid template columns definition */
+  templateColumns?: GridTemplateTypes;
+  /** Grid template rows definition */
+  templateRows?: GridTemplateTypes;
+  /** Aligns grid along the inline (row) axis */
+  justifyContent?: ContentAlignment;
+  /** Aligns grid along the block (column) axis */
+  alignContent?: ContentAlignment;
+  /** Shorthand for align-items and justify-items */
+  placeItems?: ItemsAlignment;
+  /** Gap between grid items */
+  gap?:
+    | number
+    | {
+        row?: number;
+        column?: number;
+      };
+};
 
 /**
  * A flexible grid layout component that uses CSS Grid
@@ -76,7 +68,7 @@ export type GridProps<T extends React.ElementType> = PolymorphicPropsWithRef<
  */
 export const Grid = <T extends React.ElementType = 'div'>(
   props: GridProps<T>,
-): React.ReactElement => {
+): React.JSX.Element => {
   const {
     as: Component = 'div',
     templateColumns,

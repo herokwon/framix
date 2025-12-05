@@ -48,7 +48,7 @@ export const WithComplexContent: Story = {
   args: {
     as: 'div',
     className:
-      'p-4 max-w-[40rem] rounded-md border border-neutral-light dark:border-neutral-dark dark:bg-neutral-dark not-dark:shadow-overlay not-dark:shadow-neutral-light',
+      'p-4 max-w-160 rounded-md border border-neutral-light dark:border-neutral-dark dark:bg-neutral-dark not-dark:shadow-overlay not-dark:shadow-neutral-light',
     children: (
       <>
         <Box

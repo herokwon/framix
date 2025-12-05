@@ -16,7 +16,7 @@ describe('[Components] Tooltip', () => {
     const id = tooltip.id;
 
     expect(id).toMatch(/^tooltip-/);
-    expect(trigger).toHaveAttribute('aria-describedby', id!);
+    expect(trigger).toHaveAttribute('aria-describedby', id);
     expect(tooltip).toHaveTextContent('Helpful info');
   });
 

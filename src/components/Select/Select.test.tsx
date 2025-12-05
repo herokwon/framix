@@ -41,13 +41,13 @@ describe('[Components] Select (current implementation)', () => {
     it('renders trigger (combobox) with aria linkage to listbox and placeholder label', () => {
       renderBase();
       const label = screen.getByTestId('select-trigger-label');
-      const trigger = screen.getByTestId('select-trigger') as HTMLInputElement;
+      const trigger = screen.getByTestId('select-trigger');
       const controls = trigger.getAttribute('aria-controls');
       const content = screen.getByTestId('select-content');
 
       expect(label).toBeInTheDocument();
       expect(label).toHaveTextContent('Fruits');
-      expect(trigger.value).toBe('');
+      expect(trigger).toHaveValue('');
 
       expect(trigger).toBeInTheDocument();
       expect(trigger).toHaveAttribute('role', 'combobox');
@@ -72,21 +72,21 @@ describe('[Components] Select (current implementation)', () => {
           </SelectContent>
         </Select>,
       );
-      const trigger = screen.getByTestId('select-trigger') as HTMLInputElement;
+      const trigger = screen.getByTestId('select-trigger');
 
-      expect(trigger.value).toBe('apple');
+      expect(trigger).toHaveValue('apple');
 
       await userEvent.click(trigger);
       await userEvent.click(screen.getByRole('option', { name: 'Banana' }));
 
-      expect(trigger.value).toBe('banana');
+      expect(trigger).toHaveValue('banana');
     });
   });
 
   describe('open / close interactions', () => {
     it('opens on trigger click and closes after selecting an option', async () => {
       renderBase();
-      const trigger = screen.getByTestId('select-trigger') as HTMLInputElement;
+      const trigger = screen.getByTestId('select-trigger');
       const content = screen.getByTestId('select-content');
 
       expect(trigger).toHaveAttribute('aria-expanded', 'false');
@@ -99,7 +99,7 @@ describe('[Components] Select (current implementation)', () => {
       await userEvent.click(option);
 
       expect(trigger).toHaveAttribute('aria-expanded', 'false');
-      expect(trigger.value).toBe('Banana');
+      expect(trigger).toHaveValue('Banana');
     });
 
     it('closes when clicking outside while open', async () => {
@@ -132,21 +132,21 @@ describe('[Components] Select (current implementation)', () => {
   describe('uncontrolled value flow', () => {
     it('defaultValue sets initial displayed content via getContent', () => {
       renderBase({ defaultValue: 'banana' });
-      const trigger = screen.getByTestId('select-trigger') as HTMLInputElement;
+      const trigger = screen.getByTestId('select-trigger');
 
-      expect(trigger.value).toBe('Banana');
+      expect(trigger).toHaveValue('Banana');
     });
 
     it('selecting an option updates displayed value (internal state)', async () => {
       renderBase({ defaultValue: 'apple' });
-      const trigger = screen.getByTestId('select-trigger') as HTMLInputElement;
+      const trigger = screen.getByTestId('select-trigger');
 
-      expect(trigger.value).toBe('Apple');
+      expect(trigger).toHaveValue('Apple');
 
       await userEvent.click(trigger);
       await userEvent.click(screen.getByText('Peach'));
 
-      expect(trigger.value).toBe('Peach');
+      expect(trigger).toHaveValue('Peach');
     });
   });
 
@@ -154,15 +154,15 @@ describe('[Components] Select (current implementation)', () => {
     it('invokes onChange and relies on parent to update value', async () => {
       const onChange = vi.fn();
       const { rerender } = renderBase({ value: 'apple', onChange });
-      const trigger = screen.getByTestId('select-trigger') as HTMLInputElement;
+      const trigger = screen.getByTestId('select-trigger');
 
-      expect(trigger.value).toBe('Apple');
+      expect(trigger).toHaveValue('Apple');
 
       await userEvent.click(trigger);
       await userEvent.click(screen.getByText('Banana'));
 
       expect(onChange).toHaveBeenCalledWith('banana');
-      expect(trigger.value).toBe('Apple');
+      expect(trigger).toHaveValue('Apple');
 
       rerender(
         <Select getContent={getContent} value="banana" onChange={onChange}>
@@ -177,7 +177,7 @@ describe('[Components] Select (current implementation)', () => {
         </Select>,
       );
 
-      expect(trigger.value).toBe('Banana');
+      expect(trigger).toHaveValue('Banana');
     });
   });
 

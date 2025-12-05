@@ -5,10 +5,10 @@ import { Grid } from '@layouts/Grid';
 import { useSelect } from './Select.context';
 import type { SelectItem } from './SelectItem';
 
-export type SelectContentProps = {
+export interface SelectContentProps {
   /** The items to be displayed in the select content. */
   children: React.ReactElement<React.ComponentProps<typeof SelectItem>>[];
-};
+}
 
 /**
  * The container for the options of a Select component.
@@ -24,7 +24,9 @@ export type SelectContentProps = {
  * </Select>
  * ```
  */
-export const SelectContent = ({ children }: SelectContentProps) => {
+export const SelectContent = ({
+  children,
+}: SelectContentProps): React.JSX.Element => {
   const { ids, open } = useSelect('SelectContent');
 
   return (

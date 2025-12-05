@@ -5,8 +5,7 @@ import userEvent from '@testing-library/user-event';
 
 import { Switch } from './Switch';
 
-const getSwitchElement = (testId: string = 'switch') =>
-  screen.getByTestId(testId);
+const getSwitchElement = (testId = 'switch') => screen.getByTestId(testId);
 
 describe('[Components] Switch', () => {
   describe('rendering & structure', () => {

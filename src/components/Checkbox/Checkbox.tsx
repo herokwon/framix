@@ -5,6 +5,7 @@ import { SquareCheck } from 'lucide-react';
 import type {
   CheckableStatusProps,
   ComponentPropsWithRef,
+  LabelProps,
   StrictOmit,
 } from '@types';
 
@@ -18,6 +19,7 @@ export type CheckboxProps = StrictOmit<
   ComponentPropsWithRef<'input'>,
   'children' | 'type' | 'size' | 'checked'
 > &
+  LabelProps &
   StrictOmit<CheckableStatusProps, 'isLoading'> & {
     /** If true, the checkbox will be in an indeterminate state. */
     isIndeterminate?: boolean;
@@ -42,7 +44,7 @@ export const Checkbox = ({
   onChange,
   defaultChecked = false,
   ...props
-}: CheckboxProps) => {
+}: CheckboxProps): React.JSX.Element => {
   const isControlled = typeof checked === 'boolean';
 
   const [internalChecked, setInternalChecked] =
@@ -91,7 +93,7 @@ export const Checkbox = ({
           isDisabled && 'disabled',
           isChecked &&
             'fill-primary-light dark:fill-primary-dark *:first:stroke-primary-light dark:*:first:stroke-primary-dark',
-          ((isChecked && isIndeterminate) || !isChecked) &&
+          ((isChecked && isIndeterminate) ?? !isChecked) &&
             '*:not-last:[path]:pointer-events-none *:not-last:[path]:opacity-0',
         )}
       >

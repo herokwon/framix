@@ -72,6 +72,7 @@ const meta = {
   title: 'Components/Tooltip',
   component: Tooltip,
   args: {
+    children: <Button>Hover me</Button>,
     position: 'bottom-center',
     content: 'This is a tooltip content',
     isDisabled: false,
@@ -87,11 +88,7 @@ export default meta;
 
 type Story = StoryObj<typeof meta>;
 
-export const Default: Story = {
-  args: {
-    children: <Button>Hover me</Button>,
-  },
-};
+export const Default: Story = {};
 
 export const Positioning: Story = {
   render: args => {

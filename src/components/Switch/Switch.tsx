@@ -3,6 +3,7 @@ import { useState } from 'react';
 import type {
   CheckableStatusProps,
   ComponentPropsWithRef,
+  LabelProps,
   StrictOmit,
 } from '@types';
 
@@ -14,6 +15,7 @@ export type SwitchProps = StrictOmit<
   ComponentPropsWithRef<'button'>,
   'children' | 'onChange'
 > &
+  LabelProps &
   StrictOmit<CheckableStatusProps, 'isLoading'> & {
     /** The default checked state of the switch. */
     defaultChecked?: boolean;
@@ -42,7 +44,7 @@ export const Switch = ({
   hasShadow = true,
   onChange,
   ...props
-}: SwitchProps) => {
+}: SwitchProps): React.JSX.Element => {
   const [internalChecked, setInternalChecked] =
     useState<boolean>(defaultChecked);
 

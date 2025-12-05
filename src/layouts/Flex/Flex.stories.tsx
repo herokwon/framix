@@ -122,7 +122,7 @@ export const JustifyContent: Story = {
 
 export const AlignItems: Story = {
   render: () => (
-    <Box className="space-y-loose p-loose *:last:*:last:*:last:text-heading1 *:last:*:last:*:first:text-title2 *:last:*:last:*:nth-[2]:text-body3 *:not-[&:nth-child(4)]:*:last:*:last:h-20 *:not-[&:nth-child(4)]:*:last:*:nth-[2]:h-12 *:nth-last-[2]:*:last:*:h-full *:nth-last-[2]:*:last:h-36">
+    <Box className="space-y-loose p-loose *:last:*:last:*:last:text-heading1 *:last:*:last:*:first:text-title2 *:last:*:last:*:nth-[2]:text-body3 *:not-nth-4:*:last:*:last:h-20 *:not-nth-4:*:last:*:nth-[2]:h-12 *:nth-last-[2]:*:last:*:h-full *:nth-last-[2]:*:last:h-36">
       <FlexBox
         length={3}
         prop={{ name: 'AlignItems', value: 'start' }}
@@ -158,7 +158,7 @@ export const AlignItems: Story = {
 
 export const Wrap: Story = {
   render: () => (
-    <Box className="space-y-loose p-loose *:*:last:w-40 *:*:last:*:flex-shrink-0">
+    <Box className="space-y-loose p-loose *:*:last:w-40 *:*:last:*:shrink-0">
       <FlexBox
         length={4}
         prop={{ name: 'Wrap', value: 'nowrap' }}
@@ -178,7 +178,7 @@ export const Wrap: Story = {
 
 export const Gap: Story = {
   render: () => (
-    <Box className="space-y-loose p-loose *:last:w-60 *:last:*:last:*:*:flex-shrink-0">
+    <Box className="space-y-loose p-loose *:last:w-60 *:last:*:last:*:*:shrink-0">
       <FlexBox
         length={3}
         prop={{ name: 'Gap', value: 'row=0, column=0' }}

@@ -8,6 +8,7 @@ import type {
   ElementStatusProps,
   ElementVariant,
   If,
+  LabelProps,
   PolymorphicPropsWithRef,
   StrictOmit,
 } from '@types';
@@ -23,12 +24,12 @@ import { Text } from '../Text';
 
 export type ButtonProps<T extends ButtonHtmlTag> = PolymorphicPropsWithRef<
   T,
-  false,
   If<
     T extends 'a' ? true : false,
     StrictOmit<ComponentPropsWithRef<'a'>, 'children'>,
     StrictOmit<ComponentPropsWithRef<'button'>, 'children' | 'disabled'>
   > &
+    LabelProps &
     ElementStatusProps & {
       /** The content of the button. */
       children: NonNullable<React.ReactNode>;
@@ -75,10 +76,10 @@ export const Button = <T extends ButtonHtmlTag = 'button'>({
   isSelected = false,
   isLoading = false,
   ...props
-}: ButtonProps<T>) => {
-  const buttonTag = (as || 'button') satisfies ButtonHtmlTag;
+}: ButtonProps<T>): React.JSX.Element => {
+  const buttonTag = (as ?? 'button') satisfies ButtonHtmlTag;
   const hasOnlyOneIcon = !(
-    (LeftIcon && RightIcon) ||
+    (LeftIcon && RightIcon) ??
     (!LeftIcon && !RightIcon)
   );
 

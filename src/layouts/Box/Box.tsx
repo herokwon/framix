@@ -1,4 +1,4 @@
-import type { PolymorphicPropsWithRef } from '@types';
+import type { LabelProps, PolymorphicPropsWithRef } from '@types';
 
 /**
  * A polymorphic box component that can render as any HTML element.
@@ -8,11 +8,12 @@ import type { PolymorphicPropsWithRef } from '@types';
  * <Box as="button">Button</Box>
  * <Box as="a" href="https://example.com">Link</Box>
  */
-export type BoxProps<T extends React.ElementType> = PolymorphicPropsWithRef<T>;
+export type BoxProps<T extends React.ElementType> = PolymorphicPropsWithRef<T> &
+  LabelProps;
 
 export const Box = <T extends React.ElementType = 'div'>(
   props: BoxProps<T>,
-): React.ReactElement => {
+): React.JSX.Element => {
   const { as: Component = 'div', testId, label, ...rest } = props;
   return <Component {...rest} data-testid={testId} aria-label={label} />;
 };

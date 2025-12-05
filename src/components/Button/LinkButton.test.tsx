@@ -23,9 +23,9 @@ describe('[Components] LinkButton', () => {
       value: {
         ...originalLocation,
         replace,
-        href: originalLocation!.href,
-        protocol: originalLocation!.protocol,
-        host: originalLocation!.host,
+        href: originalLocation.href,
+        protocol: originalLocation.protocol,
+        host: originalLocation.host,
       } as unknown as Location,
     });
     return replace;
@@ -127,8 +127,7 @@ describe('[Components] LinkButton', () => {
 
       expect(locReplace).toHaveBeenCalledTimes(1);
 
-      // destination is resolved via new URL with current origin
-      const calledWith = locReplace.mock.calls[0]?.[0];
+      const calledWith: unknown = locReplace.mock.calls[0][0];
 
       expect(typeof calledWith).toBe('string');
       expect(calledWith).toMatch(/^https?:\/\/example\.com\/path/);
@@ -154,7 +153,7 @@ describe('[Components] LinkButton', () => {
       expect(locReplace).not.toHaveBeenCalled();
     });
 
-    it('does nothing on middle-click (button!==0)', async () => {
+    it('does nothing on middle-click (button!==0)', () => {
       const replaceStateSpy = vi.spyOn(window.history, 'replaceState');
       const locReplace = stubLocationReplace();
 
@@ -170,7 +169,7 @@ describe('[Components] LinkButton', () => {
       expect(locReplace).not.toHaveBeenCalled();
     });
 
-    it('respects target="_blank" by not intercepting navigation', async () => {
+    it('respects target="_blank" by not intercepting navigation', () => {
       const replaceStateSpy = vi.spyOn(window.history, 'replaceState');
       const locReplace = stubLocationReplace();
 

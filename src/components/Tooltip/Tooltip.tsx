@@ -3,6 +3,7 @@ import React from 'react';
 import type {
   ComponentPropsWithoutRef,
   ElementStatusProps,
+  LabelProps,
   OverlayPosition,
   StrictOmit,
 } from '@types';
@@ -13,16 +14,17 @@ import { Box } from '@layouts/Box';
 
 import { Text } from '../Text';
 
-type DescribableChild = {
+interface DescribableChild {
   'aria-describedby'?: string;
-};
+}
 
 export type TooltipProps = StrictOmit<
   ComponentPropsWithoutRef<'div'>,
   'children'
 > &
+  LabelProps &
   Pick<ElementStatusProps, 'isDisabled'> & {
-    children: NonNullable<React.ReactNode>;
+    children: React.ReactElement;
     content: string;
     position?: OverlayPosition;
   };
@@ -35,11 +37,11 @@ export const Tooltip = ({
   testId = 'tooltip',
   label = 'Tooltip',
   ...props
-}: TooltipProps) => {
+}: TooltipProps): React.JSX.Element => {
   const id = `tooltip-${React.useId()}`;
   const trigger =
     !isDisabled && React.isValidElement<DescribableChild>(children)
-      ? React.cloneElement(children as React.ReactElement<DescribableChild>, {
+      ? React.cloneElement(children, {
           'aria-describedby': [children.props['aria-describedby'], id]
             .filter(Boolean)
             .join(' '),

@@ -4,10 +4,10 @@ import { isLocalURL } from '@utils';
 
 import { Button } from './Button';
 
-type UrlObject = {
+interface UrlObject {
   pathname: string;
   replace?: boolean;
-};
+}
 
 export type LinkButtonProps = StrictOmit<
   React.ComponentProps<typeof Button<'a'>>,
@@ -33,7 +33,7 @@ export const LinkButton = ({
   testId = 'link-button',
   label = 'Link Button',
   ...props
-}: LinkButtonProps) => {
+}: LinkButtonProps): React.JSX.Element => {
   const url = {
     pathname: typeof href === 'string' ? href : href.pathname,
     replace: typeof href === 'string' ? false : (href.replace ?? false),

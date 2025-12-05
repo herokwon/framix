@@ -32,7 +32,7 @@ export const IconButton = ({
   testId = 'icon-button',
   label = 'Icon Button',
   ...props
-}: IconButtonProps) => {
+}: IconButtonProps): React.JSX.Element => {
   return (
     <Button
       {...props}

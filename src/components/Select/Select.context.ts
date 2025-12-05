@@ -2,11 +2,11 @@ import { createContext, useContext } from 'react';
 
 import type { ElementStatusProps } from '@types';
 
-export type SelectIds = {
+export interface SelectIds {
   base: string;
   trigger: string;
   content: string;
-};
+}
 
 type SelectContextValue = Required<Pick<ElementStatusProps, 'isDisabled'>> & {
   value: string;
@@ -21,7 +21,7 @@ const SelectContext = createContext<SelectContextValue | null>(null);
 
 export const SelectProvider = SelectContext.Provider;
 
-export const useSelect = (caller: string) => {
+export const useSelect = (caller: string): SelectContextValue => {
   const context = useContext(SelectContext);
 
   if (!context) throw new Error(`${caller} must be used within a <Select>`);
