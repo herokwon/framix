@@ -78,8 +78,6 @@ export const Select = ({
   const selectedValue = isControlled ? value : internalValue;
 
   const handleChange = (value: string) => {
-    if (isDisabled) return;
-
     if (!isControlled) {
       setInternalValue(value);
     }

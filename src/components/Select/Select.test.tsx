@@ -27,9 +27,9 @@ const renderBase = (
     >
       <SelectTrigger placeholder="Fruits" />
       <SelectContent>
-        {options.map(o => (
-          <SelectItem key={o.value} value={o.value}>
-            {o.content}
+        {options.map(({ value, content }) => (
+          <SelectItem key={value} value={value}>
+            {content}
           </SelectItem>
         ))}
       </SelectContent>
@@ -252,16 +252,41 @@ describe('[Components] Select (current implementation)', () => {
       expect(onChange).toHaveBeenCalledWith('peach');
     });
 
-    it('does not select a disabled option via keyboard', async () => {
+    it('does not call onChange when other keys are pressed', async () => {
+      const onChange = vi.fn();
+      render(
+        <Select getContent={getContent} onChange={onChange}>
+          <SelectTrigger placeholder="Fruits" />
+          <SelectContent>
+            {options.map(({ value, content }) => (
+              <SelectItem key={value} value={value}>
+                {content}
+              </SelectItem>
+            ))}
+          </SelectContent>
+        </Select>,
+      );
+
+      const trigger = screen.getByTestId('select-trigger');
+      await userEvent.click(trigger);
+
+      const banana = screen.getByRole('option', { name: 'Banana' });
+      banana.focus();
+      await userEvent.keyboard('A');
+
+      expect(onChange).not.toHaveBeenCalled();
+    });
+
+    it('does not call onChange when clicking a disabled option', async () => {
       const onChange = vi.fn();
       render(
         <Select getContent={getContent} onChange={onChange}>
           <SelectTrigger placeholder="Fruits" />
           <SelectContent>
             {[
-              ...options.map(o => (
-                <SelectItem key={o.value} value={o.value}>
-                  {o.content}
+              ...options.map(({ value, content }) => (
+                <SelectItem key={value} value={value}>
+                  {content}
                 </SelectItem>
               )),
               <SelectItem key="disabled-item" value="disabled-item" isDisabled>
@@ -271,12 +296,42 @@ describe('[Components] Select (current implementation)', () => {
           </SelectContent>
         </Select>,
       );
-      const trigger = screen.getByTestId('select-trigger');
 
+      const trigger = screen.getByTestId('select-trigger');
+      await userEvent.click(trigger);
+
+      const disabled = screen.getByRole('option', { name: 'Disabled Option' });
+      await userEvent.click(disabled);
+
+      expect(onChange).not.toHaveBeenCalled();
+    });
+
+    it('does not select a disabled option via keyboard', async () => {
+      const onChange = vi.fn();
+      render(
+        <Select getContent={getContent} onChange={onChange}>
+          <SelectTrigger placeholder="Fruits" />
+          <SelectContent>
+            {[
+              ...options.map(({ value, content }) => (
+                <SelectItem key={value} value={value}>
+                  {content}
+                </SelectItem>
+              )),
+              <SelectItem key="disabled-item" value="disabled-item" isDisabled>
+                Disabled Option
+              </SelectItem>,
+            ]}
+          </SelectContent>
+        </Select>,
+      );
+
+      const trigger = screen.getByTestId('select-trigger');
       await userEvent.click(trigger);
 
       const disabled = screen.getByRole('option', { name: 'Disabled Option' });
       disabled.focus();
+
       await userEvent.keyboard('{Enter}');
       await userEvent.keyboard(' ');
 

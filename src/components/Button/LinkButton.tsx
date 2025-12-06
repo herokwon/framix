@@ -49,6 +49,7 @@ export const LinkButton = ({
       testId={testId}
       label={label}
       onClick={e => {
+        /* istanbul ignore next -- SSR/Node guard: not reachable in jsdom tests */
         if (typeof window === 'undefined') return;
 
         props.onClick?.(e);

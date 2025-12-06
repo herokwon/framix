@@ -91,6 +91,31 @@ describe('[Components] Checkbox', () => {
 
       expect(minus).toHaveClass('opacity-0');
     });
+
+    it('checked + indeterminate: keeps minus visible and applies hiding class only to check mark', () => {
+      const { rerender } = render(<Checkbox isChecked isIndeterminate />);
+      const wrapper = screen.getByTestId('checkbox-wrapper');
+      const svg = wrapper.querySelector('svg');
+      const minus = svg?.querySelector('path:last-child');
+
+      expect(minus).not.toHaveClass('opacity-0');
+
+      expect(svg).toHaveClass('*:not-first:transition-opacity');
+      expect(svg).toHaveClass('*:not-last:[path]:opacity-0');
+
+      rerender(<Checkbox isChecked isIndeterminate={false} />);
+
+      expect(minus).toHaveClass('opacity-0');
+    });
+
+    it('unchecked without indeterminate: minus path is not rendered', () => {
+      render(<Checkbox />);
+      const wrapper = screen.getByTestId('checkbox-wrapper');
+      const icon = wrapper.querySelector('svg');
+      const minus = icon?.querySelector('path[d="M8 12h8"]:last-child');
+
+      expect(minus).toBeFalsy();
+    });
   });
 
   describe('interactions', () => {
