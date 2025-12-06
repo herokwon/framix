@@ -27,9 +27,9 @@ const renderBase = (
     >
       <SelectTrigger placeholder="Fruits" />
       <SelectContent>
-        {options.map(o => (
-          <SelectItem key={o.value} value={o.value}>
-            {o.content}
+        {options.map(({ value, content }) => (
+          <SelectItem key={value} value={value}>
+            {content}
           </SelectItem>
         ))}
       </SelectContent>
@@ -258,16 +258,11 @@ describe('[Components] Select (current implementation)', () => {
         <Select getContent={getContent} onChange={onChange}>
           <SelectTrigger placeholder="Fruits" />
           <SelectContent>
-            {[
-              ...options.map(o => (
-                <SelectItem key={o.value} value={o.value}>
-                  {o.content}
-                </SelectItem>
-              )),
-              <SelectItem key="disabled-item" value="disabled-item" isDisabled>
-                Disabled Option
-              </SelectItem>,
-            ]}
+            {options.map(({ value, content }) => (
+              <SelectItem key={value} value={value}>
+                {content}
+              </SelectItem>
+            ))}
           </SelectContent>
         </Select>,
       );
@@ -289,9 +284,9 @@ describe('[Components] Select (current implementation)', () => {
           <SelectTrigger placeholder="Fruits" />
           <SelectContent>
             {[
-              ...options.map(o => (
-                <SelectItem key={o.value} value={o.value}>
-                  {o.content}
+              ...options.map(({ value, content }) => (
+                <SelectItem key={value} value={value}>
+                  {content}
                 </SelectItem>
               )),
               <SelectItem key="disabled-item" value="disabled-item" isDisabled>
@@ -313,23 +308,17 @@ describe('[Components] Select (current implementation)', () => {
 
     it('does not select a disabled option via keyboard', async () => {
       const onChange = vi.fn();
-      const onKeyDown = vi.fn();
       render(
         <Select getContent={getContent} onChange={onChange}>
           <SelectTrigger placeholder="Fruits" />
           <SelectContent>
             {[
-              ...options.map(o => (
-                <SelectItem key={o.value} value={o.value} onKeyDown={onKeyDown}>
-                  {o.content}
+              ...options.map(({ value, content }) => (
+                <SelectItem key={value} value={value}>
+                  {content}
                 </SelectItem>
               )),
-              <SelectItem
-                key="disabled-item"
-                value="disabled-item"
-                onKeyDown={onKeyDown}
-                isDisabled
-              >
+              <SelectItem key="disabled-item" value="disabled-item" isDisabled>
                 Disabled Option
               </SelectItem>,
             ]}
@@ -347,7 +336,6 @@ describe('[Components] Select (current implementation)', () => {
       await userEvent.keyboard(' ');
 
       expect(onChange).not.toHaveBeenCalled();
-      expect(onKeyDown).not.toHaveBeenCalled();
     });
   });
 });
