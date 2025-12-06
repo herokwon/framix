@@ -51,14 +51,13 @@ export const Switch = ({
   const isControlled = typeof checked !== 'undefined';
   const isChecked: boolean = isControlled ? checked : internalChecked;
 
-  const handleClick = () => {
-    if (isDisabled) return;
-
+  const handleClick = (e => {
     if (!isControlled) {
       setInternalChecked(!isChecked);
     }
     onChange?.(!isChecked);
-  };
+    props.onClick?.(e);
+  }) satisfies React.MouseEventHandler<HTMLButtonElement>;
 
   return (
     <Flex
