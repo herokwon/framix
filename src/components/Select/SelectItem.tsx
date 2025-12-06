@@ -5,12 +5,13 @@ import { cn } from '@utils';
 import { Text } from '../Text';
 import { useSelect } from './Select.context';
 
-export type SelectItemProps = Pick<ElementStatusProps, 'isDisabled'> & {
-  /** The content to be displayed in the item. */
-  children: NonNullable<React.ReactNode>;
-  /** The unique value of the item. */
-  value: string;
-};
+export type SelectItemProps = Pick<ElementStatusProps, 'isDisabled'> &
+  Pick<React.ComponentProps<'li'>, 'onKeyDown'> & {
+    /** The content to be displayed in the item. */
+    children: NonNullable<React.ReactNode>;
+    /** The unique value of the item. */
+    value: string;
+  };
 
 /**
  * An item within a Select component.
@@ -30,6 +31,7 @@ export const SelectItem = ({
   children,
   value,
   isDisabled: itemDisabled = false,
+  onKeyDown,
 }: SelectItemProps): React.JSX.Element => {
   const {
     isDisabled: selectDisabled,
@@ -57,6 +59,8 @@ export const SelectItem = ({
           e.preventDefault();
           onChange(value);
         }
+
+        onKeyDown?.(e);
       }}
       className={cn(
         'size-full cursor-pointer px-3 py-2 transition-colors',
