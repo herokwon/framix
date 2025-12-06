@@ -114,7 +114,7 @@ describe('[Components] Checkbox', () => {
       const icon = wrapper.querySelector('svg');
       const minus = icon?.querySelector('path[d="M8 12h8"]:last-child');
 
-      expect(minus).toBeNullable();
+      expect(minus).toBeFalsy();
     });
   });
 
