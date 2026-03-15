@@ -140,7 +140,7 @@ jobs:
           avatar_url: ${{ fromJSON(steps.pr.outputs.result).avatar_url }}
 
       - name: Send slack message
-        uses: slackapi/slack-github-action@v2
+        uses: slackapi/slack-github-action@v3
         with:
           webhook: ${{ secrets.SLACK_WEBHOOK_URL }}
           webhook-type: incoming-webhook
