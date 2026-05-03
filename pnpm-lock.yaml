@@ -119,7 +119,7 @@ importers:
         version: 10.3.5(eslint@9.39.4(jiti@2.6.1))(storybook@10.3.6(@testing-library/dom@10.4.1)(prettier@3.8.3)(react-dom@19.2.5(react@19.2.5))(react@19.2.5))(typescript@5.9.3)
       globals:
         specifier: ^17.0.0
-        version: 17.5.0
+        version: 17.6.0
       jsdom:
         specifier: ^29.0.1
         version: 29.0.2
@@ -2144,8 +2144,8 @@ packages:
     resolution: {integrity: sha512-oahGvuMGQlPw/ivIYBjVSrWAfWLBeku5tpPE2fOPLi+WHffIWbuh2tCjhyQhTBPMf5E9jDEH4FOmTYgYwbKwtQ==}
     engines: {node: '>=18'}
 
-  globals@17.5.0:
-    resolution: {integrity: sha512-qoV+HK2yFl/366t2/Cb3+xxPUo5BuMynomoDmiaZBIdbs+0pYbjfZU+twLhGKp4uCZ/+NbtpVepH5bGCxRyy2g==}
+  globals@17.6.0:
+    resolution: {integrity: sha512-sepffkT8stwnIYbsMBpoCHJuJM5l98FUF2AnE07hfvE0m/qp3R586hw4jF4uadbhvg1ooIdzuu7CsfD2jzCaNA==}
     engines: {node: '>=18'}
 
   globalthis@1.0.4:
@@ -5832,7 +5832,7 @@ snapshots:
 
   globals@14.0.0: {}
 
-  globals@17.5.0: {}
+  globals@17.6.0: {}
 
   globalthis@1.0.4:
     dependencies:
