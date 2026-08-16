@@ -83,7 +83,7 @@ jobs:
 
       - name: Create release pull request or Publish to npm
         id: changesets
-        uses: changesets/action@v1
+        uses: changesets/action@v2
         with:
           title: 'chore: Update versions'
           commit: 'chore: Update versions'
